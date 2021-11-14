@@ -11,7 +11,6 @@
 		350E13DF2740BF9900645685 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350E13DE2740BF9900645685 /* ContentView.swift */; };
 		350E13E12740BF9B00645685 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 350E13E02740BF9B00645685 /* Assets.xcassets */; };
 		350E13E42740BF9B00645685 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 350E13E32740BF9B00645685 /* Preview Assets.xcassets */; };
-		350E13E62740BF9B00645685 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350E13E52740BF9B00645685 /* Persistence.swift */; };
 		350E13E92740BF9B00645685 /* hackathon.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 350E13E72740BF9B00645685 /* hackathon.xcdatamodeld */; };
 		350E13F32740BF9B00645685 /* hackathonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350E13F22740BF9B00645685 /* hackathonTests.swift */; };
 		350E13FD2740BF9B00645685 /* hackathonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350E13FC2740BF9B00645685 /* hackathonUITests.swift */; };
@@ -45,7 +44,6 @@
 		350E13DE2740BF9900645685 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		350E13E02740BF9B00645685 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		350E13E32740BF9B00645685 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		350E13E52740BF9B00645685 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		350E13E82740BF9B00645685 /* hackathon.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hackathon.xcdatamodel; sourceTree = "<group>"; };
 		350E13EE2740BF9B00645685 /* hackathonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hackathonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		350E13F22740BF9B00645685 /* hackathonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hackathonTests.swift; sourceTree = "<group>"; };
@@ -118,7 +116,6 @@
 				350E13DC2740BF9900645685 /* hackathonApp.swift */,
 				350E13DE2740BF9900645685 /* ContentView.swift */,
 				350E13E02740BF9B00645685 /* Assets.xcassets */,
-				350E13E52740BF9B00645685 /* Persistence.swift */,
 				350E13E72740BF9B00645685 /* hackathon.xcdatamodeld */,
 				350E13E22740BF9B00645685 /* Preview Content */,
 			);
@@ -160,7 +157,6 @@
 				F526D00B22C46C5F91927123 /* Pods-hackathonTests.debug.xcconfig */,
 				0F6D7BC48D69EEF6EDB51D86 /* Pods-hackathonTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -412,7 +408,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				350E13E62740BF9B00645685 /* Persistence.swift in Sources */,
 				350E13DF2740BF9900645685 /* ContentView.swift in Sources */,
 				350E13DD2740BF9900645685 /* hackathonApp.swift in Sources */,
 				350E13E92740BF9B00645685 /* hackathon.xcdatamodeld in Sources */,
