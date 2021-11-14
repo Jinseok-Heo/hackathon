@@ -11,7 +11,6 @@
 		350E13DF2740BF9900645685 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350E13DE2740BF9900645685 /* ContentView.swift */; };
 		350E13E12740BF9B00645685 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 350E13E02740BF9B00645685 /* Assets.xcassets */; };
 		350E13E42740BF9B00645685 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 350E13E32740BF9B00645685 /* Preview Assets.xcassets */; };
-		350E13E92740BF9B00645685 /* hackathon.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 350E13E72740BF9B00645685 /* hackathon.xcdatamodeld */; };
 		350E13F32740BF9B00645685 /* hackathonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350E13F22740BF9B00645685 /* hackathonTests.swift */; };
 		350E13FD2740BF9B00645685 /* hackathonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350E13FC2740BF9B00645685 /* hackathonUITests.swift */; };
 		350E13FF2740BF9B00645685 /* hackathonUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350E13FE2740BF9B00645685 /* hackathonUITestsLaunchTests.swift */; };
@@ -44,7 +43,6 @@
 		350E13DE2740BF9900645685 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		350E13E02740BF9B00645685 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		350E13E32740BF9B00645685 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		350E13E82740BF9B00645685 /* hackathon.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hackathon.xcdatamodel; sourceTree = "<group>"; };
 		350E13EE2740BF9B00645685 /* hackathonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hackathonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		350E13F22740BF9B00645685 /* hackathonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hackathonTests.swift; sourceTree = "<group>"; };
 		350E13F82740BF9B00645685 /* hackathonUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hackathonUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,9 +112,10 @@
 			isa = PBXGroup;
 			children = (
 				350E13DC2740BF9900645685 /* hackathonApp.swift */,
-				350E13DE2740BF9900645685 /* ContentView.swift */,
 				350E13E02740BF9B00645685 /* Assets.xcassets */,
-				350E13E72740BF9B00645685 /* hackathon.xcdatamodeld */,
+				35E5CE1D2740C2EF0075E019 /* Models */,
+				35E5CE1E2740C2F60075E019 /* ViewModels */,
+				35E5CE1F2740C2FA0075E019 /* Views */,
 				350E13E22740BF9B00645685 /* Preview Content */,
 			);
 			path = hackathon;
@@ -145,6 +144,28 @@
 				350E13FE2740BF9B00645685 /* hackathonUITestsLaunchTests.swift */,
 			);
 			path = hackathonUITests;
+			sourceTree = "<group>";
+		};
+		35E5CE1D2740C2EF0075E019 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		35E5CE1E2740C2F60075E019 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		35E5CE1F2740C2FA0075E019 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				350E13DE2740BF9900645685 /* ContentView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		9E0C22EAE493B4CF9C8A2405 /* Pods */ = {
@@ -410,7 +431,6 @@
 			files = (
 				350E13DF2740BF9900645685 /* ContentView.swift in Sources */,
 				350E13DD2740BF9900645685 /* hackathonApp.swift in Sources */,
-				350E13E92740BF9B00645685 /* hackathon.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -763,19 +783,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		350E13E72740BF9B00645685 /* hackathon.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				350E13E82740BF9B00645685 /* hackathon.xcdatamodel */,
-			);
-			currentVersion = 350E13E82740BF9B00645685 /* hackathon.xcdatamodel */;
-			path = hackathon.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 350E13D12740BF9900645685 /* Project object */;
 }
