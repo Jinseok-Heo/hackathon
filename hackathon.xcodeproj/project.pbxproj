@@ -16,6 +16,9 @@
 		350E13F32740BF9B00645685 /* hackathonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350E13F22740BF9B00645685 /* hackathonTests.swift */; };
 		350E13FD2740BF9B00645685 /* hackathonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350E13FC2740BF9B00645685 /* hackathonUITests.swift */; };
 		350E13FF2740BF9B00645685 /* hackathonUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350E13FE2740BF9B00645685 /* hackathonUITestsLaunchTests.swift */; };
+		B5080F04C0EB6E6CBE0BF3CD /* Pods_hackathonTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9F3DE496AA1F5A67AB6DED7 /* Pods_hackathonTests.framework */; };
+		D8462EC262CDA955D0F38A5A /* Pods_hackathon_hackathonUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C84C0B2D5F2B48E2E06C024 /* Pods_hackathon_hackathonUITests.framework */; };
+		E6F062AA5FBED04701A92D63 /* Pods_hackathon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FD91EB2DF978185D6450929 /* Pods_hackathon.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F6D7BC48D69EEF6EDB51D86 /* Pods-hackathonTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hackathonTests.release.xcconfig"; path = "Target Support Files/Pods-hackathonTests/Pods-hackathonTests.release.xcconfig"; sourceTree = "<group>"; };
 		350E13D92740BF9900645685 /* hackathon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hackathon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		350E13DC2740BF9900645685 /* hackathonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hackathonApp.swift; sourceTree = "<group>"; };
 		350E13DE2740BF9900645685 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -48,6 +52,14 @@
 		350E13F82740BF9B00645685 /* hackathonUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hackathonUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		350E13FC2740BF9B00645685 /* hackathonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hackathonUITests.swift; sourceTree = "<group>"; };
 		350E13FE2740BF9B00645685 /* hackathonUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hackathonUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3875800E20B89B59B6146832 /* Pods-hackathon-hackathonUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hackathon-hackathonUITests.debug.xcconfig"; path = "Target Support Files/Pods-hackathon-hackathonUITests/Pods-hackathon-hackathonUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		3C84C0B2D5F2B48E2E06C024 /* Pods_hackathon_hackathonUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hackathon_hackathonUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6FD91EB2DF978185D6450929 /* Pods_hackathon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hackathon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		704A7A52D6D5865315425157 /* Pods-hackathon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hackathon.release.xcconfig"; path = "Target Support Files/Pods-hackathon/Pods-hackathon.release.xcconfig"; sourceTree = "<group>"; };
+		D9F3DE496AA1F5A67AB6DED7 /* Pods_hackathonTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hackathonTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC6179F0766470B76BD54A88 /* Pods-hackathon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hackathon.debug.xcconfig"; path = "Target Support Files/Pods-hackathon/Pods-hackathon.debug.xcconfig"; sourceTree = "<group>"; };
+		F526D00B22C46C5F91927123 /* Pods-hackathonTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hackathonTests.debug.xcconfig"; path = "Target Support Files/Pods-hackathonTests/Pods-hackathonTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F616DB8CECE22CACF40998DF /* Pods-hackathon-hackathonUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hackathon-hackathonUITests.release.xcconfig"; path = "Target Support Files/Pods-hackathon-hackathonUITests/Pods-hackathon-hackathonUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6F062AA5FBED04701A92D63 /* Pods_hackathon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5080F04C0EB6E6CBE0BF3CD /* Pods_hackathonTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8462EC262CDA955D0F38A5A /* Pods_hackathon_hackathonUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +97,8 @@
 				350E13F12740BF9B00645685 /* hackathonTests */,
 				350E13FB2740BF9B00645685 /* hackathonUITests */,
 				350E13DA2740BF9900645685 /* Products */,
+				9E0C22EAE493B4CF9C8A2405 /* Pods */,
+				F53F3C5A688340BC20D6D32C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -133,6 +150,30 @@
 			path = hackathonUITests;
 			sourceTree = "<group>";
 		};
+		9E0C22EAE493B4CF9C8A2405 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DC6179F0766470B76BD54A88 /* Pods-hackathon.debug.xcconfig */,
+				704A7A52D6D5865315425157 /* Pods-hackathon.release.xcconfig */,
+				3875800E20B89B59B6146832 /* Pods-hackathon-hackathonUITests.debug.xcconfig */,
+				F616DB8CECE22CACF40998DF /* Pods-hackathon-hackathonUITests.release.xcconfig */,
+				F526D00B22C46C5F91927123 /* Pods-hackathonTests.debug.xcconfig */,
+				0F6D7BC48D69EEF6EDB51D86 /* Pods-hackathonTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		F53F3C5A688340BC20D6D32C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6FD91EB2DF978185D6450929 /* Pods_hackathon.framework */,
+				3C84C0B2D5F2B48E2E06C024 /* Pods_hackathon_hackathonUITests.framework */,
+				D9F3DE496AA1F5A67AB6DED7 /* Pods_hackathonTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -140,9 +181,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 350E14022740BF9B00645685 /* Build configuration list for PBXNativeTarget "hackathon" */;
 			buildPhases = (
+				ED3584DD6D4FB4C191D52721 /* [CP] Check Pods Manifest.lock */,
 				350E13D52740BF9900645685 /* Sources */,
 				350E13D62740BF9900645685 /* Frameworks */,
 				350E13D72740BF9900645685 /* Resources */,
+				B5FB92F9651982ABCB4E245E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -157,6 +200,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 350E14052740BF9B00645685 /* Build configuration list for PBXNativeTarget "hackathonTests" */;
 			buildPhases = (
+				86612646F3B759B657D2D064 /* [CP] Check Pods Manifest.lock */,
 				350E13EA2740BF9B00645685 /* Sources */,
 				350E13EB2740BF9B00645685 /* Frameworks */,
 				350E13EC2740BF9B00645685 /* Resources */,
@@ -175,9 +219,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 350E14082740BF9B00645685 /* Build configuration list for PBXNativeTarget "hackathonUITests" */;
 			buildPhases = (
+				35B74A7FBFF26AD67FA717D8 /* [CP] Check Pods Manifest.lock */,
 				350E13F42740BF9B00645685 /* Sources */,
 				350E13F52740BF9B00645685 /* Frameworks */,
 				350E13F62740BF9B00645685 /* Resources */,
+				3640C54F7534E8C9452DA8C3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -257,6 +303,109 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		35B74A7FBFF26AD67FA717D8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-hackathon-hackathonUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3640C54F7534E8C9452DA8C3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-hackathon-hackathonUITests/Pods-hackathon-hackathonUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-hackathon-hackathonUITests/Pods-hackathon-hackathonUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-hackathon-hackathonUITests/Pods-hackathon-hackathonUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		86612646F3B759B657D2D064 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-hackathonTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B5FB92F9651982ABCB4E245E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-hackathon/Pods-hackathon-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-hackathon/Pods-hackathon-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-hackathon/Pods-hackathon-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ED3584DD6D4FB4C191D52721 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-hackathon-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		350E13D52740BF9900645685 /* Sources */ = {
@@ -421,6 +570,7 @@
 		};
 		350E14032740BF9B00645685 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DC6179F0766470B76BD54A88 /* Pods-hackathon.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -450,6 +600,7 @@
 		};
 		350E14042740BF9B00645685 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 704A7A52D6D5865315425157 /* Pods-hackathon.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -479,6 +630,7 @@
 		};
 		350E14062740BF9B00645685 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F526D00B22C46C5F91927123 /* Pods-hackathonTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -504,6 +656,7 @@
 		};
 		350E14072740BF9B00645685 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0F6D7BC48D69EEF6EDB51D86 /* Pods-hackathonTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -529,6 +682,7 @@
 		};
 		350E14092740BF9B00645685 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3875800E20B89B59B6146832 /* Pods-hackathon-hackathonUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -552,6 +706,7 @@
 		};
 		350E140A2740BF9B00645685 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F616DB8CECE22CACF40998DF /* Pods-hackathon-hackathonUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
