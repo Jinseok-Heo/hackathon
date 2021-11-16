@@ -12,7 +12,7 @@ struct ProfileResponse: Identifiable, Codable {
     let id: Int
     let userId: Int
     let nickName: String
-    let gender: Gender?
+    let gender: String
     let birth: Date?
     let company: String?
     let job: String?
@@ -20,15 +20,9 @@ struct ProfileResponse: Identifiable, Codable {
     let major: String?
     
     enum CodingKeys: String, CodingKey {
-        case id
+        case id, gender, birth, company, job, school, major
         case userId = "user_id"
         case nickName = "nickname"
-        case gender
-        case birth
-        case company
-        case job
-        case school
-        case major
     }
     
 }

@@ -1,5 +1,5 @@
 //
-//  LocationResponse.swift
+//  PreferredJobResponse.swift
 //  hackathon
 //
 //  Created by Jinseok Heo on 2021/11/16.
@@ -7,16 +7,16 @@
 
 import SwiftUI
 
-struct LocationResponse: Identifiable, Codable {
+struct PreferredJobResponse: Identifiable, Codable {
     
     let id: Int
     let userId: Int
-    let latitude: Double
-    let longitude: Double
-    let local: String
+    let jobName: Int
     
     enum CodingKeys: String, CodingKey {
-        case id, latitude, longitude, local
+        case id
         case userId = "user_id"
+        case jobName = "job_name"
     }
+    
 }

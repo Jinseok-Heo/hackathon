@@ -7,21 +7,18 @@
 
 import SwiftUI
 
+// MARK: User API Response
 struct UserResponse: Identifiable, Codable {
     
     let id: Int
     let name: String
     let mailAddress: String
     let password: String
-    let schoolName: String
-    let major: String
     let isVerified: Bool
     
     enum CodingKeys: String, CodingKey {
-        case id
-        case name
+        case id, name, password
         case mailAddress = "email"
-        case password
         case isVerified = "verified"
     }
     
