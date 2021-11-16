@@ -19,4 +19,5 @@ struct LocationResponse: Identifiable, Codable {
         case id, latitude, longitude, local
         case userId = "user_id"
     }
+    
 }

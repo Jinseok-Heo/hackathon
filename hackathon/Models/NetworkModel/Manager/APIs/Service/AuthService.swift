@@ -11,11 +11,11 @@ import Combine
 
 enum AuthAPIService {
     
-    static func login(email: String, password: String) -> AnyPublisher<UserResponse, AFError> {
+    static func login(userName: String, password: String) -> AnyPublisher<UserResponse, AFError> {
         print("AuthAPIService - login() called")
         
         return APIClient.shared.session
-            .request(AuthRouter.login(email: email, password: password))
+            .request(AuthRouter.login(userName: userName, password: password))
             .publishDecodable(type: AuthResponse.self)
             .value()
             .map { value in
@@ -27,17 +27,30 @@ enum AuthAPIService {
     
     static func register(email: String,
                          password: String,
-                         name: String,
-                         displayName: String,
+                         userName: String,
+                         nickName: String,
                          gender: Gender,
+                         birth: String,
+                         company: String,
+                         job: String,
+                         year: Int,
                          school: String,
-                         major: String,
-                         intro: String?
+                         major: String
     ) -> AnyPublisher<UserResponse, AFError> {
         print("AuthAPIService - register() called")
         
         return APIClient.shared.session
-            .request(AuthRouter.register(email: email, password: password, name: name, displayName: displayName, gender: gender, school: school, major: major, intro: intro))
+            .request(AuthRouter.register(email: email,
+                                         password: password,
+                                         userName: userName,
+                                         nickName: nickName,
+                                         gender: gender,
+                                         birth: birth,
+                                         company: company,
+                                         job: job,
+                                         year: year,
+                                         school: school,
+                                         major: major))
             .publishDecodable(type: AuthResponse.self)
             .value()
             .map { value in

@@ -8,13 +8,16 @@
 import Foundation
 
 struct MentoResponse: Identifiable, Codable {
+    
     let id: Int
     let userId: Int
     let isVerifed: Bool
+    let years: Int
     
     enum CodingKeys: String, CodingKey {
-        case id
+        case id, years
         case userId = "user_id"
         case isVerifed = "verified"
     }
+    
 }

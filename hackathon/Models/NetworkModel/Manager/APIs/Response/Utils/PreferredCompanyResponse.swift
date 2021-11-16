@@ -8,6 +8,7 @@
 import Foundation
 
 struct PreferredCompanyResponse: Identifiable, Codable {
+    
     let id: Int
     let userId: Int
     let companyName: String
@@ -17,4 +18,5 @@ struct PreferredCompanyResponse: Identifiable, Codable {
         case userId = "user_id"
         case companyName = "company_name"
     }
+    
 }

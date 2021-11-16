@@ -8,6 +8,7 @@
 import Foundation
 
 struct ImageResponse: Identifiable, Codable {
+    
     let id: Int
     let fillSize: Double
     let name: String
@@ -17,4 +18,5 @@ struct ImageResponse: Identifiable, Codable {
         case id, name, path
         case fillSize = "fill_size"
     }
+    
 }

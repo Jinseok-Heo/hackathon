@@ -47,6 +47,11 @@
 		351B035D2743576B00EAEB6E /* BoardResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351B035C2743576B00EAEB6E /* BoardResponse.swift */; };
 		351B035F274357DC00EAEB6E /* CommentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351B035E274357DC00EAEB6E /* CommentResponse.swift */; };
 		351B03632743795100EAEB6E /* MentoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351B03622743795100EAEB6E /* MentoResponse.swift */; };
+		351B03652743A9F000EAEB6E /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351B03642743A9F000EAEB6E /* UserViewModel.swift */; };
+		351B03672743ADF800EAEB6E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351B03662743ADF800EAEB6E /* LoginView.swift */; };
+		351B036A2743AE1800EAEB6E /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351B03692743AE1800EAEB6E /* RegisterView.swift */; };
+		351B036C2743AE3900EAEB6E /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351B036B2743AE3900EAEB6E /* LoginViewModel.swift */; };
+		351B036E2743AE4300EAEB6E /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351B036D2743AE4300EAEB6E /* SignupViewModel.swift */; };
 		354C409627410BD4004C5AD7 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C409527410BD4004C5AD7 /* ViewExtension.swift */; };
 		354C409B27411476004C5AD7 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C409A27411476004C5AD7 /* ColorExtension.swift */; };
 		354C409F27412700004C5AD7 /* MeetingCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C409E27412700004C5AD7 /* MeetingCard.swift */; };
@@ -125,6 +130,11 @@
 		351B035C2743576B00EAEB6E /* BoardResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardResponse.swift; sourceTree = "<group>"; };
 		351B035E274357DC00EAEB6E /* CommentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentResponse.swift; sourceTree = "<group>"; };
 		351B03622743795100EAEB6E /* MentoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentoResponse.swift; sourceTree = "<group>"; };
+		351B03642743A9F000EAEB6E /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		351B03662743ADF800EAEB6E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		351B03692743AE1800EAEB6E /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		351B036B2743AE3900EAEB6E /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		351B036D2743AE4300EAEB6E /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		354C409327410B32004C5AD7 /* ArimaMadurai-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ArimaMadurai-Black.ttf"; sourceTree = "<group>"; };
 		354C409527410BD4004C5AD7 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		354C409A27411476004C5AD7 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
@@ -392,6 +402,15 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
+		351B03682743ADFB00EAEB6E /* AuthView */ = {
+			isa = PBXGroup;
+			children = (
+				351B03662743ADF800EAEB6E /* LoginView.swift */,
+				351B03692743AE1800EAEB6E /* RegisterView.swift */,
+			);
+			path = AuthView;
+			sourceTree = "<group>";
+		};
 		354C409427410BBD004C5AD7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -404,6 +423,7 @@
 		354C409C274126E9004C5AD7 /* MainViews */ = {
 			isa = PBXGroup;
 			children = (
+				351B03682743ADFB00EAEB6E /* AuthView */,
 				35B2F5462741EF9700AA5F04 /* HomeView */,
 				35E5CE4B2740D57F0075E019 /* MyPageView.swift */,
 				35E5CE492740D5600075E019 /* CommunityView.swift */,
@@ -441,6 +461,9 @@
 		35E5CE1E2740C2F60075E019 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				351B03642743A9F000EAEB6E /* UserViewModel.swift */,
+				351B036B2743AE3900EAEB6E /* LoginViewModel.swift */,
+				351B036D2743AE4300EAEB6E /* SignupViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -731,11 +754,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				351B036C2743AE3900EAEB6E /* LoginViewModel.swift in Sources */,
 				351B03632743795100EAEB6E /* MentoResponse.swift in Sources */,
 				351B03472743510B00EAEB6E /* AuthResponse.swift in Sources */,
 				351B03492743510B00EAEB6E /* LocationResponse.swift in Sources */,
 				354C40A927414087004C5AD7 /* MoreRectangleBar.swift in Sources */,
 				35E5CE4C2740D57F0075E019 /* MyPageView.swift in Sources */,
+				351B03652743A9F000EAEB6E /* UserViewModel.swift in Sources */,
 				35B2F5482741EFB600AA5F04 /* MentorRecommendView.swift in Sources */,
 				351B035D2743576B00EAEB6E /* BoardResponse.swift in Sources */,
 				35E5CE482740D5490075E019 /* SearchView.swift in Sources */,
@@ -755,16 +780,19 @@
 				351B03432743510B00EAEB6E /* DummyDataModel.swift in Sources */,
 				351B031B274343C800EAEB6E /* HomeTopView.swift in Sources */,
 				35E5CE442740D4FE0075E019 /* MyTabView.swift in Sources */,
+				351B036E2743AE4300EAEB6E /* SignupViewModel.swift in Sources */,
 				351B03412743510B00EAEB6E /* RoundedCorner.swift in Sources */,
 				35B2F54A2741EFE100AA5F04 /* HotCommunityView.swift in Sources */,
 				351B0357274352FE00EAEB6E /* ReviewsResponse.swift in Sources */,
 				351B03442743510B00EAEB6E /* UserDefualtsManager.swift in Sources */,
 				351B03422743510B00EAEB6E /* hackathon.xcdatamodeld in Sources */,
+				351B03672743ADF800EAEB6E /* LoginView.swift in Sources */,
 				354C409F27412700004C5AD7 /* MeetingCard.swift in Sources */,
 				351B03482743510B00EAEB6E /* ProfileResponse.swift in Sources */,
 				351B035B274356F900EAEB6E /* PromotionResponse.swift in Sources */,
 				351B034B2743510B00EAEB6E /* APIClient.swift in Sources */,
 				354C409627410BD4004C5AD7 /* ViewExtension.swift in Sources */,
+				351B036A2743AE1800EAEB6E /* RegisterView.swift in Sources */,
 				35B2F54C2741F00800AA5F04 /* CommunityCard.swift in Sources */,
 				350E13DD2740BF9900645685 /* hackathonApp.swift in Sources */,
 				351B034E2743510B00EAEB6E /* BaseInterceptor.swift in Sources */,

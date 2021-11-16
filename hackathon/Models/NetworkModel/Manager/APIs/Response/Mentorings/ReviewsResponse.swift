@@ -8,6 +8,7 @@
 import Foundation
 
 struct ReviewsResponse: Identifiable, Codable {
+    
     let id: Int
     let matchingId: Int
     let rating: Int
@@ -17,4 +18,5 @@ struct ReviewsResponse: Identifiable, Codable {
         case id, rating, contents
         case matchingId = "matching_id"
     }
+    
 }

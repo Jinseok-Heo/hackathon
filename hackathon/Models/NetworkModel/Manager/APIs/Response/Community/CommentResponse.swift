@@ -8,6 +8,7 @@
 import Foundation
 
 struct CommentResponse: Identifiable, Codable {
+    
     let id: Int
     let boardId: Int
     let writerId: Int
@@ -20,4 +21,5 @@ struct CommentResponse: Identifiable, Codable {
         case writerId = "writer"
         case createdDate = "created_date"
     }
+    
 }

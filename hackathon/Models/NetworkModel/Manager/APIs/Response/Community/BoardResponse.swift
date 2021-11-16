@@ -8,6 +8,7 @@
 import Foundation
 
 struct BoardResponse: Identifiable, Codable {
+    
     let id: Int
     let writerId: Int
     let createdDate: Date
@@ -18,4 +19,5 @@ struct BoardResponse: Identifiable, Codable {
         case writerId = "writer"
         case createdDate = "created_date"
     }
+    
 }

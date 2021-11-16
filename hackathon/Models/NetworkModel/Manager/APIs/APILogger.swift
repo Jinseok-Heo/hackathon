@@ -9,7 +9,8 @@ import Foundation
 import Alamofire
 
 final class APILogger: EventMonitor {
-    let queue: DispatchQueue = DispatchQueue(label: "Hacktone")
+    
+    let queue: DispatchQueue = DispatchQueue(label: "hackathon")
     
     func requestDidResume(_ request: Request) {
         print("Resuming: \(request)")
@@ -18,4 +19,5 @@ final class APILogger: EventMonitor {
     func request<Value>(_ request: DataRequest, didParseResponse response: DataResponse<Value, AFError>) {
         debugPrint("Finished: \(response)")
     }
+    
 }

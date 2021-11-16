@@ -12,25 +12,28 @@ enum AuthRouter: URLRequestConvertible {
     
 case register(email: String,
               password: String,
-              name: String,
-              displayName: String,
+              userName: String,
+              nickName: String,
               gender: Gender,
+              birth: String,
+              company: String,
+              job: String,
+              year: Int,
               school: String,
-              major: String,
-              intro: String?)
-case login(email: String, password: String)
+              major: String)
+case login(userName: String, password: String)
 case tokenRefresh
 
     var baseURL: URL {
-        return URL(string: "base url goes here")!
+        return URL(string: "http://685f-211-58-223-157.ngrok.io")!
     }
     
     var endPoint: String {
         switch self {
         case .register:
-            return "Register url goes here"
+            return "/login/register"
         case .login:
-            return "Login url goes here"
+            return "/login"
         case .tokenRefresh:
             return "Token refresh goes here"
         }
@@ -44,21 +47,24 @@ case tokenRefresh
     
     var parameters: Parameters {
         switch self {
-        case let .login(email, password):
+        case let .login(userName, password):
             var params = Parameters()
-            params["email"] = email
+            params["userName"] = userName
             params["password"] = password
             return params
-        case let .register(email, password, name, displayName, gender, school, major, intro):
+        case let .register(email, password, userName, nickName, gender, birth, company, job, year, school, major):
             var params = Parameters()
             params["email"] = email
             params["password"] = password
-            params["name"] = name
-            params["displayName"] = displayName
+            params["userName"] = userName
+            params["nickName"] = nickName
             params["gender"] = gender.rawValue
+            params["birth"] = birth
+            params["company"] = company
+            params["job"] = job
+            params["year"] = year
             params["school"] = school
             params["major"] = major
-            params["intro"] = intro
             return params
         case .tokenRefresh:
             var params = Parameters()

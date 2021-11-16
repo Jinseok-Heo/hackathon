@@ -5,7 +5,7 @@
 //  Created by Jinseok Heo on 2021/11/14.
 //
 
-import Foundation
+import SwiftUI
 
 final class DummyData {
     
@@ -20,17 +20,17 @@ final class DummyData {
     static let user: UserResponse = users.first!
     
     static let profiles: [ProfileResponse] = [
-        ProfileResponse(id: 0, userId: 0, nickName: "jiheo", gender: "male", birth: Date(), company: "네이버", job: "iOS 개발", school: "경희대학교", major: "기계공학과"),
-        ProfileResponse(id: 1, userId: 1, nickName: "ybk123", gender: "female", birth: Date(), company: "카카오", job: "안드로이드 개발", school: "서울대학교", major: "컴퓨터공학과"),
-        ProfileResponse(id: 2, userId: 2, nickName: "daisy123", gender: "female", birth: Date(), company: "구글", job: "소프트웨어 엔지니어", school: "고려대학교", major: "소프트웨어공학과"),
-        ProfileResponse(id: 3, userId: 3, nickName: "crystal", gender: "female", birth: Date(), company: "삼성", job: "소프트웨어 엔지니어", school: "건국대학교", major: "화학공학과"),
-        ProfileResponse(id: 4, userId: 4, nickName: "khk123", gender: "male", birth: Date(), company: "쿠팡", job: "백엔드 엔지니어", school: "경희대학교", major: "컴퓨터공학과")
+        ProfileResponse(id: 0, userId: 0, nickName: "jiheo", imageId: 0, gender: "male", birth: Date(), company: "네이버", job: "iOS 개발", school: "경희대학교", major: "기계공학과"),
+        ProfileResponse(id: 1, userId: 1, nickName: "ybk123", imageId: 0, gender: "female", birth: Date(), company: "카카오", job: "안드로이드 개발", school: "서울대학교", major: "컴퓨터공학과"),
+        ProfileResponse(id: 2, userId: 2, nickName: "daisy123", imageId: 0, gender: "female", birth: Date(), company: "구글", job: "소프트웨어 엔지니어", school: "고려대학교", major: "소프트웨어공학과"),
+        ProfileResponse(id: 3, userId: 3, nickName: "crystal", imageId: 0, gender: "female", birth: Date(), company: "삼성", job: "소프트웨어 엔지니어", school: "건국대학교", major: "화학공학과"),
+        ProfileResponse(id: 4, userId: 4, nickName: "khk123", imageId: 0, gender: "male", birth: Date(), company: "쿠팡", job: "백엔드 엔지니어", school: "경희대학교", major: "컴퓨터공학과")
     ]
     
     static let mentoes: [MentoResponse] = [
-        MentoResponse(id: 0, userId: 1, isVerifed: true),
-        MentoResponse(id: 0, userId: 2, isVerifed: true),
-        MentoResponse(id: 0, userId: 3, isVerifed: true)
+        MentoResponse(id: 0, userId: 1, isVerifed: true, years: 2),
+        MentoResponse(id: 0, userId: 2, isVerifed: true, years: 3),
+        MentoResponse(id: 0, userId: 3, isVerifed: true, years: 4)
     ]
     
     static let matching: [MatchingResponse] = [
@@ -93,5 +93,15 @@ final class DummyData {
         }
         return []
     }()
+    
+    static let promotion: [PromotionResponse] = [
+        PromotionResponse(id: 0, mentoId: 1, title: "금융사 마케터 신입 지원 노하우 A to Z 코칭 원데이 클래스", description: "", price: 100, imageId: 0),
+        PromotionResponse(id: 0, mentoId: 2, title: "금융 데이터 3년차의 엑셀 차트 시각화 멘토링", description: "", price: 100, imageId: 0),
+        PromotionResponse(id: 0, mentoId: 3, title: "1 : 1 첨삭으로 자기소개서 합격을 위한 비결 대방출", description: "", price: 100, imageId: 0)
+    ]
+    
+    static let images: [ImageResponse] = [
+        ImageResponse(id: 0, fillSize: 10, name: "placeholder", path: "placeholder")
+    ]
     
 }
