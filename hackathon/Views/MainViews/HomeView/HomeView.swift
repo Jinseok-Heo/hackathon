@@ -7,107 +7,28 @@
 
 import SwiftUI
 
-struct MentoringCard: View {
-    
-    var rank: Int
-    var rating: Double
-    var likedCount: Int
-    var isOffline: Bool
-    var title: String
-    var name: String
-    var job: String
-    var years: Int
-    
-    public init(rank: Int,
-                rating: Double,
-                likedCount: Int,
-                isOffline: Bool,
-                title: String,
-                name: String,
-                job: String,
-                years: Int) {
-        self.rank = rank
-        self.rating = rating
-        self.likedCount = likedCount
-        self.isOffline = isOffline
-        self.title = title
-        self.name = name
-        self.job = job
-        self.years = years
-    }
+struct HotPickMentoringView: View {
     
     var body: some View {
-        VStack(alignment: .leading) {
-            ZStack(alignment: .topLeading) {
-                Rectangle()
-                    .frame(width: 246, height: 142)
-                    .foregroundColor(.gray)
-                    .cornerRadius(4, corners: [.bottomLeft, .bottomRight, .topRight])
-                Rectangle()
-                    .frame(width: 64, height: 30)
-                    .cornerRadius(16, corners: [.bottomLeft, .bottomRight, .topRight])
-                    .foregroundColor(Color("mainColor"))
-                    .overlay(alignment: .leading) {
-                        HStack(spacing: 0) {
-                            Text("\(rank)")
-                                .font(Font.custom("AppleSDGothicNeo-Bold", size: 14))
-                                .foregroundColor(.white)
-                                .padding(.leading, 14)
-                            Image(systemName: "star.fill")
-                                .resizable()
-                                .frame(width: 10, height: 10)
-                                .foregroundColor(Color("secondColor"))
-                                .padding(.leading, 12)
-                                .offset(y: -1)
-                            Text(String(format: "%.1f", rating))
-                                .font(Font.custom("AppleSDGothicNeo-SemiBold", size: 11))
-                                .foregroundColor(.white)
-                        }
+        VStack(alignment: .leading, spacing: 0) {
+            Text("멘팅커들의 핫픽 멘토링")
+                .font(Font.custom("AppleSDGothicNeo-Bold", size: 20))
+                .padding(.top, 72)
+            Text("전공/직무는 달라도 우리는 모두 요.즘.멘.티!")
+                .font(Font.custom("AppleSDGothicNeo-SemiBold", size: 14))
+                .foregroundColor(Color(hex: "#666666"))
+                .padding(.top, 6)
+            Spacer().frame(height: 20)
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 10) {
+                    ForEach(1..<4) { idx in
+                        MentoringCard(rank: idx, rating: 4.8, likedCount: 109, isOffline: idx % 2 == 1, title: "1 : 1 첨삭으로 자기소개서 합격을 위한 비결 대방출", name: "정찰기", job: "인사부과", years: 4)
                     }
-                HStack {
-                    Spacer()
-                    VStack(alignment: .trailing) {
-                        Image(systemName: "heart")
-                            .resizable()
-                            .foregroundColor(.white)
-                            .frame(width: 20, height: 18, alignment: .topTrailing)
-                        Text("\(likedCount)")
-                            .font(Font.custom("AppleSDGothicNeo-SemiBold", size: 12))
-                            .foregroundColor(.white)
-                        Spacer()
-                        Text(isOffline ? "오프라인" : "온라인")
-                            .font(Font.custom("AppleSDGothicNeo-Bold", size: 12))
-                            .foregroundColor(Color(hex: "#191919"))
-                            .padding([.leading, .trailing], 4)
-                            .padding([.top, .bottom], 2)
-                            .background(
-                                RoundedRectangle(cornerRadius: 4)
-                                    .foregroundColor(Color("secondColor"))
-                            )
-                    }
-                    .padding(.top, 7)
-                    .padding(.bottom, 8)
-                    .padding(.trailing, 8)
                 }
             }
-            Text(title)
-                .foregroundColor(Color(hex: "#191919"))
-                .font(Font.custom("AppleSDGothicNeo-Bold", size: 14))
-                .frame(maxWidth: 194)
-            HStack {
-                Circle()
-                    .frame(width: 24, height: 24)
-                    .foregroundColor(.gray)
-                Text(name)
-                    .padding(.leading, 6)
-                    .padding(.trailing, 4)
-                    .foregroundColor(Color(hex: "#111111"))
-                    .font(Font.custom("AppleSDGothicNeo-Bold", size: 12))
-                Text(job + " \(years)년차")
-                    .foregroundColor(Color(hex: "#767676"))
-                    .font(Font.custom("AppleSDGothicNeo-SemiBold", size: 12))
-            }
-            .padding(.top, 10)
+            MoreRectangleBar(text: "더보기")
+                .padding(.top, 20)
+            Spacer()
         }
     }
     
@@ -139,25 +60,7 @@ struct HomeView: View {
                     .offset(x: -3)
                     MentorRecommendView()
                     HotCommutnityView()
-                    VStack {
-                        Text("멘팅커들의 핫픽 멘토링")
-                            .font(Font.custom("AppleSDGothicNeo-Bold", size: 20))
-                            .padding(.top, 72)
-                        Text("전공/직무는 달라도 우리는 모두 요.즘.멘.티!")
-                            .font(Font.custom("AppleSDGothicNeo-SemiBold", size: 14))
-                            .padding(.top, 6)
-                        Spacer().frame(height: 20)
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack(spacing: 10) {
-                                ForEach(1..<4) { idx in
-                                    MentoringCard(rank: idx, rating: 4.8, likedCount: 109, isOffline: idx % 2 == 1, title: "1 : 1 첨삭으로 자기소개서 합격을 위한 비결 대방출", name: "정찰기", job: "인사부과", years: 4)
-                                }
-                            }
-                        }
-                        MoreRectangleBar(text: "더보기")
-                            .padding(.top, 20)
-                        Spacer()
-                    }
+                    HotPickMentoringView()
                 }
                 .padding(.leading, 22)
             }

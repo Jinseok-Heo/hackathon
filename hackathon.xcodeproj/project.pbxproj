@@ -14,6 +14,13 @@
 		350E13F32740BF9B00645685 /* hackathonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350E13F22740BF9B00645685 /* hackathonTests.swift */; };
 		350E13FD2740BF9B00645685 /* hackathonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350E13FC2740BF9B00645685 /* hackathonUITests.swift */; };
 		350E13FF2740BF9B00645685 /* hackathonUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350E13FE2740BF9B00645685 /* hackathonUITestsLaunchTests.swift */; };
+		351B03042743313F00EAEB6E /* ArimaMadurai-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 354C409327410B32004C5AD7 /* ArimaMadurai-Black.ttf */; };
+		351B03052743314000EAEB6E /* ArimaMadurai-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 354C409327410B32004C5AD7 /* ArimaMadurai-Black.ttf */; };
+		351B03062743314000EAEB6E /* ArimaMadurai-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 354C409327410B32004C5AD7 /* ArimaMadurai-Black.ttf */; };
+		351B03072743314400EAEB6E /* Manrope-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35E5CE6F27410AE90075E019 /* Manrope-ExtraBold.ttf */; };
+		351B03082743314400EAEB6E /* Manrope-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35E5CE6F27410AE90075E019 /* Manrope-ExtraBold.ttf */; };
+		351B03092743314500EAEB6E /* Manrope-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35E5CE6F27410AE90075E019 /* Manrope-ExtraBold.ttf */; };
+		351B030B2743339B00EAEB6E /* MentoringCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351B030A2743339B00EAEB6E /* MentoringCard.swift */; };
 		354C409627410BD4004C5AD7 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C409527410BD4004C5AD7 /* ViewExtension.swift */; };
 		354C409927410C0E004C5AD7 /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C409827410C0E004C5AD7 /* RoundedCorner.swift */; };
 		354C409B27411476004C5AD7 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C409A27411476004C5AD7 /* ColorExtension.swift */; };
@@ -66,6 +73,7 @@
 		350E13F82740BF9B00645685 /* hackathonUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hackathonUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		350E13FC2740BF9B00645685 /* hackathonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hackathonUITests.swift; sourceTree = "<group>"; };
 		350E13FE2740BF9B00645685 /* hackathonUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hackathonUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		351B030A2743339B00EAEB6E /* MentoringCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentoringCard.swift; sourceTree = "<group>"; };
 		354C409327410B32004C5AD7 /* ArimaMadurai-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ArimaMadurai-Black.ttf"; sourceTree = "<group>"; };
 		354C409527410BD4004C5AD7 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		354C409827410C0E004C5AD7 /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
@@ -217,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				354C409E27412700004C5AD7 /* MeetingCard.swift */,
+				351B030A2743339B00EAEB6E /* MentoringCard.swift */,
 				354C40A427414068004C5AD7 /* MentoCard.swift */,
 				354C40A827414087004C5AD7 /* MoreRectangleBar.swift */,
 				35B2F54B2741F00800AA5F04 /* CommunityCard.swift */,
@@ -401,7 +410,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				350E13E42740BF9B00645685 /* Preview Assets.xcassets in Resources */,
+				351B03072743314400EAEB6E /* Manrope-ExtraBold.ttf in Resources */,
 				350E13E12740BF9B00645685 /* Assets.xcassets in Resources */,
+				351B03042743313F00EAEB6E /* ArimaMadurai-Black.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +420,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				351B03052743314000EAEB6E /* ArimaMadurai-Black.ttf in Resources */,
+				351B03082743314400EAEB6E /* Manrope-ExtraBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +429,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				351B03062743314000EAEB6E /* ArimaMadurai-Black.ttf in Resources */,
+				351B03092743314500EAEB6E /* Manrope-ExtraBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -544,6 +559,7 @@
 				354C409627410BD4004C5AD7 /* ViewExtension.swift in Sources */,
 				35B2F54C2741F00800AA5F04 /* CommunityCard.swift in Sources */,
 				350E13DD2740BF9900645685 /* hackathonApp.swift in Sources */,
+				351B030B2743339B00EAEB6E /* MentoringCard.swift in Sources */,
 				354C409B27411476004C5AD7 /* ColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
