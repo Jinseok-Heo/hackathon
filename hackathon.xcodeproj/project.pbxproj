@@ -21,6 +21,15 @@
 		351B03082743314400EAEB6E /* Manrope-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35E5CE6F27410AE90075E019 /* Manrope-ExtraBold.ttf */; };
 		351B03092743314500EAEB6E /* Manrope-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35E5CE6F27410AE90075E019 /* Manrope-ExtraBold.ttf */; };
 		351B030B2743339B00EAEB6E /* MentoringCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351B030A2743339B00EAEB6E /* MentoringCard.swift */; };
+		351B030F2743423700EAEB6E /* GenderModel in Resources */ = {isa = PBXBuildFile; fileRef = 351B030C2743423700EAEB6E /* GenderModel */; };
+		351B03102743423700EAEB6E /* NetworkModel in Resources */ = {isa = PBXBuildFile; fileRef = 351B030D2743423700EAEB6E /* NetworkModel */; };
+		351B03112743423700EAEB6E /* DataModel in Resources */ = {isa = PBXBuildFile; fileRef = 351B030E2743423700EAEB6E /* DataModel */; };
+		351B03122743428200EAEB6E /* NetworkModel in Resources */ = {isa = PBXBuildFile; fileRef = 351B030D2743423700EAEB6E /* NetworkModel */; };
+		351B03132743428300EAEB6E /* NetworkModel in Resources */ = {isa = PBXBuildFile; fileRef = 351B030D2743423700EAEB6E /* NetworkModel */; };
+		351B03142743428700EAEB6E /* GenderModel in Resources */ = {isa = PBXBuildFile; fileRef = 351B030C2743423700EAEB6E /* GenderModel */; };
+		351B03152743428800EAEB6E /* GenderModel in Resources */ = {isa = PBXBuildFile; fileRef = 351B030C2743423700EAEB6E /* GenderModel */; };
+		351B03162743428C00EAEB6E /* DataModel in Resources */ = {isa = PBXBuildFile; fileRef = 351B030E2743423700EAEB6E /* DataModel */; };
+		351B03172743428C00EAEB6E /* DataModel in Resources */ = {isa = PBXBuildFile; fileRef = 351B030E2743423700EAEB6E /* DataModel */; };
 		354C409627410BD4004C5AD7 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C409527410BD4004C5AD7 /* ViewExtension.swift */; };
 		354C409927410C0E004C5AD7 /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C409827410C0E004C5AD7 /* RoundedCorner.swift */; };
 		354C409B27411476004C5AD7 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C409A27411476004C5AD7 /* ColorExtension.swift */; };
@@ -74,6 +83,9 @@
 		350E13FC2740BF9B00645685 /* hackathonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hackathonUITests.swift; sourceTree = "<group>"; };
 		350E13FE2740BF9B00645685 /* hackathonUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hackathonUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		351B030A2743339B00EAEB6E /* MentoringCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentoringCard.swift; sourceTree = "<group>"; };
+		351B030C2743423700EAEB6E /* GenderModel */ = {isa = PBXFileReference; lastKnownFileType = folder; path = GenderModel; sourceTree = "<group>"; };
+		351B030D2743423700EAEB6E /* NetworkModel */ = {isa = PBXFileReference; lastKnownFileType = folder; path = NetworkModel; sourceTree = "<group>"; };
+		351B030E2743423700EAEB6E /* DataModel */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DataModel; sourceTree = "<group>"; };
 		354C409327410B32004C5AD7 /* ArimaMadurai-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ArimaMadurai-Black.ttf"; sourceTree = "<group>"; };
 		354C409527410BD4004C5AD7 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		354C409827410C0E004C5AD7 /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
@@ -246,6 +258,9 @@
 		35E5CE1D2740C2EF0075E019 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				351B030E2743423700EAEB6E /* DataModel */,
+				351B030C2743423700EAEB6E /* GenderModel */,
+				351B030D2743423700EAEB6E /* NetworkModel */,
 				354C409727410BF8004C5AD7 /* CustomModels */,
 			);
 			path = Models;
@@ -411,8 +426,11 @@
 			files = (
 				350E13E42740BF9B00645685 /* Preview Assets.xcassets in Resources */,
 				351B03072743314400EAEB6E /* Manrope-ExtraBold.ttf in Resources */,
+				351B030F2743423700EAEB6E /* GenderModel in Resources */,
 				350E13E12740BF9B00645685 /* Assets.xcassets in Resources */,
 				351B03042743313F00EAEB6E /* ArimaMadurai-Black.ttf in Resources */,
+				351B03102743423700EAEB6E /* NetworkModel in Resources */,
+				351B03112743423700EAEB6E /* DataModel in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,7 +439,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				351B03052743314000EAEB6E /* ArimaMadurai-Black.ttf in Resources */,
+				351B03142743428700EAEB6E /* GenderModel in Resources */,
+				351B03162743428C00EAEB6E /* DataModel in Resources */,
 				351B03082743314400EAEB6E /* Manrope-ExtraBold.ttf in Resources */,
+				351B03122743428200EAEB6E /* NetworkModel in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,7 +451,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				351B03062743314000EAEB6E /* ArimaMadurai-Black.ttf in Resources */,
+				351B03152743428800EAEB6E /* GenderModel in Resources */,
+				351B03172743428C00EAEB6E /* DataModel in Resources */,
 				351B03092743314500EAEB6E /* Manrope-ExtraBold.ttf in Resources */,
+				351B03132743428300EAEB6E /* NetworkModel in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
