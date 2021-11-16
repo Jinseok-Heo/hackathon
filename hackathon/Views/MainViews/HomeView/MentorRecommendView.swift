@@ -16,18 +16,34 @@ struct MentorRecommendView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("추천 멘토")
-                .font(Font.custom("AppleSDGothicNeo-Bold", size: 20))
-                .padding(.top, 69)
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 10) {
-                    ForEach(0..<3) { idx in
-                        MentoCard(name: dummyName[idx], rating: dummyRating[idx], job: dummyJobs[idx], years: dummyYears[idx])
-                    }
-                }
-            }
-            MoreRectangleBar(text: "멘토 더보기")
-                .padding(.top, 19)
+            title
+            content
+            moreButton
         }
     }
+}
+
+extension MentorRecommendView {
+    
+    private var title: some View {
+        Text("추천 멘토")
+            .font(Font.custom("AppleSDGothicNeo-Bold", size: 20))
+            .padding(.top, 69)
+    }
+    
+    private var content: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 10) {
+                ForEach(0..<3) { idx in
+                    MentoCard(name: dummyName[idx], rating: dummyRating[idx], job: dummyJobs[idx], years: dummyYears[idx])
+                }
+            }
+        }
+    }
+    
+    private var moreButton: some View {
+        MoreRectangleBar(text: "멘토 더보기")
+            .padding(.top, 19)
+    }
+    
 }

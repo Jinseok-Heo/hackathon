@@ -12,6 +12,7 @@ struct HotCommutnityView: View {
     @State
     var communitySelection: Int = 0
     
+    // Dummy datas
     private let dummyTitle: [String] = [
         "올해 상반기 공채 준비중인데",
         "이력서에 사진이요",
@@ -32,51 +33,71 @@ struct HotCommutnityView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("커뮤니티 인기글")
-                .font(Font.custom("AppleSDGothicNeo-Bold", size: 20))
-                .padding(.top, 72)
-            HStack {
-                ForEach(0..<4) { idx in
-                    Text(communityMenu[idx])
-                        .foregroundColor(Color(hex: communitySelection == idx ? "#333333" : "#767676"))
-                        .font(Font.custom(communitySelection == idx ? "AppleSDGothicNeo-Bold" : "AppleSDGothicNeo-SemiBold", size: 13))
-                        .padding([.top, .bottom], 6)
-                        .padding([.trailing, .leading], 9)
-                        .background(
-                            RoundedRectangle(cornerRadius: 4)
-                                .foregroundColor(communitySelection == idx ? Color("secondColor") : Color(hex: "#F1F1F5"))
-                        )
-                        .onTapGesture {
-                            withAnimation {
-                                communitySelection = idx
-                            }
-                        }
-                }
-            }
-            VStack {
-                Spacer().frame(height: 10)
-                ForEach(0..<3) { idx in
-                    VStack(spacing: 8) {
-                        CommunityCard(title: dummyTitle[idx],
-                                      content: dummyContent[idx],
-                                      commentCount: dummyCommentCount[idx],
-                                      likedCount: dummyLikedCount[idx],
-                                      displayName: dummyDisplayName[idx],
-                                      major: dummyMajor[idx],
-                                      timeInfo: dummyTimeInfo[idx])
-                            .padding(.top, 12)
-                        if idx != 2 {
-                            Rectangle()
-                                .frame(height: 1)
-                                .foregroundColor(Color(hex: "#F3F3F3"))
-                        }
-                    }
-                    .padding(.leading, 12)
-                    .padding(.trailing, 34)
-                }
-            }
-            MoreRectangleBar(text: "커뮤니티 더보기")
-                .padding(.top, 19)
+            title
+            menus
+            contents
+            moreButton
         }
     }
+}
+
+extension HotCommutnityView {
+    
+    private var title: some View {
+        Text("커뮤니티 인기글")
+            .font(Font.custom("AppleSDGothicNeo-Bold", size: 20))
+            .padding(.top, 72)
+    }
+    
+    private var menus: some View {
+        HStack {
+            ForEach(0..<4) { idx in
+                Text(communityMenu[idx])
+                    .foregroundColor(Color(hex: communitySelection == idx ? "#333333" : "#767676"))
+                    .font(Font.custom(communitySelection == idx ? "AppleSDGothicNeo-Bold" : "AppleSDGothicNeo-SemiBold", size: 13))
+                    .padding([.top, .bottom], 6)
+                    .padding([.trailing, .leading], 9)
+                    .background(
+                        RoundedRectangle(cornerRadius: 4)
+                            .foregroundColor(communitySelection == idx ? Color("secondColor") : Color(hex: "#F1F1F5"))
+                    )
+                    .onTapGesture {
+                        withAnimation {
+                            communitySelection = idx
+                        }
+                    }
+            }
+        }
+    }
+    
+    private var contents: some View {
+        VStack {
+            Spacer().frame(height: 10)
+            ForEach(0..<3) { idx in
+                VStack(spacing: 8) {
+                    CommunityCard(title: dummyTitle[idx],
+                                  content: dummyContent[idx],
+                                  commentCount: dummyCommentCount[idx],
+                                  likedCount: dummyLikedCount[idx],
+                                  displayName: dummyDisplayName[idx],
+                                  major: dummyMajor[idx],
+                                  timeInfo: dummyTimeInfo[idx])
+                        .padding(.top, 12)
+                    if idx != 2 {
+                        Rectangle()
+                            .frame(height: 1)
+                            .foregroundColor(Color(hex: "#F3F3F3"))
+                    }
+                }
+                .padding(.leading, 12)
+                .padding(.trailing, 34)
+            }
+        }
+    }
+    
+    private var moreButton: some View {
+        MoreRectangleBar(text: "커뮤니티 더보기")
+            .padding(.top, 19)
+    }
+    
 }
