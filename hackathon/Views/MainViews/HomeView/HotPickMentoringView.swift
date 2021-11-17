@@ -27,7 +27,6 @@ extension HotPickMentoringView {
     private var title: some View {
         Text("멘팅커들의 핫픽 멘토링")
             .font(Font.custom("AppleSDGothicNeo-Bold", size: 20))
-            .padding(.top, 72)
     }
     
     private var subTitle: some View {

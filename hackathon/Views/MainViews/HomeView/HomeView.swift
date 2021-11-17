@@ -17,11 +17,22 @@ struct HomeView: View {
                 background
                 VStack(alignment: .leading, spacing: 0) {
                     HomeTopView()
+                        .padding(.leading, 22)
+                        .padding(.bottom, 29)
+                    divider
                     MentorRecommendView()
+                        .padding(.leading, 22)
+                        .padding([.top, .bottom], 32)
+                    divider
                     HotCommutnityView()
+                        .padding(.leading, 22)
+                        .padding([.top, .bottom], 32)
+                    divider
                     HotPickMentoringView()
+                        .padding(.leading, 22)
+                        .padding(.top, 32)
+                        .padding(.bottom, 16)
                 }
-                .padding(.leading, 22)
             }
         }
         .edgesIgnoringSafeArea(.top)
@@ -36,6 +47,12 @@ extension HomeView {
             .foregroundColor(Color("secondColor"))
             .frame(width: radius * 2, height: radius * 2)
             .position(x: UIScreen.main.bounds.maxX + 49 - radius, y: -40 + radius)
+    }
+    
+    private var divider: some View {
+        Rectangle()
+            .frame(maxWidth: .infinity, maxHeight: 8)
+            .foregroundColor(Color(hex: "#F8F8FA"))
     }
     
 }

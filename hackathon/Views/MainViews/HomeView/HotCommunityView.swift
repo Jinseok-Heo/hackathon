@@ -46,7 +46,6 @@ extension HotCommutnityView {
     private var title: some View {
         Text("커뮤니티 인기글")
             .font(Font.custom("AppleSDGothicNeo-Bold", size: 20))
-            .padding(.top, 72)
     }
     
     private var menus: some View {

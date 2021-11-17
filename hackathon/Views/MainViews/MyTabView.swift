@@ -9,41 +9,56 @@ import SwiftUI
 
 struct MyTabView: View {
     @State
-    var selection: Int = 0
+    var selection: TabBarItem = .home
     
     var body: some View {
-        TabView(selection: $selection) {
-           HomeView()
-                .tabItem {
-                    Image(selection == 0 ? "home-fill" : "home")
-                    Text("홈")
-                }
-                .tag(0)
+        CustomTabContainerView(selection: $selection) {
+            HomeView()
+                .tabBarItem(tab: .home, selection: $selection)
             SearchView()
-                 .tabItem {
-                     Image(selection == 1 ? "mentinker-fill" : "mentinker")
-                     Text("멘팅커")
-                 }
-                 .tag(1)
+                .tabBarItem(tab: .mentinker, selection: $selection)
             CommunityView()
-                 .tabItem {
-                     Image(selection == 2 ? "community-fill" : "community")
-                     Text("커뮤니티")
-                 }
-                 .tag(2)
+                .tabBarItem(tab: .community, selection: $selection)
             ChatView()
-                 .tabItem {
-                     Image(selection == 3 ? "chat-fill" : "chat")
-                     Text("톡")
-                 }
-                 .tag(3)
+                .tabBarItem(tab: .chat, selection: $selection)
             MyPageView()
-                .tabItem {
-                    Image(selection == 4 ? "user-fill" : "user")
-                    Text("마이페이지")
-                }
-                .tag(4)
+                .tabBarItem(tab: .myPage, selection: $selection)
         }
+//        CustomTabBarView(selectedTab: $selection) {
+//           HomeView()
+//                .tabBaritem {
+//                    Image(selection == 0 ? "home-fill" : "home")
+//                        .resizable()
+//                        .scaledToFit()
+//                        .frame(width: 22)
+//                    Text("홈")
+//                }
+//                .tag(0)
+//            SearchView()
+//                 .tabItem {
+//                     Image(selection == 1 ? "mentinker-fill" : "mentinker")
+//                     Text("멘팅커")
+//                 }
+//                 .tag(1)
+//            CommunityView()
+//                 .tabItem {
+//                     Image(selection == 2 ? "community-fill" : "community")
+//                     Text("커뮤니티")
+//                 }
+//                 .tag(2)
+//            ChatView()
+//                 .tabItem {
+//                     Image(selection == 3 ? "chat-fill" : "chat")
+//                     Text("톡")
+//                 }
+//                 .tag(3)
+//            MyPageView()
+//                .tabItem {
+//                    Image(selection == 4 ? "user-fill" : "user")
+//                    Text("마이페이지")
+//                }
+//                .tag(4)
+//        }
     }
 }
 

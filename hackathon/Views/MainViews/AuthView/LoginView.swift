@@ -7,10 +7,21 @@
 
 import SwiftUI
 
+struct SuccessView: View {
+    
+    var body: some View {
+        ZStack {
+            Color.green.ignoresSafeArea()
+            Text("Login Success!")
+        }
+    }
+    
+}
+
 struct LoginView: View {
     
     @StateObject
-    var loginVM: LoginViewModel = LoginViewModel()
+    var loginVM: AuthViewModel = AuthViewModel()
     
     @State
     var userName: String = ""

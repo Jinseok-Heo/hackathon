@@ -29,7 +29,7 @@ enum AuthAPIService {
                          password: String,
                          userName: String,
                          nickName: String,
-                         gender: Gender,
+                         gender: String,
                          birth: String,
                          company: String,
                          job: String,

@@ -14,7 +14,7 @@ case register(email: String,
               password: String,
               userName: String,
               nickName: String,
-              gender: Gender,
+              gender: String,
               birth: String,
               company: String,
               job: String,
@@ -58,7 +58,7 @@ case tokenRefresh
             params["password"] = password
             params["userName"] = userName
             params["nickName"] = nickName
-            params["gender"] = gender.rawValue
+            params["gender"] = gender
             params["birth"] = birth
             params["company"] = company
             params["job"] = job

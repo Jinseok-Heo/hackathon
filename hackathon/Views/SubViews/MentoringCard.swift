@@ -65,28 +65,31 @@ struct MentoringCard: View {
                     }
                 HStack {
                     Spacer()
-                    VStack(alignment: .trailing) {
-                        Image(systemName: "heart")
-                            .resizable()
-                            .foregroundColor(.white)
-                            .frame(width: 20, height: 18, alignment: .topTrailing)
-                        Text("\(likedCount)")
-                            .font(Font.custom("AppleSDGothicNeo-SemiBold", size: 12))
-                            .foregroundColor(.white)
+                    VStack(alignment: .trailing, spacing: 0) {
+                        VStack(spacing: 0) {
+                            Image(systemName: "heart")
+                                .resizable()
+                                .foregroundColor(.white)
+                                .frame(width: 20, height: 18, alignment: .topTrailing)
+                            Text("\(likedCount)")
+                                .font(Font.custom("AppleSDGothicNeo-SemiBold", size: 12))
+                                .foregroundColor(.white)
+                                .padding(.top, 5)
+                        }
+                        .shadow(color: Color(hex: "#000000").opacity(0.16), radius: 5, x: 0, y: 5)
                         Spacer()
                         Text(isOffline ? "오프라인" : "온라인")
                             .font(Font.custom("AppleSDGothicNeo-Bold", size: 12))
                             .foregroundColor(Color(hex: "#191919"))
                             .padding([.leading, .trailing], 4)
-                            .padding([.top, .bottom], 2)
+                            .padding([.top, .bottom], 2.5)
                             .background(
                                 RoundedRectangle(cornerRadius: 4)
                                     .foregroundColor(Color("secondColor"))
                             )
                     }
                     .padding(.top, 7)
-                    .padding(.bottom, 8)
-                    .padding(.trailing, 8)
+                    .padding([.bottom, .trailing], 8)
                 }
             }
             .frame(width: 246, height: 142)
@@ -95,7 +98,7 @@ struct MentoringCard: View {
                 .font(Font.custom("AppleSDGothicNeo-Bold", size: 14))
                 .frame(maxWidth: 194, minHeight: 34)
                 .padding(.top, 12)
-            HStack {
+            HStack(spacing: 0) {
                 Circle()
                     .frame(width: 24, height: 24)
                     .foregroundColor(.gray)

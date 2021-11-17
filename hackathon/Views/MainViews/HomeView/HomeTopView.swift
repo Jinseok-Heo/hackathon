@@ -95,6 +95,7 @@ extension HomeTopView {
             HStack(spacing: 0) {
                 ForEach(0..<5) { num in
                     MeetingCard(isOffline: num % 2 == 0)
+                        .cornerRadius(4, corners: [.topRight, .bottomLeft, .bottomRight])
                         .padding(6)
                         .shadow(color: Color(num % 2 == 0 ? "mainShadowColor" : "secondShadowColor"), radius: 3, x: 0, y: 0)
                 }
