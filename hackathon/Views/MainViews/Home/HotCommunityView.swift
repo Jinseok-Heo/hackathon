@@ -45,7 +45,7 @@ extension HotCommutnityView {
     
     private var title: some View {
         Text("커뮤니티 인기글")
-            .font(Font.custom("AppleSDGothicNeo-Bold", size: 20))
+            .font(FontManager.font(size: 20, weight: .bold))
     }
     
     private var menus: some View {
@@ -53,7 +53,7 @@ extension HotCommutnityView {
             ForEach(0..<4) { idx in
                 Text(communityMenu[idx])
                     .foregroundColor(Color(hex: communitySelection == idx ? "#333333" : "#767676"))
-                    .font(Font.custom(communitySelection == idx ? "AppleSDGothicNeo-Bold" : "AppleSDGothicNeo-SemiBold", size: 13))
+                    .font(FontManager.font(size: 13, weight: communitySelection == idx ? .bold : .semibold))
                     .padding([.top, .bottom], 6)
                     .padding([.trailing, .leading], 9)
                     .background(

@@ -7,58 +7,107 @@
 
 import SwiftUI
 
-struct SuccessView: View {
+struct LoginView: View {
+    
+    @StateObject
+    var loginVM: LoginViewModel = LoginViewModel()
     
     var body: some View {
-        ZStack {
-            Color.green.ignoresSafeArea()
-            Text("Login Success!")
+        ScrollView {
+            VStack(alignment: .leading, spacing: 0) {
+                NavigationLink(destination: RegisterView(), tag: 1, selection: $loginVM.action) { EmptyView() }
+                NavigationLink(destination: HomeView(), tag: 2, selection: $loginVM.action) { EmptyView() }
+                titleView
+                    .padding(.top, 128)
+                content
+                    .padding(.top, 46)
+                loginButton
+                    .padding(.top, 32)
+                findInfoButton
+                    .padding(.top, 29)
+                Rectangle()
+                    .frame(height: 1)
+                    .padding(.top, 33)
+                snsLoginContent
+                    .padding(.top, 13)
+                Spacer()
+            }
+            .padding([.leading, .trailing], 22)
         }
+        .navigationBarHidden(true)
+        .edgesIgnoringSafeArea(.top)
     }
     
 }
 
-struct LoginView: View {
+extension LoginView {
     
-    @StateObject
-    var loginVM: AuthViewModel = AuthViewModel()
-    
-    @State
-    var userName: String = "ex1234"
-    @State
-    var password: String = "hh44061312!"
-    @State
-    var alertPresented: Bool = false
-    
-    var body: some View {
-        VStack {
-            VStack {
-                TextField("이메일을 입력하세요.", text: $userName)
-                    .disableAutocorrection(true)
-                    .autocapitalization(.none)
-                    .padding()
-                    .background(Color.gray)
-                SecureField("비밀번호를 입력하세요.", text: $password)
-                    .padding()
-                    .background(Color.gray)
+    private var titleView: some View {
+        HStack(alignment: .bottom) {
+            Text("로그인")
+                .font(FontManager.font(size: 26, weight: .bold))
+                .foregroundColor(Color(hex: "#CECECE"))
+            Spacer()
+            Button {
+                loginVM.action = 1
+            } label: {
+                Text("회원가입")
+                    .font(FontManager.font(size: 14, weight: .bold))
+                    .foregroundColor(Color(hex: "#555555"))
             }
-            .padding()
+        }
+    }
+    
+    private var content: some View {
+        VStack(alignment: .leading, spacing: 34) {
+            TextFieldView(text: $loginVM.userName, title: "이메일", placeholder: "이메일을 입력해 주세요", type: .text)
+            TextFieldView(text: $loginVM.password, title: "비밀번호", placeholder: "비밀번호를 입력해 주세요", type: .secure)
+        }
+    }
+    
+    private var loginButton: some View {
+        Button {
+            loginVM.tryLogin()
+        } label: {
+            Text("로그인")
+                .font(FontManager.font(size: 16, weight: .bold))
+                .foregroundColor(.white)
+                .frame(maxWidth: .infinity)
+                .padding([.top, .bottom], 13)
+                .background(RoundedRectangle(cornerRadius: 4).foregroundColor(Color(hex: "#C5C5C5")))
+        }
+        .alert(isPresented: $loginVM.showAlert) {
+            Alert(title: Text("로그인 실패"), message: Text(loginVM.alertMsg), dismissButton: .default(Text("확인")))
+        }
+    }
+    
+    private var findInfoButton: some View {
+        HStack {
+            Spacer()
+            Button {
+                
+            } label: {
+                Text("이메일 / 비밀번호 찾기")
+                    .font(FontManager.font(size: 14, weight: .regular))
+                    .foregroundColor(Color(hex: "#555555"))
+            }
+            Spacer()
+        }
+    }
+    
+    private var snsLoginContent: some View {
+        VStack(spacing: 20) {
             HStack {
-                Button {
-                    loginVM.tryLogin(userName: userName, password: password)
-                    if loginVM.user == nil {
-                        alertPresented = true
-                    }
-                } label: {
-                    Text("로그인")
-                        .padding(10)
-                        .background(
-                            RoundedRectangle(cornerRadius: 15)
-                                .foregroundColor(Color("secondColor"))
-                        )
-                }
-                .alert(isPresented: $alertPresented) {
-                    Alert(title: Text("Login failed"))
+                Text("SNS 간편 로그인")
+                    .font(FontManager.font(size: 15, weight: .extrabold))
+                    .foregroundColor(Color(hex: "999999"))
+                Spacer()
+            }
+            HStack(spacing: 25) {
+                ForEach(0..<3) { _ in
+                    Circle()
+                        .foregroundColor(Color(hex: "#E5E5E5"))
+                        .frame(width: 56, height: 56)
                 }
             }
         }

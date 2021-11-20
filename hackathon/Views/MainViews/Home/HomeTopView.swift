@@ -76,18 +76,17 @@ extension HomeTopView {
                         .foregroundColor(Color("secondColor"))
                     HStack(alignment: .bottom, spacing: 0) {
                         Text("3")
-                            .font(Font.custom("Manrope-ExtraBold", size: 17))
+                            .font(FontManager.font(size: 17, weight: .bold))
                             .foregroundColor(Color("mainColor"))
                         Text("건")
-                            .font(Font.custom("AppleSDGothicNeo-Bold", size: 11))
+                            .font(FontManager.font(size: 11, weight: .bold))
                             .padding(.bottom, 3)
                     }
                 }
                 Text("있어요.")
             }
         }
-        .font(Font.custom("AppleSDGothicNeo-Bold", size: 20))
-        
+        .font(FontManager.font(size: 20, weight: .bold))        
     }
     
     private var contents: some View {

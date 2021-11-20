@@ -78,10 +78,8 @@ case login(userName: String, password: String)
         switch method {
         case .get:
             request.httpBody = try URLEncoding.default.encode(request, with: parameters).httpBody
-        case .post:
-            request.httpBody = try JSONEncoding.default.encode(request, with: parameters).httpBody
         default:
-            request.httpBody = try URLEncoding.default.encode(request, with: parameters).httpBody
+            request.httpBody = try JSONEncoding.default.encode(request, with: parameters).httpBody
         }
         return request
     }

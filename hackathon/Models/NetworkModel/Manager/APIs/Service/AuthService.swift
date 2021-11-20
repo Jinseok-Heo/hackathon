@@ -11,18 +11,10 @@ import Combine
 
 enum AuthAPIService {
     
-    static func login(userName: String, password: String) -> AnyPublisher<UserResponse, AFError> {
-        print("AuthAPIService - login() called")
-        
-        return APIClient.shared.session
+    static func login(userName: String, password: String, completion: @escaping (AFDataResponse<Any>) -> () ) {
+        APIClient.shared.session
             .request(AuthRouter.login(userName: userName, password: password))
-            .publishDecodable(type: AuthResponse.self)
-            .value()
-            .map { value in
-                UserDefaultsManager.shared.setTokens(accessToken: value.token.accessToken,
-                                                     refreshToken: value.token.refreshToken)
-                return value.user
-            }.eraseToAnyPublisher()
+            .responseJSON(completionHandler: completion)
     }
     
     static func register(email: String,
@@ -31,15 +23,13 @@ enum AuthAPIService {
                          nickName: String,
                          gender: String,
                          birth: String,
-                         company: String,
-                         job: String,
-                         year: Int,
+                         company: String?,
+                         job: String?,
+                         year: Int?,
                          school: String,
-                         major: String
-    ) -> AnyPublisher<UserResponse, AFError> {
-        print("AuthAPIService - register() called")
-        
-        return APIClient.shared.session
+                         major: String,
+    completion: @escaping (AFDataResponse<Any>) -> () ) {
+        APIClient.shared.session
             .request(AuthRouter.register(email: email,
                                          password: password,
                                          userName: userName,
@@ -51,12 +41,7 @@ enum AuthAPIService {
                                          year: year,
                                          school: school,
                                          major: major))
-            .publishDecodable(type: AuthResponse.self)
-            .value()
-            .map { value in
-                UserDefaultsManager.shared.setTokens(accessToken: value.token.accessToken,
-                                                     refreshToken: value.token.refreshToken)
-                return value.user
-            }.eraseToAnyPublisher()
+            .responseJSON(completionHandler: completion)
+            
     }
 }

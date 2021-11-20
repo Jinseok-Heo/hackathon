@@ -23,7 +23,7 @@ struct MoreRectangleBar: View {
                 RoundedRectangle(cornerRadius: 4)
                     .foregroundColor(Color(hex: "#ECECEC"))
                 Text(text)
-                    .font(Font.custom("AppleSDGothicNeo-Bold", size: 14))
+                    .font(FontManager.font(size: 14, weight: .bold))
                     .foregroundColor(Color(hex: "#555555"))
                     .frame(maxHeight: .infinity, alignment: .center)
             }

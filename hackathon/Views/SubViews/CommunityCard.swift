@@ -41,10 +41,10 @@ struct CommunityCard: View {
                 Text(title)
                     .foregroundColor(Color(hex: "#191919"))
             }
-            .font(Font.custom("AppleSDGothicNeo-Bold", size: 14))
+            .font(FontManager.font(size: 14, weight: .bold))
             Text(content)
                 .foregroundColor(Color(hex: "#555555"))
-                .font(Font.custom("AppleSDGothicNeo-Medium", size: 13))
+                .font(FontManager.font(size: 13, weight: .medium))
                 .lineLimit(1)
             HStack(spacing: 0) {
                 Image(systemName: "bubble.left")
@@ -58,7 +58,7 @@ struct CommunityCard: View {
                 Text("\(displayName) ・ \(major) ・ \(timeInfo)")
             }
             .foregroundColor(Color(hex: "#999999"))
-            .font(Font.custom("AppleSDGothicNeo-Medium", size: 12))
+            .font(FontManager.font(size: 12, weight: .medium))
         }
     }
 }

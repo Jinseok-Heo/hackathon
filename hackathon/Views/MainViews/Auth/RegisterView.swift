@@ -7,213 +7,108 @@
 
 import SwiftUI
 
-struct TextFieldModifier: ViewModifier {
-    
-    func body(content: Content) -> some View {
-        content
-            .disableAutocorrection(true)
-            .autocapitalization(.none)
-            .padding()
-            .foregroundColor(.black)
-            .background(Color.gray.opacity(0.4))
-    }
-    
-}
-
-struct SecureFieldModifier: ViewModifier {
-    
-    func body(content: Content) -> some View {
-        content
-            .padding()
-            .foregroundColor(.black)
-            .background(Color.gray.opacity(0.4))
-    }
-    
-}
-
 struct RegisterView: View {
     
     @StateObject
-    var authVM: AuthViewModel = AuthViewModel()
-    
-    @State
-    var email: String = "ex1234@gmail.com"
-    @State
-    var password: String = "hh44061312!"
-    @State
-    var verifiedPassword: String = "hh44061312!"
-    @State
-    var userName: String = "ex1234"
-    @State
-    var nickName: String = "exName"
-    @State
-    var gender: String = "male"
-    @State
-    var birth: String = "971110"
-    @State
-    var company: String = "삼성"
-    @State
-    var job: String = "ios"
-    @State
-    var year: String = "1"
-    @State
-    var school: String = "경희대학교"
-    @State
-    var major: String = "기계공학과"
-    @State
-    var alertPresented: Bool = false
-    
-    let textFieldMF: TextFieldModifier = TextFieldModifier()
-    let secureFieldMF: SecureFieldModifier = SecureFieldModifier()
+    var registerVM: RegisterViewModel = RegisterViewModel()
     
     var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            VStack {
-                VStack {
-                    TextField("이메일을 입력하세요.", text: $email)
-                        .modifier(textFieldMF)
-                    TextField("아이디를 입력하세요.", text: $userName)
-                        .modifier(textFieldMF)
-                    SecureField("비밀번호를 입력하세요", text: $password)
-                        .modifier(secureFieldMF)
-                    SecureField("비밀번호를 다시 입력하세요", text: $verifiedPassword)
-                        .modifier(secureFieldMF)
+        ZStack(alignment: .topLeading) {
+            backgroundView
+            VStack(alignment: .leading) {
+                NavigationLink(destination: HomeView(), isActive: $registerVM.registerCompleted) { EmptyView() }
+                TabView(selection: $registerVM.pageState) {
+                    basicView
+                        .tag(0)
+                    additionalView
+                        .tag(1)
                 }
-                .padding()
-                .background(
-                    RoundedRectangle(cornerRadius: 10)
-                        .strokeBorder()
-                )
-                
-                VStack {
-                    TextField("닉네임을 입력하세요.", text: $nickName)
-                        .modifier(textFieldMF)
-                    TextField("생년월일을 입력하세요.", text: $birth)
-                        .modifier(textFieldMF)
-                    TextField("학교를 입력하세요.", text: $school)
-                        .modifier(textFieldMF)
-                    TextField("전공을 입력하세요.", text: $major)
-                        .modifier(textFieldMF)
-                    Picker(selection: $gender) {
-                        Text("남자").tag(0)
-                        Text("여자").tag(1)
-                    } label: {
-                        HStack {
-                            Text("성별:")
-                            Text(gender)
-                        }
-                        .font(.system(size: 20))
-                    }
-                }
-                .padding()
-                .background(
-                    RoundedRectangle(cornerRadius: 10)
-                        .strokeBorder()
-                )
-                
-                VStack {
-                    TextField("회사를 입력하세요.", text: $company)
-                        .modifier(textFieldMF)
-                    TextField("직무를 입력하세요.", text: $job)
-                        .modifier(textFieldMF)
-                    TextField("연차를 입력하세요.", text: $year)
-                        .modifier(textFieldMF)
-                }
-                .padding()
-                .background(
-                    RoundedRectangle(cornerRadius: 10)
-                        .strokeBorder()
-                )
-                
-                HStack {
-                    Spacer()
-                    Button {
-                        tryRegister()
-                    } label: {
-                        Text("회원가입")
-                            .padding(10)
-                            .background(
-                                RoundedRectangle(cornerRadius: 15)
-                                    .foregroundColor(Color("secondColor"))
-                            )
-                    }
-                    .alert(isPresented: $alertPresented) {
-                        Alert(title: Text("회원가입 실패"), dismissButton: .default(Text("확인")))
-                    }
-                }
+                .tabViewStyle(.page(indexDisplayMode: .never))
+                .padding(.top, 112)
+                Spacer()
+                button
             }
-            .padding()
+        }
+        .navigationBarHidden(true)
+        .padding([.leading, .trailing], 22)
+        .edgesIgnoringSafeArea(.top)
+        
+    }
+    
+    private var backgroundView: some View {
+        VStack(alignment: .leading) {
+            Text("회원가입")
+                .font(FontManager.font(size: 26, weight: .bold))
+                .foregroundColor(Color(hex: "#CECECE"))
+                .padding(.top, 62)
+            Spacer()
         }
     }
     
-}
-
-extension RegisterView {
+    private var basicView: some View {
+        VStack(alignment: .leading, spacing: 44) {
+            HStack(spacing: 36) {
+                TextFieldView(text: $registerVM.nickName, title: "이름", placeholder: "이름", type: .text)
+                    .frame(width: 156)
+                genderSelection
+            }
+            TextFieldView(text: $registerVM.userName, title: "아이디", placeholder: "이메일을 입력해 주세요", type: .text)
+                .padding(.bottom, 10)
+            TextFieldView(text: $registerVM.password, title: "비밀번호", placeholder: "비밀번호를 입력해 주세요", type: .secure)
+            Spacer()
+        }
+    }
     
-    private func tryRegister() {
-        
-        var genderEng: String = ""
-        
-        if password != verifiedPassword {
-            alertPresented = true
-            return
+    private var additionalView: some View {
+        VStack(alignment: .leading, spacing: 54) {
+            TextFieldView(text: $registerVM.school, title: "대학교", placeholder: "대학교를 입력해주세요", type: .text)
+            TextFieldView(text: $registerVM.major, title: "전공", placeholder: "전공을 입력해주세요", type: .text)
+            Spacer()
         }
-        guard email != "" else {
-            alertPresented = true
-            return
+        .padding(.top, 125)
+    }
+    
+    private var genderSelection: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text("성별")
+                .font(FontManager.font(size: 15, weight: .extrabold))
+            HStack(spacing: 6) {
+                Image(systemName: "checkmark.circle.fill")
+                    .resizable()
+                    .frame(width: 18, height: 18)
+                    .foregroundColor(registerVM.gender == 1 ? .black : Color(hex: "#E3E3E3"))
+                    .onTapGesture {
+                        registerVM.gender = 1
+                    }
+                Text("남자")
+                Spacer()
+                Image(systemName: "checkmark.circle.fill")
+                    .resizable()
+                    .frame(width: 18, height: 18)
+                    .foregroundColor(registerVM.gender == 2 ? .black : Color(hex: "#E3E3E3"))
+                    .onTapGesture {
+                        registerVM.gender = 2
+                    }
+                Text("여자")
+            }
+            .font(FontManager.font(size: 15, weight: .semibold))
         }
-        guard verifiedPassword != "" else {
-            alertPresented = true
-            return
+    }
+    
+    private var button: some View {
+        Button {
+            registerVM.buttonHandler()
+        } label: {
+            Text(registerVM.pageState == 0 ? "다음" : "가입완료!")
+                .font(FontManager.font(size: 16, weight: .bold))
+                .foregroundColor(.white)
+                .frame(maxWidth: .infinity)
+                .padding([.top, .bottom], 13)
+                .background(RoundedRectangle(cornerRadius: 4).foregroundColor(Color(hex: "#C5C5C5")))
         }
-        guard userName != "" else {
-            alertPresented = true
-            return
+        .alert(isPresented: $registerVM.showAlert) {
+            Alert(title: Text("회원가입 실패"), message: Text(registerVM.alertMsg), dismissButton: .default(Text("확인")))
         }
-        guard nickName != "" else {
-            alertPresented = true
-            return
-        }
-        guard birth != "" else {
-            alertPresented = true
-            return
-        }
-        guard gender != "" else {
-            alertPresented = true
-            return
-        }
-        guard school != "" else {
-            alertPresented = true
-            return
-        }
-        guard major != "" else {
-            alertPresented = true
-            return
-        }
-        guard company != "" else {
-            alertPresented = true
-            return
-        }
-        guard job != "" else {
-            alertPresented = true
-            return
-        }
-        guard year != "" else {
-            alertPresented = true
-            return
-        }
-        guard let yearInt = Int(year) else {
-            alertPresented = true
-            return
-        }
-        
-        if gender == "남자" {
-            genderEng = "male"
-        } else {
-            genderEng = "female"
-        }
-        
-        authVM.tryRegister(email: email, password: password, userName: userName, nickName: nickName, gender: genderEng, birth: birth, company: company, job: job, year: yearInt, school: school, major: major)
     }
     
 }

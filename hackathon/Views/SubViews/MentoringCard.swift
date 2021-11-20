@@ -49,7 +49,7 @@ struct MentoringCard: View {
                     .overlay(alignment: .leading) {
                         HStack(spacing: 0) {
                             Text("\(rank)")
-                                .font(Font.custom("AppleSDGothicNeo-Bold", size: 14))
+                                .font(FontManager.font(size: 14, weight: .bold))
                                 .foregroundColor(.white)
                                 .padding(.leading, 14)
                             Image(systemName: "star.fill")
@@ -59,7 +59,7 @@ struct MentoringCard: View {
                                 .padding(.leading, 12)
                                 .offset(y: -1)
                             Text(String(format: "%.1f", rating))
-                                .font(Font.custom("AppleSDGothicNeo-SemiBold", size: 11))
+                                .font(FontManager.font(size: 11, weight: .semibold))
                                 .foregroundColor(.white)
                         }
                     }
@@ -72,14 +72,14 @@ struct MentoringCard: View {
                                 .foregroundColor(.white)
                                 .frame(width: 20, height: 18, alignment: .topTrailing)
                             Text("\(likedCount)")
-                                .font(Font.custom("AppleSDGothicNeo-SemiBold", size: 12))
+                                .font(FontManager.font(size: 12, weight: .semibold))
                                 .foregroundColor(.white)
                                 .padding(.top, 5)
                         }
                         .shadow(color: Color(hex: "#000000").opacity(0.16), radius: 5, x: 0, y: 5)
                         Spacer()
                         Text(isOffline ? "오프라인" : "온라인")
-                            .font(Font.custom("AppleSDGothicNeo-Bold", size: 12))
+                            .font(FontManager.font(size: 12, weight: .bold))
                             .foregroundColor(Color(hex: "#191919"))
                             .padding([.leading, .trailing], 4)
                             .padding([.top, .bottom], 2.5)
@@ -95,7 +95,7 @@ struct MentoringCard: View {
             .frame(width: 246, height: 142)
             Text(title)
                 .foregroundColor(Color(hex: "#191919"))
-                .font(Font.custom("AppleSDGothicNeo-Bold", size: 14))
+                .font(FontManager.font(size: 14, weight: .bold))
                 .frame(maxWidth: 194, minHeight: 34)
                 .padding(.top, 12)
             HStack(spacing: 0) {
@@ -106,10 +106,10 @@ struct MentoringCard: View {
                     .padding(.leading, 6)
                     .padding(.trailing, 4)
                     .foregroundColor(Color(hex: "#111111"))
-                    .font(Font.custom("AppleSDGothicNeo-Bold", size: 12))
+                    .font(FontManager.font(size: 12, weight: .bold))
                 Text(job + " \(years)년차")
                     .foregroundColor(Color(hex: "#767676"))
-                    .font(Font.custom("AppleSDGothicNeo-SemiBold", size: 12))
+                    .font(FontManager.font(size: 12, weight: .semibold))
             }
             .padding(.top, 10)
         }

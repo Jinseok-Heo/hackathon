@@ -28,7 +28,7 @@ struct MentoCard: View {
                 .frame(width: 70, height: 70)
                 .padding(.top, 10)
             Text(name)
-                .font(Font.custom("AppleSDGothicNeo-Bold", size: 14))
+                .font(FontManager.font(size: 14, weight: .bold))
                 .foregroundColor(Color(hex: "#111111"))
                 .padding(.top, 6)
             HStack(spacing: 0) {
@@ -38,7 +38,7 @@ struct MentoCard: View {
                     .foregroundColor(Color("mainColor"))
                 Text(String(format: "%.1f", rating))
                     .foregroundColor(.black)
-                    .font(Font.custom("AppleSDGothicNeo-SemiBold", size: 11))
+                    .font(FontManager.font(size: 11, weight: .semibold))
             }
             .padding(.top, 3)
             Text(job)
@@ -49,7 +49,7 @@ struct MentoCard: View {
         .frame(width: 110, height: 164)
         .padding(1)
         .foregroundColor(Color(hex: "#444444"))
-        .font(Font.custom("AppleSDGothicNeo-Medium", size: 13))
+        .font(FontManager.font(size: 13, weight: .medium))
         .background(Color(hex: "#F2F4F9"))
         .cornerRadius(4)
         .overlay(

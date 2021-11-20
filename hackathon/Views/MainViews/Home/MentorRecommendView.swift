@@ -27,7 +27,7 @@ extension MentorRecommendView {
     
     private var title: some View {
         Text("추천 멘토")
-            .font(Font.custom("AppleSDGothicNeo-Bold", size: 20))
+            .font(FontManager.font(size: 20, weight: .bold))
     }
     
     private var content: some View {

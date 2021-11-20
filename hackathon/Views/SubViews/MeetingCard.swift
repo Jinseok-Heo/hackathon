@@ -58,7 +58,7 @@ struct MeetingCard: View {
                 .frame(width: 114, height: 30)
                 .overlay(
                     Text(isOffline ? "오프라인 ・ D-4" : "온라인 ・ D-10")
-                        .font(Font.custom("AppleSDGothicNeo-Bold", size: 14))
+                        .font(FontManager.font(size: 14, weight: .bold))
                         .foregroundColor(isOffline ? .white : Color(hex: "#1D1D1D"))
                 )
             Spacer()
@@ -74,9 +74,9 @@ struct MeetingCard: View {
             VStack(alignment: .leading) {
                 HStack(spacing: 2) {
                     Text(name)
-                        .font(Font.custom("AppleSDGothicNeo-Bold", size: 17))
+                        .font(FontManager.font(size: 17, weight: .bold))
                     Text("멘토")
-                        .font(Font.custom("AppleSDGothicNeo-Bold", size: 13))
+                        .font(FontManager.font(size: 13, weight: .bold))
                         .foregroundColor(Color(hex: "#555555"))
                 }
                 Text("금융사 마케터 2년차")
@@ -91,7 +91,7 @@ struct MeetingCard: View {
         HStack {
             Text(comment)
                 .foregroundColor(Color(hex: "#191919"))
-                .font(Font.custom("AppleSDGothicNeo-Bold", size: 15))
+                .font(FontManager.font(size: 15, weight: .bold))
         }
         .frame(maxWidth: 160, alignment: .leading)
         .padding(.leading, 18)
@@ -110,7 +110,7 @@ struct MeetingCard: View {
             Text("오후 4시 20분(3시간)")
             Text(isOffline ? "자바커피 교대점" : "추후 알림")
         }
-        .font(Font.custom("AppleSDGothicNeo-SemiBold", size: 13))
+        .font(FontManager.font(size: 13, weight: .semibold))
         .padding(.leading, 18)
         .foregroundColor(Color(hex: "#555555"))
     }

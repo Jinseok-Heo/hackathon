@@ -26,12 +26,12 @@ extension HotPickMentoringView {
     
     private var title: some View {
         Text("멘팅커들의 핫픽 멘토링")
-            .font(Font.custom("AppleSDGothicNeo-Bold", size: 20))
+            .font(FontManager.font(size: 20, weight: .bold))
     }
     
     private var subTitle: some View {
         Text("전공/직무는 달라도 우리는 모두 요.즘.멘.티!")
-            .font(Font.custom("AppleSDGothicNeo-SemiBold", size: 14))
+            .font(FontManager.font(size: 14, weight: .semibold))
             .foregroundColor(Color(hex: "#666666"))
             .padding(.top, 6)
     }
