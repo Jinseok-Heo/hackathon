@@ -12,7 +12,7 @@ struct hackathonApp: App {
     
     var body: some Scene {
         WindowGroup {
-            RegisterView()
+            LoginView()
         }
     }
 }

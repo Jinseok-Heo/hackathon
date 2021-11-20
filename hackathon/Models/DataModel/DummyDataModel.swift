@@ -10,27 +10,28 @@ import SwiftUI
 final class DummyData {
     
     static let users: [UserResponse] = [
-        UserResponse(id: 0, name: "허진석", mailAddress: "hjs7747@khu.ac.kr", password: "1234", isVerified: false),
-        UserResponse(id: 1, name: "김윤비", mailAddress: "ybk1234@khu.ac.kr", password: "1234", isVerified: true),
-        UserResponse(id: 2, name: "데이지", mailAddress: "daisy1234@khu.ac.kr", password: "1234", isVerified: true),
-        UserResponse(id: 3, name: "한수정", mailAddress: "crystal1234@khu.ac.kr", password: "1234", isVerified: true),
-        UserResponse(id: 4, name: "김경환", mailAddress: "khk1234@khu.ac.kr", password: "1234", isVerified: false)
+        UserResponse(id: 0, name: "daram12", mailAddress: "daram12@khu.ac.kr", password: "1234", isVerified: false),
+        UserResponse(id: 1, name: "ybk441", mailAddress: "ybk1234@khu.ac.kr", password: "1234", isVerified: true),
+        UserResponse(id: 2, name: "daisy", mailAddress: "daisy1234@khu.ac.kr", password: "1234", isVerified: true),
+        UserResponse(id: 3, name: "mike123", mailAddress: "mike123@khu.ac.kr", password: "1234", isVerified: true),
+        UserResponse(id: 4, name: "rachel11", mailAddress: "rachel11@khu.ac.kr", password: "1234", isVerified: true)
     ]
     
     static let user: UserResponse = users.first!
     
     static let profiles: [ProfileResponse] = [
-        ProfileResponse(id: 0, userId: 0, nickName: "jiheo", imageId: 0, gender: "male", birth: Date(), company: "네이버", job: "iOS 개발", school: "경희대학교", major: "기계공학과"),
+        ProfileResponse(id: 0, userId: 0, nickName: "다람이", imageId: 0, gender: "male", birth: Date(), company: "네이버", job: "iOS 개발", school: "경희대학교", major: "기계공학과"),
         ProfileResponse(id: 1, userId: 1, nickName: "ybk123", imageId: 0, gender: "female", birth: Date(), company: "카카오", job: "안드로이드 개발", school: "서울대학교", major: "컴퓨터공학과"),
         ProfileResponse(id: 2, userId: 2, nickName: "daisy123", imageId: 0, gender: "female", birth: Date(), company: "구글", job: "소프트웨어 엔지니어", school: "고려대학교", major: "소프트웨어공학과"),
-        ProfileResponse(id: 3, userId: 3, nickName: "crystal", imageId: 0, gender: "female", birth: Date(), company: "삼성", job: "소프트웨어 엔지니어", school: "건국대학교", major: "화학공학과"),
-        ProfileResponse(id: 4, userId: 4, nickName: "khk123", imageId: 0, gender: "male", birth: Date(), company: "쿠팡", job: "백엔드 엔지니어", school: "경희대학교", major: "컴퓨터공학과")
+        ProfileResponse(id: 3, userId: 3, nickName: "crystal", imageId: 0, gender: "male", birth: Date(), company: "삼성", job: "소프트웨어 엔지니어", school: "건국대학교", major: "화학공학과"),
+        ProfileResponse(id: 4, userId: 4, nickName: "khk123", imageId: 0, gender: "female", birth: Date(), company: "쿠팡", job: "백엔드 엔지니어", school: "경희대학교", major: "컴퓨터공학과")
     ]
     
     static let mentoes: [MentoResponse] = [
         MentoResponse(id: 0, userId: 1, isVerifed: true, years: 2),
-        MentoResponse(id: 0, userId: 2, isVerifed: true, years: 3),
-        MentoResponse(id: 0, userId: 3, isVerifed: true, years: 4)
+        MentoResponse(id: 1, userId: 2, isVerifed: true, years: 3),
+        MentoResponse(id: 2, userId: 3, isVerifed: true, years: 4),
+        MentoResponse(id: 3, userId: 4, isVerifed: true, years: 3)
     ]
     
     static let matching: [MatchingResponse] = [
@@ -102,6 +103,19 @@ final class DummyData {
     
     static let images: [ImageResponse] = [
         ImageResponse(id: 0, fillSize: 10, name: "placeholder", path: "placeholder")
+    ]
+
+    static let hotCommunities: [BoardResponse] = [
+        BoardResponse(id: 0, title: "올해 상반기 공채 준비중인데",
+                      content: "이번 여름방학 때 레벨업 하려고 하는데 학원보다 인강 결제가 싼 것 같던데 가나다ㅏ라라라",
+                      writerId: 0, createdDate: Date(), edited: false),
+        BoardResponse(id: 1, title: "이력서에 사진이요",
+                      content: "요즘 이력서에는 사진 잘 안붙이는 블라인드 채용이 많다고 하던데 맞나요ㅠㅠ",
+                      writerId: 0, createdDate: Date(), edited: false),
+        BoardResponse(id: 2, title: "여러분 토익점수 몇 나오세요?",
+                      content: "재작년에 토익을 봤었는데 좀더 점수를 올리고 싶어서 공부하고 있는데 조언구해요",
+                      writerId: 1, createdDate: Date(), edited: false)
+        
     ]
     
 }

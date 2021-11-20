@@ -10,12 +10,14 @@ import Foundation
 struct BoardResponse: Identifiable, Codable {
     
     let id: Int
+    let title: String
+    let content: String
     let writerId: Int
     let createdDate: Date
     let edited: Bool
     
     enum CodingKeys: String, CodingKey {
-        case id, edited
+        case id, edited, title, content
         case writerId = "writer"
         case createdDate = "created_date"
     }

@@ -37,29 +37,29 @@ struct RegisterView: View {
     var authVM: AuthViewModel = AuthViewModel()
     
     @State
-    var email: String = ""
+    var email: String = "ex1234@gmail.com"
     @State
-    var password: String = ""
+    var password: String = "hh44061312!"
     @State
-    var verifiedPassword: String = ""
+    var verifiedPassword: String = "hh44061312!"
     @State
-    var userName: String = ""
+    var userName: String = "ex1234"
     @State
-    var nickName: String = ""
+    var nickName: String = "exName"
     @State
-    var gender: String = ""
+    var gender: String = "male"
     @State
-    var birth: String = ""
+    var birth: String = "971110"
     @State
-    var company: String = ""
+    var company: String = "삼성"
     @State
-    var job: String = ""
+    var job: String = "ios"
     @State
-    var year: String = ""
+    var year: String = "1"
     @State
-    var school: String = ""
+    var school: String = "경희대학교"
     @State
-    var major: String = ""
+    var major: String = "기계공학과"
     @State
     var alertPresented: Bool = false
     

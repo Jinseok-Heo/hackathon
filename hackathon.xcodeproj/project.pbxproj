@@ -67,6 +67,8 @@
 		35B2F5482741EFB600AA5F04 /* MentorRecommendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B2F5472741EFB600AA5F04 /* MentorRecommendView.swift */; };
 		35B2F54A2741EFE100AA5F04 /* HotCommunityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B2F5492741EFE100AA5F04 /* HotCommunityView.swift */; };
 		35B2F54C2741F00800AA5F04 /* CommunityCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B2F54B2741F00800AA5F04 /* CommunityCard.swift */; };
+		35BA0CAE2747782D009C197F /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BA0CAD2747782D009C197F /* HomeViewModel.swift */; };
+		35BA0CB127477995009C197F /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BA0CB027477995009C197F /* DateFormatter.swift */; };
 		35E5CE442740D4FE0075E019 /* MyTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E5CE432740D4FE0075E019 /* MyTabView.swift */; };
 		35E5CE462740D52D0075E019 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E5CE452740D52D0075E019 /* ChatView.swift */; };
 		35E5CE482740D5490075E019 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E5CE472740D5490075E019 /* SearchView.swift */; };
@@ -150,6 +152,8 @@
 		35B2F5472741EFB600AA5F04 /* MentorRecommendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorRecommendView.swift; sourceTree = "<group>"; };
 		35B2F5492741EFE100AA5F04 /* HotCommunityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotCommunityView.swift; sourceTree = "<group>"; };
 		35B2F54B2741F00800AA5F04 /* CommunityCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCard.swift; sourceTree = "<group>"; };
+		35BA0CAD2747782D009C197F /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		35BA0CB027477995009C197F /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		35E5CE432740D4FE0075E019 /* MyTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTabView.swift; sourceTree = "<group>"; };
 		35E5CE452740D52D0075E019 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		35E5CE472740D5490075E019 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
@@ -260,6 +264,7 @@
 		351B031F2743510B00EAEB6E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				35BA0CAF27477986009C197F /* Time */,
 				351B03202743510B00EAEB6E /* GenderModel */,
 				351B03222743510B00EAEB6E /* CustomModels */,
 				351B03242743510B00EAEB6E /* DataModel */,
@@ -408,13 +413,13 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
-		351B03682743ADFB00EAEB6E /* AuthView */ = {
+		351B03682743ADFB00EAEB6E /* Auth */ = {
 			isa = PBXGroup;
 			children = (
 				351B03662743ADF800EAEB6E /* LoginView.swift */,
 				351B03692743AE1800EAEB6E /* RegisterView.swift */,
 			);
-			path = AuthView;
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		351B036F274494BF00EAEB6E /* CustomTabView */ = {
@@ -440,8 +445,8 @@
 		354C409C274126E9004C5AD7 /* MainViews */ = {
 			isa = PBXGroup;
 			children = (
-				351B03682743ADFB00EAEB6E /* AuthView */,
-				35B2F5462741EF9700AA5F04 /* HomeView */,
+				351B03682743ADFB00EAEB6E /* Auth */,
+				35B2F5462741EF9700AA5F04 /* Home */,
 				35E5CE4B2740D57F0075E019 /* MyPageView.swift */,
 				35E5CE492740D5600075E019 /* CommunityView.swift */,
 				35E5CE472740D5490075E019 /* SearchView.swift */,
@@ -464,7 +469,7 @@
 			path = SubViews;
 			sourceTree = "<group>";
 		};
-		35B2F5462741EF9700AA5F04 /* HomeView */ = {
+		35B2F5462741EF9700AA5F04 /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				350E13DE2740BF9900645685 /* HomeView.swift */,
@@ -473,14 +478,39 @@
 				35B2F5472741EFB600AA5F04 /* MentorRecommendView.swift */,
 				351B03182743433B00EAEB6E /* HotPickMentoringView.swift */,
 			);
-			path = HomeView;
+			path = Home;
+			sourceTree = "<group>";
+		};
+		35BA0CAB274776E4009C197F /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				351B03642743A9F000EAEB6E /* UserViewModel.swift */,
+				351B036B2743AE3900EAEB6E /* AuthViewModel.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		35BA0CAC2747781F009C197F /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				35BA0CAD2747782D009C197F /* HomeViewModel.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		35BA0CAF27477986009C197F /* Time */ = {
+			isa = PBXGroup;
+			children = (
+				35BA0CB027477995009C197F /* DateFormatter.swift */,
+			);
+			path = Time;
 			sourceTree = "<group>";
 		};
 		35E5CE1E2740C2F60075E019 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				351B03642743A9F000EAEB6E /* UserViewModel.swift */,
-				351B036B2743AE3900EAEB6E /* AuthViewModel.swift */,
+				35BA0CAB274776E4009C197F /* Auth */,
+				35BA0CAC2747781F009C197F /* Home */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -775,6 +805,7 @@
 				351B03752744950900EAEB6E /* CustomTabContainerView.swift in Sources */,
 				351B03632743795100EAEB6E /* MentoResponse.swift in Sources */,
 				351B03472743510B00EAEB6E /* AuthResponse.swift in Sources */,
+				35BA0CB127477995009C197F /* DateFormatter.swift in Sources */,
 				351B03492743510B00EAEB6E /* LocationResponse.swift in Sources */,
 				354C40A927414087004C5AD7 /* MoreRectangleBar.swift in Sources */,
 				351B03772744951E00EAEB6E /* CustomTabPreferenceKey.swift in Sources */,
@@ -805,6 +836,7 @@
 				351B0371274494D700EAEB6E /* CustomTabViewItem.swift in Sources */,
 				351B03442743510B00EAEB6E /* UserDefualtsManager.swift in Sources */,
 				351B03422743510B00EAEB6E /* hackathon.xcdatamodeld in Sources */,
+				35BA0CAE2747782D009C197F /* HomeViewModel.swift in Sources */,
 				351B03672743ADF800EAEB6E /* LoginView.swift in Sources */,
 				351B0373274494EA00EAEB6E /* CustomTabView.swift in Sources */,
 				354C409F27412700004C5AD7 /* MeetingCard.swift in Sources */,

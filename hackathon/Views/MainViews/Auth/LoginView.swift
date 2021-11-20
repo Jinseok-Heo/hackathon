@@ -24,9 +24,9 @@ struct LoginView: View {
     var loginVM: AuthViewModel = AuthViewModel()
     
     @State
-    var userName: String = ""
+    var userName: String = "ex1234"
     @State
-    var password: String = ""
+    var password: String = "hh44061312!"
     @State
     var alertPresented: Bool = false
     

@@ -16,32 +16,32 @@ case register(email: String,
               nickName: String,
               gender: String,
               birth: String,
-              company: String,
-              job: String,
-              year: Int,
+              company: String?,
+              job: String?,
+              year: Int?,
               school: String,
               major: String)
 case login(userName: String, password: String)
-case tokenRefresh
 
     var baseURL: URL {
-        return URL(string: "http://685f-211-58-223-157.ngrok.io")!
+        return URL(string: "http://4424-121-141-119-67.ngrok.io")!
     }
     
     var endPoint: String {
         switch self {
         case .register:
-            return "/login/register"
+            return "/user/register"
         case .login:
-            return "/login"
-        case .tokenRefresh:
-            return "Token refresh goes here"
+            return "/user/login"
         }
     }
     
     var method: HTTPMethod {
         switch self {
-        default: return .post
+        case .login:
+            return .get
+        case .register:
+            return .post
         }
     }
     
@@ -49,15 +49,15 @@ case tokenRefresh
         switch self {
         case let .login(userName, password):
             var params = Parameters()
-            params["userName"] = userName
+            params["username"] = userName
             params["password"] = password
             return params
         case let .register(email, password, userName, nickName, gender, birth, company, job, year, school, major):
             var params = Parameters()
             params["email"] = email
             params["password"] = password
-            params["userName"] = userName
-            params["nickName"] = nickName
+            params["username"] = userName
+            params["nickname"] = nickName
             params["gender"] = gender
             params["birth"] = birth
             params["company"] = company
@@ -65,9 +65,6 @@ case tokenRefresh
             params["year"] = year
             params["school"] = school
             params["major"] = major
-            return params
-        case .tokenRefresh:
-            var params = Parameters()
             return params
         }
     }
@@ -78,8 +75,14 @@ case tokenRefresh
         var request = URLRequest(url: url)
         
         request.method = method
-        request.httpBody = try JSONEncoding.default.encode(request, with: parameters).httpBody
-        
+        switch method {
+        case .get:
+            request.httpBody = try URLEncoding.default.encode(request, with: parameters).httpBody
+        case .post:
+            request.httpBody = try JSONEncoding.default.encode(request, with: parameters).httpBody
+        default:
+            request.httpBody = try URLEncoding.default.encode(request, with: parameters).httpBody
+        }
         return request
     }
 
