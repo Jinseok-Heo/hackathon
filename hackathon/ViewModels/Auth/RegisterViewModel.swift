@@ -7,8 +7,12 @@
 
 import SwiftUI
 import Alamofire
+import Combine
 
 class RegisterViewModel: ObservableObject {
+    
+    @Published
+    var cancellabels = Set<AnyCancellable>()
     
     @Published
     var email: String
@@ -36,6 +40,11 @@ class RegisterViewModel: ObservableObject {
     var major: String
     
     @Published
+    var schoolList: [String]
+    @Published
+    var majorList: [String]
+    
+    @Published
     var showPassword: Bool
     @Published
     var showAlert: Bool
@@ -60,11 +69,17 @@ class RegisterViewModel: ObservableObject {
         self.school = "경희대학교"
         self.major = "기계공학과"
         
+        self.schoolList = []
+        self.majorList = []
+        
         self.showPassword = false
         self.showAlert = false
         self.alertMsg = ""
         self.pageState = 0
         self.registerCompleted = false
+        
+        addSchoolSubscriber()
+        addMajorSubscriber()
     }
     
     func tryRegister() {
@@ -73,55 +88,46 @@ class RegisterViewModel: ObservableObject {
         var yearInt: Int? = nil
         
         if password != verifiedPassword {
-            alertMsg = "올바른 비밀번호를 입력해주세요"
-            showAlert = true
+            generateAlert(message: "올바른 비밀번호를 입력해주세요")
             return
         }
         guard email != "" else {
-            alertMsg = "이메일을 입력해주세요"
-            showAlert = true
+            generateAlert(message: "이메일을 입력해주세요")
             return
         }
         guard verifiedPassword != "" else {
-            alertMsg = "비밀번호를 입력해주세요"
-            showAlert = true
+            generateAlert(message: "비밀번호를 입력해주세요")
             return
         }
         guard userName != "" else {
-            alertMsg = "아이디를 입력해주세요"
-            showAlert = true
+            generateAlert(message: "아이디를 입력해주세요")
             return
         }
         guard nickName != "" else {
-            alertMsg = "이름을 입력해주세요"
-            showAlert = true
+            generateAlert(message: "이름을 입력해주세요")
             return
         }
         guard birth != "" else {
-            alertMsg = "생년월일을 입력해주세요"
-            showAlert = true
+            generateAlert(message: "생년월일을 입력해주세요")
             return
         }
-        guard gender == 0 else {
-            alertMsg = "성별을 선택해주세요"
-            showAlert = true
+        guard gender != 0 else {
+            generateAlert(message: "성별을 선택해주세요")
             return
         }
         guard school != "" else {
-            alertMsg = "학교를 입력해주세요"
-            showAlert = true
+            generateAlert(message: "학교를 입력해주세요")
             return
         }
         guard major != "" else {
-            alertMsg = "전공을 입력해주세요"
-            showAlert = true
+            generateAlert(message: "전공을 입력해주세요")
             return
         }
         
         if year != "" {
             yearInt = Int(year)
         }
-        if gender == 0 {
+        if gender == 1 {
             genderEng = "male"
         } else {
             genderEng = "female"
@@ -131,8 +137,31 @@ class RegisterViewModel: ObservableObject {
         AuthAPIService.register(email: email, password: encodedPassword, userName: userName, nickName: nickName, gender: genderEng, birth: birth, company: company == "" ? nil : company, job: job == "" ? nil : job, year: yearInt, school: school, major: major, completion: registerCompletionHandler)
     }
     
+    private func addSchoolSubscriber() {
+        $school
+            .debounce(for: .seconds(0.3), scheduler: DispatchQueue.main)
+            .sink { [weak self] query in
+                guard let self = self else { return }
+                self.schoolList = DummyData.schoolList.filter({ $0.contains(query) })
+//                print(self.schoolList)
+            }
+            .store(in: &cancellabels)
+    }
+    
+    private func addMajorSubscriber() {
+        $major
+            .debounce(for: .seconds(0.3), scheduler: DispatchQueue.main)
+            .sink { [weak self] query in
+                guard let self = self else { return }
+                self.majorList = DummyData.majorList.filter({ $0.contains(query) })
+//                print(self.majorList)
+            }
+            .store(in: &cancellabels)
+    }
+    
     private func registerCompletionHandler(response: AFDataResponse<Any>) {
         if response.error != nil {
+            NSLog(response.error!.localizedDescription)
             generateAlert(message: "회원가입 실패")
             return
         }
@@ -142,6 +171,7 @@ class RegisterViewModel: ObservableObject {
     
     private func loginCompletionHandler(response: AFDataResponse<Any>) {
         if response.error != nil {
+            NSLog(response.error!.localizedDescription)
             generateAlert(message: "로그인 실패")
             return
         }

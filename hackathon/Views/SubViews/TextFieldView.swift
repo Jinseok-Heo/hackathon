@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TextFieldView: View {
+struct TextFieldView<Content:View> : View {
     
     enum FieldType {
         case text, secure
@@ -16,9 +16,18 @@ struct TextFieldView: View {
     @Binding
     var text: String
     
+    let content: Content
     var title: String
     var placeholder: String
     var type: FieldType
+    
+    init(text: Binding<String>, title: String, placeholder: String, type: FieldType, @ViewBuilder content: () -> Content) {
+        self._text = text
+        self.title = title
+        self.placeholder = placeholder
+        self.type = type
+        self.content = content()
+    }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -26,7 +35,7 @@ struct TextFieldView: View {
                 .font(FontManager.font(size: 15, weight: .extrabold))
                 .foregroundColor(Color(hex: "#999999"))
                 .padding(.bottom, 6)
-            content
+            textFields
                 .frame(height: 24)
                 .font(FontManager.font(size: 15, weight: .medium))
             Rectangle()
@@ -35,15 +44,24 @@ struct TextFieldView: View {
         }
     }
     
-    @ViewBuilder private var content: some View {
-        switch self.type {
-        case .text:
-            TextField(placeholder, text: $text)
-                .autocapitalization(.none)
-                .disableAutocorrection(true)
-        case .secure:
-            SecureField(placeholder, text: $text)
+    private var textFields: some View {
+        HStack(spacing: 0) {
+            switch self.type {
+            case .text:
+                TextField(placeholder, text: $text)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
+            case .secure:
+                SecureField(placeholder, text: $text)
+            }
+            content
         }
     }
     
+}
+
+extension TextFieldView where Content == EmptyView {
+    init(text: Binding<String>, title: String, placeholder: String, type: FieldType) {
+        self.init(text: text, title: title, placeholder: placeholder, type: type, content: { EmptyView() })
+    }
 }

@@ -51,46 +51,40 @@ final class DummyData {
     ]
     
     static let jobList: [String] = {
-        let fileManager = FileManager()
-        let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let dataPath = documentsDirectory.appendingPathComponent("FileManger Directory")
-        
-        do {
-            let jobListPath = dataPath.appendingPathComponent("/Data/JobList.txt")
-            let text = try String(contentsOf: jobListPath, encoding: .utf8)
-            return text.split(separator: "\n") as? [String] ?? []
-        } catch {
-            print(error)
+        if let path = Bundle.main.path(forResource: "JobList", ofType: "txt") {
+            do {
+                let data = try String(contentsOfFile: path, encoding: .utf8)
+                let list = data.components(separatedBy: .newlines)
+                return list
+            } catch {
+                print(error)
+            }
         }
         return []
     }()
     
     static let schoolList: [String] = {
-        let fileManager = FileManager()
-        let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let dataPath = documentsDirectory.appendingPathComponent("FileManger Directory")
-        
-        do {
-            let schoolListPath = dataPath.appendingPathComponent("/Data/SchoolList.txt")
-            let text = try String(contentsOf: schoolListPath, encoding: .utf8)
-            return text.split(separator: "\n") as? [String] ?? []
-        } catch {
-            print(error)
+        if let path = Bundle.main.path(forResource: "SchoolList", ofType: "txt") {
+            do {
+                let data = try String(contentsOfFile: path, encoding: .utf8)
+                let list = data.components(separatedBy: .newlines)
+                return list
+            } catch {
+                print(error)
+            }
         }
         return []
     }()
     
     static let majorList: [String] = {
-        let fileManager = FileManager()
-        let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let dataPath = documentsDirectory.appendingPathComponent("FileManger Directory")
-        
-        do {
-            let majorListPath = dataPath.appendingPathComponent("/Data/SchoolList.txt")
-            let text = try String(contentsOf: majorListPath, encoding: .utf8)
-            return text.split(separator: "\n") as? [String] ?? []
-        } catch {
-            print(error)
+        if let path = Bundle.main.path(forResource: "MajorList", ofType: "txt") {
+            do {
+                let data = try String(contentsOfFile: path, encoding: .utf8)
+                let list = data.components(separatedBy: .newlines)
+                return list
+            } catch {
+                print(error)
+            }
         }
         return []
     }()

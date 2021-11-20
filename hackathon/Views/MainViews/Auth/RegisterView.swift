@@ -54,14 +54,48 @@ struct RegisterView: View {
             }
             TextFieldView(text: $registerVM.userName, title: "아이디", placeholder: "이메일을 입력해 주세요", type: .text)
                 .padding(.bottom, 10)
-            TextFieldView(text: $registerVM.password, title: "비밀번호", placeholder: "비밀번호를 입력해 주세요", type: .secure)
+            TextFieldView(text: $registerVM.password, title: "비밀번호", placeholder: "비밀번호를 입력해 주세요", type: registerVM.showPassword ? .text : .secure) {
+                Button {
+                    registerVM.showPassword.toggle()
+                } label: {
+                    Image(systemName: registerVM.showPassword ? "eye.slash" : "eye")
+                        .resizable()
+                        .frame(width: 24, height: 18)
+                        .foregroundColor(Color(hex: "#C5C5C5"))
+                }
+
+            }
             Spacer()
         }
     }
     
     private var additionalView: some View {
         VStack(alignment: .leading, spacing: 54) {
-            TextFieldView(text: $registerVM.school, title: "대학교", placeholder: "대학교를 입력해주세요", type: .text)
+            VStack(spacing: 0) {
+                TextFieldView(text: $registerVM.school, title: "대학교", placeholder: "대학교를 입력해주세요", type: .text)
+                if registerVM.schoolList.count > 0 {
+                    ScrollView {
+                        List {
+                            Text("1")
+                            Text("2")
+                            Text("3")
+                            Text("4")
+//                            ForEach(registerVM.schoolList, id: \.self) { school in
+//                                HStack {
+//                                    Text(school)
+//                                        .font(FontManager.font(size: 15, weight: .regular))
+//                                        .foregroundColor(.black)
+//                                        .padding(.leading, 10)
+//                                        .background(Color.gray)
+//                                    Spacer()
+//                                }
+//                                .frame(height: 40)
+//                            }
+                        }
+                    }
+                    .frame(height: 120)
+                }
+            }
             TextFieldView(text: $registerVM.major, title: "전공", placeholder: "전공을 입력해주세요", type: .text)
             Spacer()
         }
