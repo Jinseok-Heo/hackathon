@@ -23,9 +23,8 @@ case register(email: String,
               major: String)
 case login(userName: String, password: String)
 
-    var baseURL: URL {
-        return URL(string: "https://a24c-121-141-119-67.ngrok.io")!
-    }
+    
+    static let base: String = "https://a24c-121-141-119-67.ngrok.io"
     
     var endPoint: String {
         switch self {
@@ -47,11 +46,6 @@ case login(userName: String, password: String)
     
     var parameters: Parameters {
         switch self {
-//        case let .login(userName, password):
-//            var params = Parameters()
-//            params["username"] = userName
-//            params["password"] = password
-//            return params
         case let .register(email, password, userName, nickName, gender, birth, company, job, year, school, major):
             var params = Parameters()
             params["email"] = email
@@ -76,8 +70,9 @@ case login(userName: String, password: String)
     }
     
     func asURLRequest() throws -> URLRequest {
-        let url = baseURL.appendingPathComponent(endPoint)
-        print(url)
+        let urlString = AuthRouter.base + endPoint
+        let url = URL(string: urlString)!
+        NSLog("URLRequest with url: \(url)")
         var request = URLRequest(url: url)
         request.method = method
         switch method {

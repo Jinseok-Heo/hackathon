@@ -7,26 +7,15 @@
 
 import Foundation
 import Alamofire
-import Combine
+import SwiftUI
 
 enum AuthAPIService {
     
     static func login(userName: String, password: String, completion: @escaping (AFDataResponse<Any>) -> () ) {
-        let encodedPassword = password.toBase64()
-        let url = "https://a24c-121-141-119-67.ngrok.io/user/login?username=\(userName)&password=\(encodedPassword)"
-        print(url)
-        AF.request(url,
-                   method: .get,
-                   parameters: nil,
-                   encoding: URLEncoding.default,
-                   headers: ["Content-Type":"application/json", "Accept":"application/json"])
+        APIClient.shared.session
+            .request(AuthRouter.login(userName: userName, password: password))
             .validate(statusCode: 200..<300)
-            .responseJSON { (json) in
-                print(json.response?.allHeaderFields)
-            }
-//        APIClient.shared.session
-//            .request(AuthRouter.login(userName: userName, password: password))
-//            .responseJSON(completionHandler: completion)
+            .responseJSON(completionHandler: completion)
     }
     
     static func register(email: String,
@@ -53,6 +42,7 @@ enum AuthAPIService {
                                          year: year,
                                          school: school,
                                          major: major))
+            .validate(statusCode: 200..<300)
             .responseJSON(completionHandler: completion)
     }
 }

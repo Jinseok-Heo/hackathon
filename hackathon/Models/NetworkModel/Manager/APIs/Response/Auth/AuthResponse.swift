@@ -10,12 +10,12 @@ import Foundation
 // MARK: Auth API response
 struct AuthResponse: Codable {
     
-    var user: UserResponse
-    var token: TokenResponse
+    let verifiedToken: String
+    let refreshToken: String?
     
     enum CodingKeys: String, CodingKey {
-        case user
-        case token
+        case verifiedToken = "verified-token"
+        case refreshToken = "refresh-token"
     }
     
 }

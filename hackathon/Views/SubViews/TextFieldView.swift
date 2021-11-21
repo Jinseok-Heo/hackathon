@@ -21,12 +21,16 @@ struct TextFieldView<Content:View> : View {
     var placeholder: String
     var type: FieldType
     
-    init(text: Binding<String>, title: String, placeholder: String, type: FieldType, @ViewBuilder content: () -> Content) {
+    init(text: Binding<String>,
+         title: String,
+         placeholder: String,
+         type: FieldType,
+         @ViewBuilder content: () -> Content) {
+        self.content = content()
         self._text = text
         self.title = title
         self.placeholder = placeholder
         self.type = type
-        self.content = content()
     }
     
     var body: some View {
@@ -61,7 +65,9 @@ struct TextFieldView<Content:View> : View {
 }
 
 extension TextFieldView where Content == EmptyView {
+    
     init(text: Binding<String>, title: String, placeholder: String, type: FieldType) {
         self.init(text: text, title: title, placeholder: placeholder, type: type, content: { EmptyView() })
     }
+    
 }

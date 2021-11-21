@@ -25,7 +25,6 @@ struct RegisterView: View {
                 }
                 .tabViewStyle(.page(indexDisplayMode: .never))
                 .padding(.top, 112)
-                Spacer()
                 button
             }
         }
@@ -63,7 +62,6 @@ struct RegisterView: View {
                         .frame(width: 24, height: 18)
                         .foregroundColor(Color(hex: "#C5C5C5"))
                 }
-
             }
             Spacer()
         }
@@ -71,41 +69,107 @@ struct RegisterView: View {
     
     private var additionalView: some View {
         VStack(alignment: .leading, spacing: 54) {
-            VStack(spacing: 0) {
-                TextFieldView(text: $registerVM.school, title: "대학교", placeholder: "대학교를 입력해주세요", type: .text)
-                if registerVM.schoolList.count > 0 {
-                    ScrollView {
-                        List {
-                            Text("1")
-                            Text("2")
-                            Text("3")
-                            Text("4")
-//                            ForEach(registerVM.schoolList, id: \.self) { school in
-//                                HStack {
-//                                    Text(school)
-//                                        .font(FontManager.font(size: 15, weight: .regular))
-//                                        .foregroundColor(.black)
-//                                        .padding(.leading, 10)
-//                                        .background(Color.gray)
-//                                    Spacer()
-//                                }
-//                                .frame(height: 40)
-//                            }
-                        }
-                    }
-                    .frame(height: 120)
-                }
-            }
-            TextFieldView(text: $registerVM.major, title: "전공", placeholder: "전공을 입력해주세요", type: .text)
+            schoolField
+            majorField
             Spacer()
         }
         .padding(.top, 125)
     }
     
+    private var schoolField: some View {
+        VStack(spacing: 0) {
+            AdvancedTextFieldView(text: $registerVM.school,
+                                  title: "대학교",
+                                  placeholder: "대학교를 입력해주세요",
+                                  isFocused: registerVM.isSchoolListPresented,
+                                  content: EmptyView()) { isChanged in
+                if isChanged {
+                    self.registerVM.isSchoolListPresented = true
+                }
+            }
+            if registerVM.isSchoolListPresented && registerVM.schoolList.count > 0 {
+                List {
+                    ForEach(registerVM.schoolList, id: \.self) { school in
+                        Button {
+                            registerVM.school = school
+                            hideKeyboard()
+                            registerVM.isSchoolListPresented = false
+                        } label: {
+                            HStack {
+                                Text(school)
+                                    .font(FontManager.font(size: 15, weight: .regular))
+                                    .foregroundColor(.black)
+                                    .padding(.leading, 10)
+                                Spacer()
+                            }
+                        }
+                        .listRowBackground(Color(hex: "#F6F6F6"))
+                        .frame(height: 40)
+                    }
+                }
+                .listStyle(.plain)
+                .frame(height: 120)
+            }
+        }
+    }
+    
+    private var majorField: some View {
+        VStack(spacing: 0) {
+            AdvancedTextFieldView(text: $registerVM.major,
+                                  title: "전공",
+                                  placeholder: "전공을 입력해주세요",
+                                  isFocused: registerVM.isMajorListPresented,
+                                  content: {
+                Button {
+                    self.registerVM.major = ""
+                    hideKeyboard()
+                } label: {
+                    Image(systemName: "xmark")
+                        .resizable()
+                        .frame(width: 8, height: 8)
+                        .foregroundColor(Color(hex: "#555555"))
+                }
+            }) { isChanged in
+                if isChanged {
+                    if self.registerVM.isSchoolValidate() {
+                        self.registerVM.isMajorListPresented = true
+                    } else {
+                        self.registerVM.generateAlert(message: "전공 먼저 선택해주세요")
+                        hideKeyboard()
+                    }
+                }
+            }
+            if registerVM.isMajorListPresented && registerVM.majorList.count > 0 {
+                List {
+                    ForEach(registerVM.majorList, id: \.self) { major in
+                        Button {
+                            registerVM.major = major
+                            hideKeyboard()
+                            registerVM.isMajorListPresented = false
+                        } label: {
+                            HStack {
+                                Text(major)
+                                    .font(FontManager.font(size: 15, weight: .regular))
+                                    .foregroundColor(.black)
+                                    .padding(.leading, 10)
+                                Spacer()
+                            }
+                        }
+                        .listRowBackground(Color(hex: "#F6F6F6"))
+                        .frame(height: 40)
+                    }
+                }
+                .listStyle(.plain)
+                .frame(height: 120)
+            }
+        }
+    }
+    
     private var genderSelection: some View {
-        VStack(alignment: .leading, spacing: 0) {
+        VStack(alignment: .leading, spacing: 8) {
             Text("성별")
                 .font(FontManager.font(size: 15, weight: .extrabold))
+                .foregroundColor(Color(hex: "#999999"))
             HStack(spacing: 6) {
                 Image(systemName: "checkmark.circle.fill")
                     .resizable()

@@ -28,7 +28,6 @@
 		351B03422743510B00EAEB6E /* hackathon.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 351B03252743510B00EAEB6E /* hackathon.xcdatamodeld */; };
 		351B03432743510B00EAEB6E /* DummyDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351B03272743510B00EAEB6E /* DummyDataModel.swift */; };
 		351B03442743510B00EAEB6E /* UserDefualtsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351B032A2743510B00EAEB6E /* UserDefualtsManager.swift */; };
-		351B03452743510B00EAEB6E /* TokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351B032F2743510B00EAEB6E /* TokenResponse.swift */; };
 		351B03462743510B00EAEB6E /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351B03302743510B00EAEB6E /* UserResponse.swift */; };
 		351B03472743510B00EAEB6E /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351B03312743510B00EAEB6E /* AuthResponse.swift */; };
 		351B03482743510B00EAEB6E /* ProfileResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351B03322743510B00EAEB6E /* ProfileResponse.swift */; };
@@ -47,7 +46,6 @@
 		351B035D2743576B00EAEB6E /* BoardResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351B035C2743576B00EAEB6E /* BoardResponse.swift */; };
 		351B035F274357DC00EAEB6E /* CommentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351B035E274357DC00EAEB6E /* CommentResponse.swift */; };
 		351B03632743795100EAEB6E /* MentoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351B03622743795100EAEB6E /* MentoResponse.swift */; };
-		351B03652743A9F000EAEB6E /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351B03642743A9F000EAEB6E /* UserViewModel.swift */; };
 		351B03672743ADF800EAEB6E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351B03662743ADF800EAEB6E /* LoginView.swift */; };
 		351B036A2743AE1800EAEB6E /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351B03692743AE1800EAEB6E /* RegisterView.swift */; };
 		351B0371274494D700EAEB6E /* CustomTabViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351B0370274494D700EAEB6E /* CustomTabViewItem.swift */; };
@@ -73,11 +71,16 @@
 		35C9304F27488F9B0012D14A /* TextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C9304E27488F9B0012D14A /* TextManager.swift */; };
 		35C930512748D7A70012D14A /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C930502748D7A70012D14A /* StringExtension.swift */; };
 		35C930532748EA9C0012D14A /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C930522748EA9C0012D14A /* TextFieldView.swift */; };
+		35C9305827490AA80012D14A /* JobList.txt in Resources */ = {isa = PBXBuildFile; fileRef = 35C9305527490AA80012D14A /* JobList.txt */; };
+		35C9305927490AA80012D14A /* SchoolList.txt in Resources */ = {isa = PBXBuildFile; fileRef = 35C9305627490AA80012D14A /* SchoolList.txt */; };
+		35C9305A27490AA80012D14A /* MajorList.txt in Resources */ = {isa = PBXBuildFile; fileRef = 35C9305727490AA80012D14A /* MajorList.txt */; };
 		35E5CE442740D4FE0075E019 /* MyTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E5CE432740D4FE0075E019 /* MyTabView.swift */; };
 		35E5CE462740D52D0075E019 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E5CE452740D52D0075E019 /* ChatView.swift */; };
 		35E5CE482740D5490075E019 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E5CE472740D5490075E019 /* SearchView.swift */; };
 		35E5CE4A2740D5600075E019 /* CommunityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E5CE492740D5600075E019 /* CommunityView.swift */; };
 		35E5CE4C2740D57F0075E019 /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E5CE4B2740D57F0075E019 /* MyPageView.swift */; };
+		35EBC12C274A05860062EC92 /* HangulDecomposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EBC12B274A05860062EC92 /* HangulDecomposer.swift */; };
+		35EBC12E274A1A7F0062EC92 /* AdvancedTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EBC12D274A1A7F0062EC92 /* AdvancedTextFieldView.swift */; };
 		B5080F04C0EB6E6CBE0BF3CD /* Pods_hackathonTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9F3DE496AA1F5A67AB6DED7 /* Pods_hackathonTests.framework */; };
 		D8462EC262CDA955D0F38A5A /* Pods_hackathon_hackathonUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C84C0B2D5F2B48E2E06C024 /* Pods_hackathon_hackathonUITests.framework */; };
 		E6F062AA5FBED04701A92D63 /* Pods_hackathon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FD91EB2DF978185D6450929 /* Pods_hackathon.framework */; };
@@ -120,7 +123,6 @@
 		351B03262743510B00EAEB6E /* hackathon.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hackathon.xcdatamodel; sourceTree = "<group>"; };
 		351B03272743510B00EAEB6E /* DummyDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyDataModel.swift; sourceTree = "<group>"; };
 		351B032A2743510B00EAEB6E /* UserDefualtsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefualtsManager.swift; sourceTree = "<group>"; };
-		351B032F2743510B00EAEB6E /* TokenResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenResponse.swift; sourceTree = "<group>"; };
 		351B03302743510B00EAEB6E /* UserResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
 		351B03312743510B00EAEB6E /* AuthResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		351B03322743510B00EAEB6E /* ProfileResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileResponse.swift; sourceTree = "<group>"; };
@@ -139,7 +141,6 @@
 		351B035C2743576B00EAEB6E /* BoardResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardResponse.swift; sourceTree = "<group>"; };
 		351B035E274357DC00EAEB6E /* CommentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentResponse.swift; sourceTree = "<group>"; };
 		351B03622743795100EAEB6E /* MentoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentoResponse.swift; sourceTree = "<group>"; };
-		351B03642743A9F000EAEB6E /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		351B03662743ADF800EAEB6E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		351B03692743AE1800EAEB6E /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		351B0370274494D700EAEB6E /* CustomTabViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabViewItem.swift; sourceTree = "<group>"; };
@@ -162,6 +163,9 @@
 		35C9304E27488F9B0012D14A /* TextManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextManager.swift; sourceTree = "<group>"; };
 		35C930502748D7A70012D14A /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		35C930522748EA9C0012D14A /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
+		35C9305527490AA80012D14A /* JobList.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JobList.txt; sourceTree = "<group>"; };
+		35C9305627490AA80012D14A /* SchoolList.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SchoolList.txt; sourceTree = "<group>"; };
+		35C9305727490AA80012D14A /* MajorList.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MajorList.txt; sourceTree = "<group>"; };
 		35E5CE432740D4FE0075E019 /* MyTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTabView.swift; sourceTree = "<group>"; };
 		35E5CE452740D52D0075E019 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		35E5CE472740D5490075E019 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
@@ -169,6 +173,8 @@
 		35E5CE4B2740D57F0075E019 /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		35E5CE512740DB4A0075E019 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35E5CE6F27410AE90075E019 /* Manrope-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Manrope-ExtraBold.ttf"; sourceTree = "<group>"; };
+		35EBC12B274A05860062EC92 /* HangulDecomposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HangulDecomposer.swift; sourceTree = "<group>"; };
+		35EBC12D274A1A7F0062EC92 /* AdvancedTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedTextFieldView.swift; sourceTree = "<group>"; };
 		3875800E20B89B59B6146832 /* Pods-hackathon-hackathonUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hackathon-hackathonUITests.debug.xcconfig"; path = "Target Support Files/Pods-hackathon-hackathonUITests/Pods-hackathon-hackathonUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		3C84C0B2D5F2B48E2E06C024 /* Pods_hackathon_hackathonUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hackathon_hackathonUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FD91EB2DF978185D6450929 /* Pods_hackathon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hackathon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -234,6 +240,7 @@
 			children = (
 				350E13DC2740BF9900645685 /* hackathonApp.swift */,
 				35E5CE512740DB4A0075E019 /* Info.plist */,
+				35C9305427490AA80012D14A /* Data */,
 				35E5CE6E27410AE00075E019 /* Assets */,
 				354C409427410BBD004C5AD7 /* Extensions */,
 				351B031F2743510B00EAEB6E /* Models */,
@@ -272,6 +279,7 @@
 		351B031F2743510B00EAEB6E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				35EBC12B274A05860062EC92 /* HangulDecomposer.swift */,
 				35C9304E27488F9B0012D14A /* TextManager.swift */,
 				35BA0CAF27477986009C197F /* Time */,
 				351B03202743510B00EAEB6E /* GenderModel */,
@@ -362,7 +370,6 @@
 		351B032E2743510B00EAEB6E /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				351B032F2743510B00EAEB6E /* TokenResponse.swift */,
 				351B03302743510B00EAEB6E /* UserResponse.swift */,
 				351B03312743510B00EAEB6E /* AuthResponse.swift */,
 				351B03322743510B00EAEB6E /* ProfileResponse.swift */,
@@ -471,6 +478,7 @@
 			children = (
 				351B036F274494BF00EAEB6E /* CustomTabView */,
 				35C930522748EA9C0012D14A /* TextFieldView.swift */,
+				35EBC12D274A1A7F0062EC92 /* AdvancedTextFieldView.swift */,
 				354C409E27412700004C5AD7 /* MeetingCard.swift */,
 				351B030A2743339B00EAEB6E /* MentoringCard.swift */,
 				354C40A427414068004C5AD7 /* MentoCard.swift */,
@@ -495,7 +503,6 @@
 		35BA0CAB274776E4009C197F /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				351B03642743A9F000EAEB6E /* UserViewModel.swift */,
 				35C9304A27488E880012D14A /* LoginViewModel.swift */,
 				35C9304C27488E930012D14A /* RegisterViewModel.swift */,
 			);
@@ -516,6 +523,16 @@
 				35BA0CB027477995009C197F /* DateFormatter.swift */,
 			);
 			path = Time;
+			sourceTree = "<group>";
+		};
+		35C9305427490AA80012D14A /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				35C9305527490AA80012D14A /* JobList.txt */,
+				35C9305627490AA80012D14A /* SchoolList.txt */,
+				35C9305727490AA80012D14A /* MajorList.txt */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		35E5CE1E2740C2F60075E019 /* ViewModels */ = {
@@ -680,8 +697,11 @@
 			files = (
 				350E13E42740BF9B00645685 /* Preview Assets.xcassets in Resources */,
 				351B03072743314400EAEB6E /* Manrope-ExtraBold.ttf in Resources */,
+				35C9305927490AA80012D14A /* SchoolList.txt in Resources */,
+				35C9305A27490AA80012D14A /* MajorList.txt in Resources */,
 				350E13E12740BF9B00645685 /* Assets.xcassets in Resources */,
 				351B03042743313F00EAEB6E /* ArimaMadurai-Black.ttf in Resources */,
+				35C9305827490AA80012D14A /* JobList.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -821,8 +841,8 @@
 				354C40A927414087004C5AD7 /* MoreRectangleBar.swift in Sources */,
 				35C9304B27488E880012D14A /* LoginViewModel.swift in Sources */,
 				351B03772744951E00EAEB6E /* CustomTabPreferenceKey.swift in Sources */,
+				35EBC12E274A1A7F0062EC92 /* AdvancedTextFieldView.swift in Sources */,
 				35E5CE4C2740D57F0075E019 /* MyPageView.swift in Sources */,
-				351B03652743A9F000EAEB6E /* UserViewModel.swift in Sources */,
 				35B2F5482741EFB600AA5F04 /* MentorRecommendView.swift in Sources */,
 				35C9304F27488F9B0012D14A /* TextManager.swift in Sources */,
 				351B035D2743576B00EAEB6E /* BoardResponse.swift in Sources */,
@@ -853,6 +873,7 @@
 				351B03672743ADF800EAEB6E /* LoginView.swift in Sources */,
 				351B0373274494EA00EAEB6E /* CustomTabView.swift in Sources */,
 				354C409F27412700004C5AD7 /* MeetingCard.swift in Sources */,
+				35EBC12C274A05860062EC92 /* HangulDecomposer.swift in Sources */,
 				351B03482743510B00EAEB6E /* ProfileResponse.swift in Sources */,
 				351B035B274356F900EAEB6E /* PromotionResponse.swift in Sources */,
 				35C930512748D7A70012D14A /* StringExtension.swift in Sources */,
@@ -866,7 +887,6 @@
 				35C930532748EA9C0012D14A /* TextFieldView.swift in Sources */,
 				351B03552743528E00EAEB6E /* MatchingResponse.swift in Sources */,
 				351B030B2743339B00EAEB6E /* MentoringCard.swift in Sources */,
-				351B03452743510B00EAEB6E /* TokenResponse.swift in Sources */,
 				351B03512743514F00EAEB6E /* PreferredJobResponse.swift in Sources */,
 				354C409B27411476004C5AD7 /* ColorExtension.swift in Sources */,
 			);

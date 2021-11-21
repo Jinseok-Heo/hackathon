@@ -43,6 +43,10 @@ class RegisterViewModel: ObservableObject {
     var schoolList: [String]
     @Published
     var majorList: [String]
+    @Published
+    var isSchoolListPresented: Bool
+    @Published
+    var isMajorListPresented: Bool
     
     @Published
     var showPassword: Bool
@@ -54,6 +58,8 @@ class RegisterViewModel: ObservableObject {
     var pageState: Int
     @Published
     var registerCompleted: Bool
+    @Published
+    var isLoading: Bool
     
     public init() {
         self.email = "ex1234@gmail.com"
@@ -66,17 +72,20 @@ class RegisterViewModel: ObservableObject {
         self.company = ""
         self.year = ""
         self.job = ""
-        self.school = "경희대학교"
-        self.major = "기계공학과"
+        self.school = ""
+        self.major = ""
         
         self.schoolList = []
         self.majorList = []
+        self.isSchoolListPresented = true
+        self.isMajorListPresented = true
         
         self.showPassword = false
         self.showAlert = false
         self.alertMsg = ""
         self.pageState = 0
         self.registerCompleted = false
+        self.isLoading = false
         
         addSchoolSubscriber()
         addMajorSubscriber()
@@ -139,22 +148,18 @@ class RegisterViewModel: ObservableObject {
     
     private func addSchoolSubscriber() {
         $school
-            .debounce(for: .seconds(0.3), scheduler: DispatchQueue.main)
             .sink { [weak self] query in
                 guard let self = self else { return }
-                self.schoolList = DummyData.schoolList.filter({ $0.contains(query) })
-//                print(self.schoolList)
+                self.schoolList = DummyData.schoolList.filter { $0.decomposeHangul().contains(query.decomposeHangul()) }
             }
             .store(in: &cancellabels)
     }
     
     private func addMajorSubscriber() {
         $major
-            .debounce(for: .seconds(0.3), scheduler: DispatchQueue.main)
             .sink { [weak self] query in
                 guard let self = self else { return }
-                self.majorList = DummyData.majorList.filter({ $0.contains(query) })
-//                print(self.majorList)
+                self.majorList = DummyData.majorList.filter { $0.decomposeHangul().contains(query.decomposeHangul()) }
             }
             .store(in: &cancellabels)
     }
@@ -162,7 +167,7 @@ class RegisterViewModel: ObservableObject {
     private func registerCompletionHandler(response: AFDataResponse<Any>) {
         if response.error != nil {
             NSLog(response.error!.localizedDescription)
-            generateAlert(message: "회원가입 실패")
+            generateAlert(message: "네트워크 연결을 확인해주세요")
             return
         }
         let encodedPassword = self.password.toBase64()
@@ -170,12 +175,35 @@ class RegisterViewModel: ObservableObject {
     }
     
     private func loginCompletionHandler(response: AFDataResponse<Any>) {
-        if response.error != nil {
-            NSLog(response.error!.localizedDescription)
-            generateAlert(message: "로그인 실패")
+        weak var _self = self
+        NSLog(response.description)
+        _self?.isLoading = false
+        guard let self = _self else {
+            NSLog("ViewModels/Auth/LoginViewModel/tryLogin : self is nil")
             return
         }
-        self.registerCompleted = true
+        if response.error != nil {
+            NSLog(response.error!.localizedDescription)
+            self.generateAlert(message: "네트워크 연결을 확인해주세요")
+            return
+        }
+        if let headerFields = response.response?.allHeaderFields {
+            guard let verifiedToken = headerFields["verified-token"] as? String else {
+                NSLog("ViewModels/Auth/LoginViewModel/tryLogin Convert Error: Can't convert verified-token to string")
+                self.generateAlert(message: "토큰을 가져올 수 없습니다. 고객센터에 문의하세요")
+                return
+            }
+            guard let refreshToken = headerFields["refresh-token"] as? String else {
+                NSLog("ViewModels/Auth/LoginViewModel/tryLogin Convert Error: Can't convert refresh-token to string")
+                self.generateAlert(message: "토큰을 가져올 수 없습니다. 고객센터에 문의하세요")
+                return
+            }
+            UserDefaultsManager.shared.setTokens(verifiedToken: verifiedToken,
+                                                 refreshToken: refreshToken)
+            self.registerCompleted = true
+        } else {
+            NSLog("There is no header in data")
+        }
     }
     
     public func buttonHandler() {
@@ -195,7 +223,11 @@ class RegisterViewModel: ObservableObject {
         }
     }
     
-    private func generateAlert(message: String) {
+    public func isSchoolValidate() -> Bool {
+        return schoolList.contains(school)
+    }
+    
+    public func generateAlert(message: String) {
         alertMsg = message
         showAlert = true
     }

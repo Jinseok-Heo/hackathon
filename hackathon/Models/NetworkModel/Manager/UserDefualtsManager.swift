@@ -10,7 +10,7 @@ import Foundation
 class UserDefaultsManager {
     
     enum Key: String, CaseIterable {
-        case refreshToken, accessToken
+        case refreshToken, verifiedToken
     }
     
     static let shared: UserDefaultsManager = UserDefaultsManager()
@@ -20,17 +20,17 @@ class UserDefaultsManager {
     }
     
     /// Setting tokens
-    func setTokens(accessToken: String, refreshToken: String) {
+    func setTokens(verifiedToken: String, refreshToken: String) {
         // TODO: Use Keychain to store tokens
-        UserDefaults.standard.set(accessToken, forKey: Key.accessToken.rawValue)
+        UserDefaults.standard.set(verifiedToken, forKey: Key.verifiedToken.rawValue)
         UserDefaults.standard.set(refreshToken, forKey: Key.refreshToken.rawValue)
         UserDefaults.standard.synchronize()
     }
     
-    func getTokens() -> TokenResponse {
-        let accessToken = UserDefaults.standard.string(forKey: Key.accessToken.rawValue) ?? ""
+    func getTokens() -> AuthResponse {
+        let verifiedToken = UserDefaults.standard.string(forKey: Key.verifiedToken.rawValue) ?? ""
         let refreshToken = UserDefaults.standard.string(forKey: Key.refreshToken.rawValue) ?? ""
-        return TokenResponse(accessToken: refreshToken, refreshToken: accessToken)
+        return AuthResponse(verifiedToken: verifiedToken, refreshToken: refreshToken)
     }
     
 }

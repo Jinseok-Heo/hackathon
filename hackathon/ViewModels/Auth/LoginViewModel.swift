@@ -20,6 +20,8 @@ class LoginViewModel: ObservableObject {
     var alertMsg: String
     @Published
     var action: Int?
+    @Published
+    var isLoading: Bool
     
     public init() {
         self.userName = "ex1234"
@@ -27,35 +29,50 @@ class LoginViewModel: ObservableObject {
         self.showAlert = false
         self.alertMsg = ""
         self.action = 0
+        self.isLoading = false
     }
     
     func tryLogin() {
         let encodedPassword = password.toBase64()
-        let url = "https://a24c-121-141-119-67.ngrok.io/user/login?username=\(userName)&password=\(encodedPassword)"
-        print(url)
-        AF.request(url,
-                   method: .get,
-                   parameters: nil,
-                   encoding: URLEncoding.default,
-                   headers: ["Content-Type":"application/json", "Accept":"application/json"])
-            .validate(statusCode: 200..<300)
-            .responseJSON { (json) in
-                //여기서 가져온 데이터를 자유롭게 활용하세요.
-                print(json)
+        isLoading = true
+        AuthAPIService.login(userName: userName, password: encodedPassword, completion: loginCompletionHandler)
+    }
+    
+    private func loginCompletionHandler(response: AFDataResponse<Any>) {
+        weak var _self = self
+        NSLog(response.description)
+        _self?.isLoading = false
+        guard let self = _self else {
+            NSLog("ViewModels/Auth/LoginViewModel/tryLogin : self is nil")
+            return
+        }
+        if response.error != nil {
+            NSLog(response.error!.localizedDescription)
+            self.generateAlert(message: "네트워크 연결을 확인해주세요")
+            return
+        }
+        if let headerFields = response.response?.allHeaderFields {
+            guard let verifiedToken = headerFields["verified-token"] as? String else {
+                NSLog("ViewModels/Auth/LoginViewModel/tryLogin Convert Error: Can't convert verified-token to string")
+                self.generateAlert(message: "토큰을 가져올 수 없습니다. 고객센터에 문의하세요")
+                return
             }
-        
-//        AuthAPIService.login(userName: userName, password: encodedPassword) { [weak self] response in
-//            NSLog(response.description)
-//            if response.error != nil {
-//                NSLog(response.error!.localizedDescription)
-//                self?.alertMsg = "로그인 실패"
-//                self?.showAlert = true
-//                return
-//            }
-//            print(response.response?.headers)
-//            print(response)
-//            self?.action = 2
-//        }
+            guard let refreshToken = headerFields["refresh-token"] as? String else {
+                NSLog("ViewModels/Auth/LoginViewModel/tryLogin Convert Error: Can't convert refresh-token to string")
+                self.generateAlert(message: "토큰을 가져올 수 없습니다. 고객센터에 문의하세요")
+                return
+            }
+            UserDefaultsManager.shared.setTokens(verifiedToken: verifiedToken,
+                                                 refreshToken: refreshToken)
+            self.action = 2
+        } else {
+            NSLog("There is no header in data")
+        }
+    }
+    
+    private func generateAlert(message: String) {
+        self.alertMsg = message
+        self.showAlert = true
     }
     
 }
