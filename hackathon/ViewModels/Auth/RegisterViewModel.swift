@@ -62,13 +62,13 @@ class RegisterViewModel: ObservableObject {
     var isLoading: Bool
     
     public init() {
-        self.email = "ex1234@gmail.com"
-        self.password = "hh44061312!"
-        self.verifiedPassword = "hh44061312!"
-        self.userName = "ex1234"
-        self.nickName = "exName"
+        self.email = ""
+        self.password = ""
+        self.verifiedPassword = ""
+        self.userName = ""
+        self.nickName = ""
         self.gender = 0
-        self.birth = "971110"
+        self.birth = ""
         self.company = ""
         self.year = ""
         self.job = ""
@@ -96,15 +96,15 @@ class RegisterViewModel: ObservableObject {
         var genderEng: String = ""
         var yearInt: Int? = nil
         
-        if password != verifiedPassword {
-            generateAlert(message: "올바른 비밀번호를 입력해주세요")
-            return
-        }
-        guard email != "" else {
-            generateAlert(message: "이메일을 입력해주세요")
-            return
-        }
-        guard verifiedPassword != "" else {
+//        if password != verifiedPassword {
+//            generateAlert(message: "올바른 비밀번호를 입력해주세요")
+//            return
+//        }
+//        guard email != "" else {
+//            generateAlert(message: "이메일을 입력해주세요")
+//            return
+//        }
+        guard password != "" else {
             generateAlert(message: "비밀번호를 입력해주세요")
             return
         }
@@ -116,10 +116,10 @@ class RegisterViewModel: ObservableObject {
             generateAlert(message: "이름을 입력해주세요")
             return
         }
-        guard birth != "" else {
-            generateAlert(message: "생년월일을 입력해주세요")
-            return
-        }
+//        guard birth != "" else {
+//            generateAlert(message: "생년월일을 입력해주세요")
+//            return
+//        }
         guard gender != 0 else {
             generateAlert(message: "성별을 선택해주세요")
             return

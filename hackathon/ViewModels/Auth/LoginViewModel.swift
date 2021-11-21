@@ -24,8 +24,8 @@ class LoginViewModel: ObservableObject {
     var isLoading: Bool
     
     public init() {
-        self.userName = "ex1234"
-        self.password = "hh44061312!"
+        self.userName = ""
+        self.password = ""
         self.showAlert = false
         self.alertMsg = ""
         self.action = 0
