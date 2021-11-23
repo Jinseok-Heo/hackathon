@@ -1,5 +1,5 @@
 //
-//  DateFormatter.swift
+//  DateManager.swift
 //  hackathon
 //
 //  Created by Jinseok Heo on 2021/11/19.
@@ -25,6 +25,15 @@ final class DateManager {
         return dateInterval(before: date, after: Date())
     }
     
+    func dateDayInterval(before: Date, after: Date) -> String {
+        let dayInterval = Calendar.current.dateComponents([.day], from: before, to: after).day ?? 0
+        if dayInterval == 0 {
+            return "D-Day"
+        } else {
+            return String(format: "D-%d", dayInterval)
+        }
+    }
+    
     func dateInterval(before: Date, after: Date) -> String {
         let yearInterval = Calendar.current.dateComponents([.year], from: before, to: after).year ?? 0
         if yearInterval > 0 {
@@ -34,7 +43,7 @@ final class DateManager {
         if monthInterval > 0 {
             return String(format: "%d달 전", monthInterval)
         }
-        let dayInterval = Calendar.current.dateComponents([.month], from: before, to: after).day ?? 0
+        let dayInterval = Calendar.current.dateComponents([.day], from: before, to: after).day ?? 0
         if dayInterval > 1 {
             return String(format: "%d일 전", dayInterval)
         }

@@ -8,30 +8,69 @@
 import SwiftUI
 
 class HomeViewModel: ObservableObject {
-    
+
     @Published
-    var todayMeetings: [MatchingResponse]
+    var user: UserResponse?
+    @Published
+    var profile: ProfileResponse?
+    @Published
+    var meetings: [MatchingResponse]
     @Published
     var recommendedMentor: [MentoResponse]
     @Published
     var hotCommunities: [BoardResponse]
+    @Published
+    var hotPickMentroings: [PromotionResponse]
     
-    public init(user: UserResponse) {
-        self.todayMeetings = []
+    public init() {
+        self.user = nil
+        self.profile = nil
+        self.meetings = []
         self.recommendedMentor = []
         self.hotCommunities = []
-        getTodayMeetings(user: user)
-        getRecommendedMentoes(user)
+        self.hotPickMentroings = []
+        
+        getInfo()
     }
     
-    private func getTodayMeetings(user: UserResponse) {
-        self.todayMeetings = DummyData.matching
-            .filter({ $0.menteeId == user.id })
-            .filter({ DateManager.shared.dateAsString(date: $0.time) == DateManager.shared.dateAsString() })
+    public func getInfo() {
+        getUser()
+        getUserProfile()
+        getMeetings()
+        getRecommendedMentoes()
     }
     
-    private func getRecommendedMentoes(_ : UserResponse) {
+    private func getUser() {
+        let tokens = UserDefaultsManager.shared.getTokens()
+        let verifiedToken = tokens.verifiedToken
+        print(verifiedToken)
+        self.user = DummyData.user
+    }
+    
+    private func getUserProfile() {
+        if let user = user {
+            self.profile = DummyData.profiles.filter({ $0.userId == user.id }).first!
+        }
+    }
+    
+    private func getMeetings() {
+        if let user = user {
+            self.meetings = DummyData.matching
+                .filter({ $0.menteeId == user.id })
+                .filter { $0.time > Date() }
+        }
+    }
+    
+    private func getRecommendedMentoes() {
         self.recommendedMentor = DummyData.mentoes
+    }
+    
+    private func getHotCommunities() {
+        self.hotCommunities = DummyData.hotCommunities
+    }
+    
+    private func getHotPickMentorings() {
+        self.hotPickMentroings = DummyData.promotion
     }
     
 }

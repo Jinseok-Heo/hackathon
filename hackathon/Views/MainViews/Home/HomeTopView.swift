@@ -9,6 +9,9 @@ import SwiftUI
 
 struct HomeTopView: View {
     
+    @EnvironmentObject
+    var homeVM: HomeViewModel
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             titleView
@@ -67,7 +70,7 @@ extension HomeTopView {
     // Top comments
     private var comments: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("다람이님,")
+            Text("\(homeVM.profile!.nickName)님,")
             HStack(spacing: 1) {
                 Text("멘토와의 약속이")
                 ZStack {
@@ -75,7 +78,7 @@ extension HomeTopView {
                         .frame(width: 34, height: 34)
                         .foregroundColor(Color("secondColor"))
                     HStack(alignment: .bottom, spacing: 0) {
-                        Text("3")
+                        Text(String(format: "%d", homeVM.meetings.count))
                             .font(FontManager.font(size: 17, weight: .bold))
                             .foregroundColor(Color("mainColor"))
                         Text("건")
@@ -92,11 +95,11 @@ extension HomeTopView {
     private var contents: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 0) {
-                ForEach(0..<5) { num in
-                    MeetingCard(isOffline: num % 2 == 0)
+                ForEach(homeVM.meetings) { meeting in
+                    MeetingCard(meeting: meeting)
                         .cornerRadius(4, corners: [.topRight, .bottomLeft, .bottomRight])
                         .padding(6)
-                        .shadow(color: Color(num % 2 == 0 ? "mainShadowColor" : "secondShadowColor"), radius: 3, x: 0, y: 0)
+                        .shadow(color: Color(meeting.untact ? "mainShadowColor" : "secondShadowColor"), radius: 3, x: 0, y: 0)
                 }
             }
         }

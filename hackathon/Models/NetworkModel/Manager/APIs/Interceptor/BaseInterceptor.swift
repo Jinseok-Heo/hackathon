@@ -13,7 +13,11 @@ class BaseInterceptor: RequestInterceptor {
     func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
         var request = urlRequest
         
+        let verifiedToken = UserDefaultsManager.shared.getTokens().verifiedToken
         request.addValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+        if verifiedToken != "" {
+            request.addValue(verifiedToken, forHTTPHeaderField: "Authorization")
+        }
         completion(.success(request))
     }
     

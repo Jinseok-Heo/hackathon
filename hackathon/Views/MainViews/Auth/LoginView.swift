@@ -13,29 +13,36 @@ struct LoginView: View {
     var loginVM: LoginViewModel = LoginViewModel()
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 0) {
-                NavigationLink(destination: RegisterView(), tag: 1, selection: $loginVM.action) { EmptyView() }
-                NavigationLink(destination: HomeView(), tag: 2, selection: $loginVM.action) { EmptyView() }
-                titleView
-                    .padding(.top, 128)
-                content
-                    .padding(.top, 46)
-                loginButton
-                    .padding(.top, 32)
-                findInfoButton
-                    .padding(.top, 29)
-                Rectangle()
-                    .frame(height: 1)
-                    .padding(.top, 33)
-                snsLoginContent
-                    .padding(.top, 13)
-                Spacer()
+        ZStack {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 0) {
+                    NavigationLink(destination: BasicInfoView(), tag: 1, selection: $loginVM.action) { EmptyView() }
+                    NavigationLink(destination: HomeView(), tag: 2, selection: $loginVM.action) { EmptyView() }
+                    titleView
+                        .padding(.top, 128)
+                    content
+                        .padding(.top, 46)
+                    loginButton
+                        .padding(.top, 32)
+                    findInfoButton
+                        .padding(.top, 29)
+                    Rectangle()
+                        .frame(height: 1)
+                        .padding(.top, 33)
+                    snsLoginContent
+                        .padding(.top, 13)
+                    Spacer()
+                }
+                .padding([.leading, .trailing], 22)
             }
-            .padding([.leading, .trailing], 22)
+            .opacity(loginVM.isLoading ? 0.3 : 1)
+            .navigationBarHidden(true)
+            .edgesIgnoringSafeArea(.top)
+            if loginVM.isLoading {
+                ProgressView("Loading...")
+                    .progressViewStyle(.circular)
+            }
         }
-        .navigationBarHidden(true)
-        .edgesIgnoringSafeArea(.top)
     }
     
 }

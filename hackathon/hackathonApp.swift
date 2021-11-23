@@ -10,11 +10,22 @@ import SwiftUI
 @main
 struct hackathonApp: App {
     
+    let verifiedToken: String = UserDefaultsManager.shared.getTokens().verifiedToken
+    
     var body: some Scene {
         WindowGroup {
+//            NavigationView {
+//                BasicInfoView()
+//            }
+//            ProfileView()
             NavigationView {
-                LoginView()
+                if verifiedToken != "" {
+                    MyTabView()
+                } else {
+                    LoginView()
+                }
             }
         }
     }
+    
 }

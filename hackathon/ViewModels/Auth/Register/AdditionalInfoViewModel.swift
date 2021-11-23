@@ -1,39 +1,19 @@
 //
-//  RegisterViewModel.swift
+//  AdditionalInfoViewModel.swift
 //  hackathon
 //
-//  Created by Jinseok Heo on 2021/11/20.
+//  Created by Jinseok Heo on 2021/11/23.
 //
 
 import SwiftUI
-import Alamofire
 import Combine
+import Alamofire
 
-class RegisterViewModel: ObservableObject {
+class AdditionalInfoViewModel: ObservableObject {
     
     @Published
     var cancellabels = Set<AnyCancellable>()
     
-    @Published
-    var email: String
-    @Published
-    var password: String
-    @Published
-    var verifiedPassword: String
-    @Published
-    var userName: String
-    @Published
-    var nickName: String
-    @Published
-    var gender: Int
-    @Published
-    var birth: String
-    @Published
-    var company: String
-    @Published
-    var job: String
-    @Published
-    var year: String
     @Published
     var school: String
     @Published
@@ -49,41 +29,35 @@ class RegisterViewModel: ObservableObject {
     var isMajorListPresented: Bool
     
     @Published
-    var showPassword: Bool
-    @Published
     var showAlert: Bool
     @Published
     var alertMsg: String
-    @Published
-    var pageState: Int
     @Published
     var registerCompleted: Bool
     @Published
     var isLoading: Bool
     
-    public init() {
-        self.email = ""
-        self.password = ""
-        self.verifiedPassword = ""
-        self.userName = ""
-        self.nickName = ""
-        self.gender = 0
-        self.birth = ""
-        self.company = ""
-        self.year = ""
-        self.job = ""
+    let userName: String
+    let nickName: String
+    let password: String
+    let gender: Int
+    let birth: String
+    
+    public init(userName: String, nickName: String, password: String, gender: Int, birth: String) {
+        self.userName = userName
+        self.nickName = nickName
+        self.password = password
+        self.gender = gender
+        self.birth = birth
+        
         self.school = ""
         self.major = ""
-        
         self.schoolList = []
         self.majorList = []
-        self.isSchoolListPresented = true
-        self.isMajorListPresented = true
-        
-        self.showPassword = false
+        self.isSchoolListPresented = false
+        self.isMajorListPresented = false
         self.showAlert = false
         self.alertMsg = ""
-        self.pageState = 0
         self.registerCompleted = false
         self.isLoading = false
         
@@ -91,39 +65,10 @@ class RegisterViewModel: ObservableObject {
         addMajorSubscriber()
     }
     
-    func tryRegister() {
-        
+    public func register() {
         var genderEng: String = ""
-        var yearInt: Int? = nil
+//        var yearInt: Int? = 0
         
-//        if password != verifiedPassword {
-//            generateAlert(message: "올바른 비밀번호를 입력해주세요")
-//            return
-//        }
-//        guard email != "" else {
-//            generateAlert(message: "이메일을 입력해주세요")
-//            return
-//        }
-        guard password != "" else {
-            generateAlert(message: "비밀번호를 입력해주세요")
-            return
-        }
-        guard userName != "" else {
-            generateAlert(message: "아이디를 입력해주세요")
-            return
-        }
-        guard nickName != "" else {
-            generateAlert(message: "이름을 입력해주세요")
-            return
-        }
-//        guard birth != "" else {
-//            generateAlert(message: "생년월일을 입력해주세요")
-//            return
-//        }
-        guard gender != 0 else {
-            generateAlert(message: "성별을 선택해주세요")
-            return
-        }
         guard school != "" else {
             generateAlert(message: "학교를 입력해주세요")
             return
@@ -133,17 +78,30 @@ class RegisterViewModel: ObservableObject {
             return
         }
         
-        if year != "" {
-            yearInt = Int(year)
-        }
+//        if year != "" {
+//            yearInt = Int(year)
+//        }
         if gender == 1 {
             genderEng = "male"
         } else {
             genderEng = "female"
         }
         let encodedPassword = password.toBase64()
-        
-        AuthAPIService.register(email: email, password: encodedPassword, userName: userName, nickName: nickName, gender: genderEng, birth: birth, company: company == "" ? nil : company, job: job == "" ? nil : job, year: yearInt, school: school, major: major, completion: registerCompletionHandler)
+        isLoading = true
+        AuthAPIService.register(email: userName, password: encodedPassword, userName: userName, nickName: nickName, gender: genderEng, birth: birth, company: nil, job: nil, year: 0, school: school, major: major, completion: registerCompletionHandler)
+    }
+    
+    public func isSchoolValidate() -> Bool {
+        return schoolList.contains(school)
+    }
+    
+}
+
+extension AdditionalInfoViewModel {
+    
+    public func generateAlert(message: String) {
+        alertMsg = message
+        showAlert = true
     }
     
     private func addSchoolSubscriber() {
@@ -162,16 +120,6 @@ class RegisterViewModel: ObservableObject {
                 self.majorList = DummyData.majorList.filter { $0.decomposeHangul().contains(query.decomposeHangul()) }
             }
             .store(in: &cancellabels)
-    }
-    
-    private func registerCompletionHandler(response: AFDataResponse<Any>) {
-        if response.error != nil {
-            NSLog(response.error!.localizedDescription)
-            generateAlert(message: "네트워크 연결을 확인해주세요")
-            return
-        }
-        let encodedPassword = self.password.toBase64()
-        AuthAPIService.login(userName: userName, password: encodedPassword, completion: loginCompletionHandler)
     }
     
     private func loginCompletionHandler(response: AFDataResponse<Any>) {
@@ -206,32 +154,15 @@ class RegisterViewModel: ObservableObject {
         }
     }
     
-    public func buttonHandler() {
-        if pageState == 0 {
-            if gender != 0 {
-                pageState += 1
-            } else {
-                generateAlert(message: "성별을 선택해주세요")
-                return
-            }
-        } else if pageState == 1 {
-            if school != "" && major != "" {
-                tryRegister()
-            } else {
-                generateAlert(message: "정보를 올바르게 입력해주세요")
-            }
+    private func registerCompletionHandler(response: AFDataResponse<Any>) {
+        if response.error != nil {
+            NSLog(response.error!.localizedDescription)
+            generateAlert(message: "네트워크 연결을 확인해주세요")
+            isLoading = false
+            return
         }
-    }
-    
-    public func isSchoolValidate() -> Bool {
-        return schoolList.contains(school)
-    }
-    
-    public func generateAlert(message: String) {
-        alertMsg = message
-        showAlert = true
+        let encodedPassword = self.password.toBase64()
+        AuthAPIService.login(userName: userName, password: encodedPassword, completion: loginCompletionHandler)
     }
     
 }
-
-

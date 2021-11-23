@@ -23,4 +23,13 @@ extension String {
         return HangulDecomposer.getJamo(self)
     }
     
+    func substring(from: Int, to: Int) -> String {
+        guard from < count, to >= 0, from <= to else {
+            return ""
+        }
+        let start = self.index(startIndex, offsetBy: from)
+        let end = self.index(startIndex, offsetBy: to + 1)
+        return String(self[start..<end])
+    }
+    
 }

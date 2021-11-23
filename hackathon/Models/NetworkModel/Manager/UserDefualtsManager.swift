@@ -19,7 +19,6 @@ class UserDefaultsManager {
         Key.allCases.forEach { UserDefaults.standard.removeObject(forKey: $0.rawValue) }
     }
     
-    /// Setting tokens
     func setTokens(verifiedToken: String, refreshToken: String) {
         // TODO: Use Keychain to store tokens
         UserDefaults.standard.set(verifiedToken, forKey: Key.verifiedToken.rawValue)

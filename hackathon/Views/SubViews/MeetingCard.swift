@@ -9,28 +9,19 @@ import SwiftUI
 
 struct MeetingCard: View {
     
-    var isOffline: Bool
-    
     private var roundedCorners: UIRectCorner = [.bottomLeft, .bottomRight, .topRight]
     
-    private var name: String {
-        if isOffline {
-            return "김지원"
-        } else {
-            return "시드니"
-        }
-    }
+    private var name: String
+    private var comment: String
+    private var untact: Bool
+    private var time: String
     
-    private var comment: String {
-        if isOffline {
-            return "금융사 마케터 신입\n지원 노하우 A to Z 코칭 원데이 클래스"
-        } else {
-            return "금융 데이터 3년차의 엑셀 차트 시각화 멘토링"
-        }
-    }
-    
-    public init(isOffline: Bool) {
-        self.isOffline = isOffline
+    public init(meeting: MatchingResponse) {
+        self.time = DateManager.shared.dateDayInterval(before: Date(), after: meeting.time)
+        print(time)
+        self.name = DummyData.profiles.filter({ $0.userId == meeting.mentorId }).first!.nickName
+        self.comment = DummyData.promotion.filter({ $0.mentoId == meeting.mentorId }).first!.description
+        self.untact = meeting.untact
     }
     
     var body: some View {
@@ -54,12 +45,12 @@ struct MeetingCard: View {
         HStack {
             Rectangle()
                 .cornerRadius(16, corners: roundedCorners)
-                .foregroundColor(Color(isOffline ? "mainColor" : "secondColor"))
+                .foregroundColor(Color(untact ? "secondColor" : "mainColor"))
                 .frame(width: 114, height: 30)
                 .overlay(
-                    Text(isOffline ? "오프라인 ・ D-4" : "온라인 ・ D-10")
+                    Text((untact ? "오프라인 ・ " : "온라인 ・ ") + time)
                         .font(FontManager.font(size: 14, weight: .bold))
-                        .foregroundColor(isOffline ? .white : Color(hex: "#1D1D1D"))
+                        .foregroundColor(untact ? Color(hex: "#1D1D1D") : .white)
                 )
             Spacer()
         }
@@ -99,7 +90,7 @@ struct MeetingCard: View {
     
     private var divider: some View {
         Rectangle()
-            .foregroundColor(Color(hex: isOffline ? "#D2D7FD" : "#FFF3CA"))
+            .foregroundColor(Color(hex: untact ? "#D2D7FD" : "#FFF3CA"))
             .frame(width: 164, height: 2)
             .padding(.leading, 18)
     }
@@ -108,7 +99,7 @@ struct MeetingCard: View {
         VStack(alignment: .leading, spacing: 2) {
             Text("2021.10.21 수요일")
             Text("오후 4시 20분(3시간)")
-            Text(isOffline ? "자바커피 교대점" : "추후 알림")
+            Text(untact ? "추후 알림" : "자바커피 교대점")
         }
         .font(FontManager.font(size: 13, weight: .semibold))
         .padding(.leading, 18)

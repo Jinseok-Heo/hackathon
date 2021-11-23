@@ -20,17 +20,20 @@ struct TextFieldView<Content:View> : View {
     var title: String
     var placeholder: String
     var type: FieldType
+    var keyboardType: UIKeyboardType?
     
     init(text: Binding<String>,
          title: String,
          placeholder: String,
          type: FieldType,
+         keyboardType: UIKeyboardType?=nil,
          @ViewBuilder content: () -> Content) {
         self.content = content()
         self._text = text
         self.title = title
         self.placeholder = placeholder
         self.type = type
+        self.keyboardType = keyboardType
     }
     
     var body: some View {
@@ -52,9 +55,16 @@ struct TextFieldView<Content:View> : View {
         HStack(spacing: 0) {
             switch self.type {
             case .text:
-                TextField(placeholder, text: $text)
-                    .autocapitalization(.none)
-                    .disableAutocorrection(true)
+                if let keyboardType = keyboardType {
+                    TextField(placeholder, text: $text)
+                        .autocapitalization(.none)
+                        .disableAutocorrection(true)
+                        .keyboardType(keyboardType)
+                } else {
+                    TextField(placeholder, text: $text)
+                        .autocapitalization(.none)
+                        .disableAutocorrection(true)
+                }
             case .secure:
                 SecureField(placeholder, text: $text)
             }
@@ -66,8 +76,8 @@ struct TextFieldView<Content:View> : View {
 
 extension TextFieldView where Content == EmptyView {
     
-    init(text: Binding<String>, title: String, placeholder: String, type: FieldType) {
-        self.init(text: text, title: title, placeholder: placeholder, type: type, content: { EmptyView() })
+    init(text: Binding<String>, title: String, placeholder: String, type: FieldType, keyboardType: UIKeyboardType?=nil) {
+        self.init(text: text, title: title, placeholder: placeholder, type: type, keyboardType: keyboardType, content: { EmptyView() })
     }
     
 }

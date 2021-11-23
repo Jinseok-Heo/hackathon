@@ -9,6 +9,9 @@ import SwiftUI
 
 struct HomeView: View {
     
+    @StateObject
+    var homeVM: HomeViewModel = HomeViewModel()
+    
     private var radius: CGFloat = 83
     
     var body: some View {
@@ -35,6 +38,7 @@ struct HomeView: View {
                 }
             }
         }
+        .environmentObject(homeVM)
         .edgesIgnoringSafeArea(.top)
     }
 }
@@ -55,10 +59,4 @@ extension HomeView {
             .foregroundColor(Color(hex: "#F8F8FA"))
     }
     
-}
-
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        MyTabView()
-    }
 }
