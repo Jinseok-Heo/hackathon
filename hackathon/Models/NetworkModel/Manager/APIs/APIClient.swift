@@ -21,8 +21,11 @@ final class APIClient {
     var session: Session
     
     init() {
-        print("APIClient - init() called")
         session = Session(interceptor: interceptors)
+    }
+    
+    init(interceptor: RequestInterceptor) {
+        session = Session(interceptor: interceptor)
     }
     
 }

@@ -24,7 +24,7 @@ case register(email: String,
 case login(userName: String, password: String)
 
     
-    static let base: String = "https://a24c-121-141-119-67.ngrok.io"
+    static let base: String = "http://localhost:8888"
     
     var endPoint: String {
         switch self {

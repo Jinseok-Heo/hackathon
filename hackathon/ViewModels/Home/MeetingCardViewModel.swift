@@ -16,8 +16,6 @@ class MeetingCardViewModel: ObservableObject {
         return meeting.untact ? "온라인" : "오프라인"
     }
     
-    
-    
     public init(meeting: MatchingResponse) {
         self.meeting = meeting
     }

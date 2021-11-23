@@ -7,6 +7,7 @@
 
 import Foundation
 import Alamofire
+import SwiftUI
 
 class LoginViewModel: ObservableObject {
     
@@ -52,8 +53,8 @@ class LoginViewModel: ObservableObject {
             return
         }
         if let headerFields = response.response?.allHeaderFields {
-            guard let verifiedToken = headerFields["verified-token"] as? String else {
-                NSLog("ViewModels/Auth/LoginViewModel/tryLogin Convert Error: Can't convert verified-token to string")
+            guard let verifiedToken = headerFields["verify-token"] as? String else {
+                NSLog("ViewModels/Auth/LoginViewModel/tryLogin Convert Error: Can't convert verify-token to string")
                 self.generateAlert(message: "토큰을 가져올 수 없습니다. 고객센터에 문의하세요")
                 return
             }
@@ -62,8 +63,14 @@ class LoginViewModel: ObservableObject {
                 self.generateAlert(message: "토큰을 가져올 수 없습니다. 고객센터에 문의하세요")
                 return
             }
+            guard let userId = headerFields["user-id"] as? String else {
+                NSLog("ViewModels/Auth/LoginViewModel/tryLogin Convert Error: Can't convert userId to string")
+                self.generateAlert(message: "유저 ID를 가져올 수 없습니다. 고객센터에 문의하세요")
+                return
+            }
             UserDefaultsManager.shared.setTokens(verifiedToken: verifiedToken,
                                                  refreshToken: refreshToken)
+            UserDefaultsManager.shared.setUserId(userId: userId)
             self.action = 2
         } else {
             NSLog("There is no header in data")

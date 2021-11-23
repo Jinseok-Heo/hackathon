@@ -17,24 +17,26 @@ struct AdditionalInfoView: View {
     }
     
     var body: some View {
-        ZStack {
-            VStack(alignment: .leading, spacing: 39) {
-                titleView
-                    .padding(.top, 62)
-                schoolField
-                    .padding(.bottom, 15)
-                majorField
-                Spacer()
-                button
-            }
-            .opacity(additionalInfoVM.isLoading ? 0.3 : 1)
-            .padding([.leading, .trailing], 22)
-            .padding(.top, 63)
-            if additionalInfoVM.isLoading {
-                ProgressView("Loading...")
-                    .progressViewStyle(.circular)
+        ScrollView {
+            ZStack {
+                VStack(alignment: .leading, spacing: 39) {
+                    titleView
+                        .padding(.top, 62)
+                    schoolField
+                        .padding(.bottom, 15)
+                    majorField
+                    Spacer()
+                    button
+                }
+                .opacity(additionalInfoVM.isLoading ? 0.3 : 1)
+                .padding(.top, 63)
+                if additionalInfoVM.isLoading {
+                    ProgressView("Loading...")
+                        .progressViewStyle(.circular)
+                }
             }
         }
+        .padding([.leading, .trailing], 22)
         .navigationBarHidden(true)
     }
     

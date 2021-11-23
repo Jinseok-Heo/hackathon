@@ -136,7 +136,7 @@ extension AdditionalInfoViewModel {
             return
         }
         if let headerFields = response.response?.allHeaderFields {
-            guard let verifiedToken = headerFields["verified-token"] as? String else {
+            guard let verifiedToken = headerFields["verify-token"] as? String else {
                 NSLog("ViewModels/Auth/LoginViewModel/tryLogin Convert Error: Can't convert verified-token to string")
                 self.generateAlert(message: "토큰을 가져올 수 없습니다. 고객센터에 문의하세요")
                 return
@@ -146,8 +146,14 @@ extension AdditionalInfoViewModel {
                 self.generateAlert(message: "토큰을 가져올 수 없습니다. 고객센터에 문의하세요")
                 return
             }
+            guard let userId = headerFields["user-id"] as? String else {
+                NSLog("ViewModels/Auth/LoginViewModel/tryLogin Convert Error: Can't convert userId to string")
+                self.generateAlert(message: "유저 ID를 가져올 수 없습니다. 고객센터에 문의하세요")
+                return
+            }
             UserDefaultsManager.shared.setTokens(verifiedToken: verifiedToken,
                                                  refreshToken: refreshToken)
+            UserDefaultsManager.shared.setUserId(userId: userId)
             self.registerCompleted = true
         } else {
             NSLog("There is no header in data")
@@ -155,8 +161,8 @@ extension AdditionalInfoViewModel {
     }
     
     private func registerCompletionHandler(response: AFDataResponse<Any>) {
+        NSLog(response.description)
         if response.error != nil {
-            NSLog(response.error!.localizedDescription)
             generateAlert(message: "네트워크 연결을 확인해주세요")
             isLoading = false
             return

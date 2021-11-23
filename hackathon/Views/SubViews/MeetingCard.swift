@@ -18,7 +18,6 @@ struct MeetingCard: View {
     
     public init(meeting: MatchingResponse) {
         self.time = DateManager.shared.dateDayInterval(before: Date(), after: meeting.time)
-        print(time)
         self.name = DummyData.profiles.filter({ $0.userId == meeting.mentorId }).first!.nickName
         self.comment = DummyData.promotion.filter({ $0.mentoId == meeting.mentorId }).first!.description
         self.untact = meeting.untact

@@ -17,7 +17,7 @@ struct LoginView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
                     NavigationLink(destination: BasicInfoView(), tag: 1, selection: $loginVM.action) { EmptyView() }
-                    NavigationLink(destination: HomeView(), tag: 2, selection: $loginVM.action) { EmptyView() }
+                    NavigationLink(destination: ProfileView(), tag: 2, selection: $loginVM.action) { EmptyView() }
                     titleView
                         .padding(.top, 128)
                     content

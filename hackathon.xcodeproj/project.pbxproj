@@ -475,8 +475,8 @@
 				35E5CE4B2740D57F0075E019 /* MyPageView.swift */,
 				35E5CE492740D5600075E019 /* CommunityView.swift */,
 				35E5CE472740D5490075E019 /* SearchView.swift */,
+				35B80880274CAD42001AD9FC /* Chat */,
 				35E5CE432740D4FE0075E019 /* MyTabView.swift */,
-				35E5CE452740D52D0075E019 /* ChatView.swift */,
 			);
 			path = MainViews;
 			sourceTree = "<group>";
@@ -521,10 +521,19 @@
 		35B8087B274C8CFF001AD9FC /* Register */ = {
 			isa = PBXGroup;
 			children = (
+				35B80870274C66C4001AD9FC /* ProfileViewModel.swift */,
 				35B8087C274C8D11001AD9FC /* BasicInfoViewModel.swift */,
 				35B8087E274C8D1C001AD9FC /* AdditionalInfoViewModel.swift */,
 			);
 			path = Register;
+			sourceTree = "<group>";
+		};
+		35B80880274CAD42001AD9FC /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				35E5CE452740D52D0075E019 /* ChatView.swift */,
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 		35BA0CAB274776E4009C197F /* Auth */ = {
@@ -532,7 +541,6 @@
 			children = (
 				35C9304A27488E880012D14A /* LoginViewModel.swift */,
 				35B8087B274C8CFF001AD9FC /* Register */,
-				35B80870274C66C4001AD9FC /* ProfileViewModel.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";

@@ -13,27 +13,29 @@ struct BasicInfoView: View {
     var basicInfoVM: BasicInfoViewModel = BasicInfoViewModel()
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 26) {
-            NavigationLink(
-                destination: AdditionalInfoView(userName: basicInfoVM.userName,
-                                                nickName: basicInfoVM.nickName,
-                                                password: basicInfoVM.password,
-                                                gender: basicInfoVM.gender,
-                                                birth: basicInfoVM.birth),
-                isActive: $basicInfoVM.submitSuccess) { EmptyView() }
-            titleView
-            HStack(spacing: 36) {
-                nameField
-                genderSelection
+        ScrollView {
+            VStack(alignment: .leading, spacing: 26) {
+                NavigationLink(
+                    destination: AdditionalInfoView(userName: basicInfoVM.userName,
+                                                    nickName: basicInfoVM.nickName,
+                                                    password: basicInfoVM.password,
+                                                    gender: basicInfoVM.gender,
+                                                    birth: basicInfoVM.birth),
+                    isActive: $basicInfoVM.submitSuccess) { EmptyView() }
+                titleView
+                HStack(spacing: 36) {
+                    nameField
+                    genderSelection
+                }
+                .padding(.bottom, 18)
+                userNameField
+                    .padding(.bottom, 28)
+                passwordField
+                    .padding(.bottom, 28)
+                birthField
+                Spacer()
+                button
             }
-            .padding(.bottom, 18)
-            userNameField
-                .padding(.bottom, 28)
-            passwordField
-                .padding(.bottom, 28)
-            birthField
-            Spacer()
-            button
         }
         .navigationBarHidden(true)
         .padding([.leading, .trailing], 22)

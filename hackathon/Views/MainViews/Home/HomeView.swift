@@ -39,6 +39,7 @@ struct HomeView: View {
             }
         }
         .environmentObject(homeVM)
+        .navigationBarHidden(true)
         .edgesIgnoringSafeArea(.top)
     }
 }

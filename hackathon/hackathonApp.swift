@@ -15,16 +15,26 @@ struct hackathonApp: App {
     var body: some Scene {
         WindowGroup {
 //            NavigationView {
+//                MyTabView()
+//            }
+//            NavigationView {
 //                BasicInfoView()
 //            }
-//            ProfileView()
             NavigationView {
-                if verifiedToken != "" {
-                    MyTabView()
-                } else {
+                if verifiedToken == "" {
                     LoginView()
+                } else {
+                    MyTabView()
                 }
             }
+//            ProfileView()
+//            NavigationView {
+//                if verifiedToken != "" {
+//                    MyTabView()
+//                } else {
+//                    LoginView()
+//                }
+//            }
         }
     }
     

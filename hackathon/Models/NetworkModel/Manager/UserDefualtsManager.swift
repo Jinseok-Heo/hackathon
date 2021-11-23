@@ -10,7 +10,7 @@ import Foundation
 class UserDefaultsManager {
     
     enum Key: String, CaseIterable {
-        case refreshToken, verifiedToken
+        case refreshToken, verifiedToken, userId
     }
     
     static let shared: UserDefaultsManager = UserDefaultsManager()
@@ -30,6 +30,14 @@ class UserDefaultsManager {
         let verifiedToken = UserDefaults.standard.string(forKey: Key.verifiedToken.rawValue) ?? ""
         let refreshToken = UserDefaults.standard.string(forKey: Key.refreshToken.rawValue) ?? ""
         return AuthResponse(verifiedToken: verifiedToken, refreshToken: refreshToken)
+    }
+    
+    func setUserId(userId: String) {
+        UserDefaults.standard.set(userId, forKey: Key.userId.rawValue)
+    }
+    
+    func getUserId() -> String {
+        return UserDefaults.standard.string(forKey: Key.userId.rawValue) ?? ""
     }
     
 }
