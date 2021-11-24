@@ -44,4 +44,19 @@ enum AuthAPIService {
             .validate(statusCode: 200..<300)
             .responseJSON(completionHandler: completion)
     }
+    
+    static func refreshToken(completion: @escaping (AFDataResponse<Any>) -> () ) {
+        APIClient.shared.session
+            .request(AuthRouter.refreshToken)
+            .validate(statusCode: 200..<300)
+            .responseJSON(completionHandler: completion)
+    }
+    
+    static func logout(completion: @escaping (AFDataResponse<Any>) -> () ) {
+        APIClient.shared.session
+            .request(AuthRouter.logout)
+            .validate(statusCode: 200..<300)
+            .responseJSON(completionHandler: completion)
+    }
+    
 }

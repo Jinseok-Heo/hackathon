@@ -17,7 +17,7 @@ struct LoginView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
                     NavigationLink(destination: BasicInfoView(), tag: 1, selection: $loginVM.action) { EmptyView() }
-                    NavigationLink(destination: ProfileView(), tag: 2, selection: $loginVM.action) { EmptyView() }
+                    NavigationLink(destination: MyTabView(), tag: 2, selection: $loginVM.action) { EmptyView() }
                     titleView
                         .padding(.top, 128)
                     content
@@ -43,6 +43,9 @@ struct LoginView: View {
                     .progressViewStyle(.circular)
             }
         }
+        .alert(isPresented: $loginVM.showAlert) {
+            Alert(title: Text("로그인 실패"), message: Text(loginVM.alertMsg), dismissButton: .default(Text("확인")))
+        }
     }
     
 }
@@ -53,7 +56,7 @@ extension LoginView {
         HStack(alignment: .bottom) {
             Text("로그인")
                 .font(FontManager.font(size: 26, weight: .bold))
-                .foregroundColor(Color(hex: "#CECECE"))
+                .foregroundColor(Color(hex: "#000000"))
             Spacer()
             Button {
                 loginVM.action = 1
@@ -67,7 +70,7 @@ extension LoginView {
     
     private var content: some View {
         VStack(alignment: .leading, spacing: 34) {
-            TextFieldView(text: $loginVM.userName, title: "이메일", placeholder: "이메일을 입력해 주세요", type: .text)
+            TextFieldView(text: $loginVM.userName, title: "아이디", placeholder: "아이디를 입력해 주세요", type: .text)
             TextFieldView(text: $loginVM.password, title: "비밀번호", placeholder: "비밀번호를 입력해 주세요", type: .secure)
         }
     }
@@ -81,11 +84,9 @@ extension LoginView {
                 .foregroundColor(.white)
                 .frame(maxWidth: .infinity)
                 .padding([.top, .bottom], 13)
-                .background(RoundedRectangle(cornerRadius: 4).foregroundColor(Color(hex: "#C5C5C5")))
+                .background(RoundedRectangle(cornerRadius: 4).foregroundColor(Color("secondColor")))
         }
-        .alert(isPresented: $loginVM.showAlert) {
-            Alert(title: Text("로그인 실패"), message: Text(loginVM.alertMsg), dismissButton: .default(Text("확인")))
-        }
+        
     }
     
     private var findInfoButton: some View {
@@ -94,9 +95,9 @@ extension LoginView {
             Button {
                 
             } label: {
-                Text("이메일 / 비밀번호 찾기")
+                Text("아이디 / 비밀번호 찾기")
                     .font(FontManager.font(size: 14, weight: .regular))
-                    .foregroundColor(Color(hex: "#555555"))
+                    .foregroundColor(Color(hex: "#191919"))
             }
             Spacer()
         }
@@ -107,7 +108,7 @@ extension LoginView {
             HStack {
                 Text("SNS 간편 로그인")
                     .font(FontManager.font(size: 15, weight: .extrabold))
-                    .foregroundColor(Color(hex: "999999"))
+                    .foregroundColor(Color(hex: "191919"))
                 Spacer()
             }
             HStack(spacing: 25) {
@@ -121,10 +122,3 @@ extension LoginView {
     }
     
 }
-
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginView()
-    }
-}
-

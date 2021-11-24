@@ -20,4 +20,16 @@ final class APILogger: EventMonitor {
         debugPrint("Finished: \(response)")
     }
     
+    func requestDidFinish(_ request: Request) {
+        print("🛰 NETWORK Reqeust LOG")
+        print(request.description)
+        print(
+            "URL: " + (request.request?.url?.absoluteString ?? "")  + "\n"
+            + "Method: " + (request.request?.httpMethod ?? "") + "\n"
+            + "Headers: " + "\(request.request?.allHTTPHeaderFields ?? [:])" + "\n"
+        )
+        print("Authorization: " + (request.request?.headers["Authorization"] ?? ""))
+        print("Body: " + (request.request?.httpBody?.toPrettyPrintedString ?? ""))
+    }
+    
 }

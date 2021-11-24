@@ -40,13 +40,13 @@ struct TextFieldView<Content:View> : View {
         VStack(alignment: .leading, spacing: 0) {
             Text(title)
                 .font(FontManager.font(size: 15, weight: .extrabold))
-                .foregroundColor(Color(hex: "#999999"))
+                .foregroundColor(Color(hex: "#191919"))
                 .padding(.bottom, 6)
             textFields
                 .frame(height: 24)
                 .font(FontManager.font(size: 15, weight: .medium))
-            Rectangle()
-                .foregroundColor(Color(hex: "#C5C5C5"))
+            RoundedRectangle(cornerRadius: 0.5)
+                .foregroundColor(Color(hex: "#999999"))
                 .frame(height: 2)
         }
     }

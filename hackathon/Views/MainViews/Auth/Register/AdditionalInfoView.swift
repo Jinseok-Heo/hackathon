@@ -9,6 +9,9 @@ import SwiftUI
 
 struct AdditionalInfoView: View {
     
+    @Environment(\.presentationMode)
+    var presentationMode
+    
     @StateObject
     var additionalInfoVM: AdditionalInfoViewModel
     
@@ -17,27 +20,48 @@ struct AdditionalInfoView: View {
     }
     
     var body: some View {
-        ScrollView {
-            ZStack {
-                VStack(alignment: .leading, spacing: 39) {
-                    titleView
-                        .padding(.top, 62)
-                    schoolField
-                        .padding(.bottom, 15)
-                    majorField
-                    Spacer()
-                    button
+        ZStack {
+            VStack(alignment: .leading) {
+                Button {
+                    presentationMode.wrappedValue.dismiss()
+                } label: {
+                    HStack {
+                        Image(systemName: "chevron.backward")
+                            .resizable()
+                            .frame(width: 10, height: 17)
+                        Text("기본 정보")
+                            .font(FontManager.font(size: 15, weight: .medium))
+                            .offset(y: 1)
+                    }
+                    .foregroundColor(Color(hex: "#191919"))
                 }
-                .opacity(additionalInfoVM.isLoading ? 0.3 : 1)
-                .padding(.top, 63)
-                if additionalInfoVM.isLoading {
-                    ProgressView("Loading...")
-                        .progressViewStyle(.circular)
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 26) {
+                        titleView
+                            .padding(.top, 40)
+                        VStack(alignment: .leading, spacing: 54) {
+                            schoolField
+                            majorField
+                            companyField
+                            jobField
+                            yearField
+                        }
+                    }
                 }
+                Spacer()
+                button
+            }
+            .opacity(additionalInfoVM.isLoading ? 0.3 : 1)
+            if additionalInfoVM.isLoading {
+                ProgressView("Loading...")
+                    .progressViewStyle(.circular)
             }
         }
-        .padding([.leading, .trailing], 22)
+        .alert(isPresented: $additionalInfoVM.showAlert) {
+            Alert(title: Text("가입 실패"), message: Text(additionalInfoVM.alertMsg), dismissButton: .default(Text("확인")))
+        }
         .navigationBarHidden(true)
+        .padding([.leading, .trailing], 22)
     }
     
 }
@@ -47,7 +71,7 @@ extension AdditionalInfoView {
     private var titleView: some View {
         Text("회원가입")
             .font(FontManager.font(size: 26, weight: .bold))
-            .foregroundColor(Color(hex: "#CECECE"))
+            .foregroundColor(Color(hex: "#000000"))
     }
     
     private var schoolField: some View {
@@ -56,7 +80,6 @@ extension AdditionalInfoView {
             AdvancedTextFieldView(text: $additionalInfoVM.school,
                                   title: "대학교",
                                   placeholder: "대학교를 입력해주세요",
-                                  isFocused: additionalInfoVM.isSchoolListPresented,
                                   content: EmptyView()) { isChanged in
                 if isChanged {
                     self.additionalInfoVM.isSchoolListPresented = true
@@ -79,11 +102,11 @@ extension AdditionalInfoView {
                             }
                         }
                         .listRowBackground(Color(hex: "#F6F6F6"))
-                        .frame(height: 40)
+                        .frame(height: 30)
                     }
                 }
                 .listStyle(.plain)
-                .frame(height: 120)
+                .frame(height: 122)
             }
         }
     }
@@ -93,7 +116,6 @@ extension AdditionalInfoView {
             AdvancedTextFieldView(text: $additionalInfoVM.major,
                                   title: "전공",
                                   placeholder: "전공을 입력해주세요",
-                                  isFocused: additionalInfoVM.isMajorListPresented,
                                   content: {
                 Button {
                     self.additionalInfoVM.major = ""
@@ -135,9 +157,21 @@ extension AdditionalInfoView {
                     }
                 }
                 .listStyle(.plain)
-                .frame(height: 120)
+                .frame(height: 122)
             }
         }
+    }
+    
+    private var companyField: some View {
+        TextFieldView(text: $additionalInfoVM.company, title: "회사", placeholder: "회사를 입력해주세요", type: .text)
+    }
+    
+    private var jobField: some View {
+        TextFieldView(text: $additionalInfoVM.job, title: "직무", placeholder: "직무를 입력해주세요", type: .text)
+    }
+    
+    private var yearField: some View {
+        TextFieldView(text: $additionalInfoVM.year, title: "연차", placeholder: "연차를 입력해주세요", type: .text, keyboardType: .numberPad)
     }
     
     private var button: some View {
@@ -149,10 +183,7 @@ extension AdditionalInfoView {
                 .foregroundColor(.white)
                 .frame(maxWidth: .infinity)
                 .padding([.top, .bottom], 13)
-                .background(RoundedRectangle(cornerRadius: 4).foregroundColor(Color(hex: "#C5C5C5")))
-        }
-        .alert(isPresented: $additionalInfoVM.showAlert) {
-            Alert(title: Text("가입 실패"), message: Text(additionalInfoVM.alertMsg), dismissButton: .default(Text("확인")))
+                .background(RoundedRectangle(cornerRadius: 4).foregroundColor(Color("secondColor")))
         }
     }
     

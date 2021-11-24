@@ -20,6 +20,8 @@ class BasicInfoViewModel: ObservableObject {
     @Published
     var password: String
     @Published
+    var verifiedPassword: String
+    @Published
     var gender: Int
     @Published
     var birth: String
@@ -28,6 +30,8 @@ class BasicInfoViewModel: ObservableObject {
     var submitSuccess: Bool
     @Published
     var showPassword: Bool
+    @Published
+    var isValidPassword: Bool
     
     @Published
     var showAlert: Bool
@@ -35,15 +39,19 @@ class BasicInfoViewModel: ObservableObject {
     var alertMsg: String
     
     public init() {
-        self.nickName = "ex"
-        self.userName = "ex123"
-        self.password = "hh44061312!"
-        self.birth = "971110"
+        self.nickName = ""
+        self.userName = ""
+        self.password = ""
+        self.verifiedPassword = ""
+        self.birth = ""
         self.showAlert = false
         self.submitSuccess = false
         self.alertMsg = ""
         self.gender = 0
         self.showPassword = false
+        self.isValidPassword = false
+        
+        addPasswordSubscriber()
     }
     
     public func submitForm() {
@@ -56,6 +64,19 @@ class BasicInfoViewModel: ObservableObject {
 
 extension BasicInfoViewModel {
     
+    private func addPasswordSubscriber() {
+        $password
+            .sink { [weak self] pwd in
+                self?.isValidPassword = (pwd == self?.verifiedPassword && pwd != "")
+            }
+            .store(in: &cancellabels)
+        $verifiedPassword
+            .sink { [weak self] vpwd in
+                self?.isValidPassword = (vpwd == self?.password && vpwd != "")
+            }
+            .store(in: &cancellabels)
+    }
+    
     private func generateAlert(message: String) {
         alertMsg = message
         showAlert = true
@@ -64,6 +85,13 @@ extension BasicInfoViewModel {
     private func checkForm() -> Bool {
         guard nickName != "" else {
             generateAlert(message: "이름을 입력해주세요")
+            return false
+        }
+        guard password == verifiedPassword else {
+            return false
+        }
+        guard checkPassword() else {
+            generateAlert(message: "문자, 숫자, 특수문자를 사용한 8~16자리 비밀번호를 입력해주세요")
             return false
         }
         guard password != "" else {
@@ -85,6 +113,12 @@ extension BasicInfoViewModel {
         return true
     }
     
+    private func checkPassword() -> Bool {
+        let regex = "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*()_+=-]).{8,16}"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
+        return predicate.evaluate(with: password)
+    }
+    
     private func checkBirth() -> Bool {
         if birth.count != 6 {
             return false
@@ -97,6 +131,7 @@ extension BasicInfoViewModel {
         if date == nil {
             return false
         }
+        print(date!)
         return true
     }
     

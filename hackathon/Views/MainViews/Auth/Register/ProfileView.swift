@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ProfileView: View {
     
@@ -17,31 +18,16 @@ struct ProfileView: View {
     
     var body: some View {
         ZStack {
-            NavigationLink(destination: MyTabView(), isActive: $profileVM.didSuccess) { EmptyView() }
+            NavigationLink(destination: MentoAuthView(), isActive: $profileVM.didSuccess) { EmptyView() }
             VStack {
-                Image(uiImage: profileVM.image)
-                    .resizable()
-                    .frame(width: 240, height: 240)
-                    .clipShape(Circle())
-                    .foregroundColor(Color(hex: "#555555"))
-                    .padding(.bottom, 20)
-                    .onTapGesture {
-                        pickerPresented = true
-                    }
-                Button {
-                    profileVM.upload()
-                } label: {
-                    Text("저장")
-                        .font(FontManager.font(size: 24, weight: .bold))
-                        .foregroundColor(Color(hex: "#999999"))
-                        .frame(maxWidth: .infinity)
-                        .padding([.top, .bottom], 8)
-                        .background(
-                            RoundedRectangle(cornerRadius: 5)
-                                .foregroundColor(Color("secondColor"))
-                        )
-                        .padding()
-                }
+                titleView
+                    .padding(.top, 62)
+                    .padding(.bottom, 30)
+                profileImage
+                
+                Spacer()
+                saveButton
+                skipButton
             }
             .opacity(profileVM.isLoading ? 0.3 : 1)
             if profileVM.isLoading {
@@ -49,12 +35,73 @@ struct ProfileView: View {
                     .progressViewStyle(.circular)
             }
         }
+        .padding([.leading, .trailing], 22)
         .navigationBarHidden(true)
         .sheet(isPresented: $pickerPresented) {
             ImagePicker(selectedImage: $profileVM.image)
         }
         .alert(isPresented: $profileVM.isFailed) {
             Alert(title: Text("이미지 업로드 실패"), message: Text("네트워크 연결을 확인해주세요"), dismissButton: .default(Text("확인")))
+        }
+    }
+    
+}
+
+extension ProfileView {
+    
+    private var titleView: some View {
+        Text("프로필 이미지를 선택해주세요")
+            .font(FontManager.font(size: 26, weight: .bold))
+            .foregroundColor(Color(hex: "#CECECE"))
+    }
+    
+    private var profileImage: some View {
+        VStack(spacing: 20) {
+            Image(uiImage: profileVM.image)
+                .resizable()
+                .frame(width: 240, height: 240)
+                .clipShape(Circle())
+                .foregroundColor(Color(hex: "#555555"))
+                .shadow(color: Color(hex: "#555555").opacity(0.3), radius: 5, x: 5, y: 5)
+                .shadow(color: Color(hex: "#555555").opacity(0.3), radius: 5, x: -5, y: -5)
+            Text("탭해서 사진 바꾸기")
+                .font(FontManager.font(size: 20, weight: .semibold))
+                .foregroundColor(Color(hex: "#CECECE"))
+        }
+        .onTapGesture {
+            pickerPresented = true
+        }
+    }
+    
+    private var saveButton: some View {
+        Button {
+            profileVM.upload()
+        } label: {
+            Text("저장")
+                .font(FontManager.font(size: 24, weight: .bold))
+                .foregroundColor(.white)
+                .frame(maxWidth: .infinity)
+                .padding([.top, .bottom], 8)
+                .background(
+                    RoundedRectangle(cornerRadius: 5)
+                        .foregroundColor(Color("secondColor"))
+                )
+        }
+    }
+    
+    private var skipButton: some View {
+        Button {
+            profileVM.uploadDefault()
+        } label: {
+            Text("건너뛰기")
+                .font(FontManager.font(size: 24, weight: .bold))
+                .foregroundColor(.white)
+                .frame(maxWidth: .infinity)
+                .padding([.top, .bottom], 8)
+                .background(
+                    RoundedRectangle(cornerRadius: 5)
+                        .foregroundColor(Color("secondColor"))
+                )
         }
     }
     

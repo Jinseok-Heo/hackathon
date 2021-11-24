@@ -16,9 +16,13 @@ class BaseInterceptor: RequestInterceptor {
         let verifiedToken = UserDefaultsManager.shared.getTokens().verifiedToken
         request.addValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
         if verifiedToken != "" {
-            request.addValue(verifiedToken, forHTTPHeaderField: "Authorization")
+            request.addValue(String("Bearer \(verifiedToken)"), forHTTPHeaderField: "Authorization")
         }
         completion(.success(request))
     }
+    
+//    func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
+//        
+//    }
     
 }

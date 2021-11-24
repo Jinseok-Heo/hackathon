@@ -21,11 +21,7 @@ final class APIClient {
     var session: Session
     
     init() {
-        session = Session(interceptor: interceptors)
-    }
-    
-    init(interceptor: RequestInterceptor) {
-        session = Session(interceptor: interceptor)
+        session = Session(interceptor: interceptors, eventMonitors: monitors)
     }
     
 }

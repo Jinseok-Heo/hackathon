@@ -74,8 +74,14 @@
 		35B8087F274C8D1C001AD9FC /* AdditionalInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B8087E274C8D1C001AD9FC /* AdditionalInfoViewModel.swift */; };
 		35BA0CAE2747782D009C197F /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BA0CAD2747782D009C197F /* HomeViewModel.swift */; };
 		35BA0CB127477995009C197F /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BA0CB027477995009C197F /* DateManager.swift */; };
+		35C05785274DABFD002628B3 /* DataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C05784274DABFD002628B3 /* DataExtension.swift */; };
+		35C05787274DDEF0002628B3 /* MentoAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C05786274DDEF0002628B3 /* MentoAuthView.swift */; };
+		35C05789274DE152002628B3 /* MentoAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C05788274DE152002628B3 /* MentoAPIService.swift */; };
+		35C0578B274DE211002628B3 /* MentoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C0578A274DE211002628B3 /* MentoRouter.swift */; };
+		35C0578D274E014E002628B3 /* MentoAuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C0578C274E014E002628B3 /* MentoAuthViewModel.swift */; };
+		35C0578F274E2054002628B3 /* CLLocationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C0578E274E2054002628B3 /* CLLocationExtension.swift */; };
 		35C9304B27488E880012D14A /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C9304A27488E880012D14A /* LoginViewModel.swift */; };
-		35C9304F27488F9B0012D14A /* TextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C9304E27488F9B0012D14A /* TextManager.swift */; };
+		35C9304F27488F9B0012D14A /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C9304E27488F9B0012D14A /* FontManager.swift */; };
 		35C930512748D7A70012D14A /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C930502748D7A70012D14A /* StringExtension.swift */; };
 		35C930532748EA9C0012D14A /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C930522748EA9C0012D14A /* TextFieldView.swift */; };
 		35C9305827490AA80012D14A /* JobList.txt in Resources */ = {isa = PBXBuildFile; fileRef = 35C9305527490AA80012D14A /* JobList.txt */; };
@@ -173,8 +179,14 @@
 		35B8087E274C8D1C001AD9FC /* AdditionalInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalInfoViewModel.swift; sourceTree = "<group>"; };
 		35BA0CAD2747782D009C197F /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		35BA0CB027477995009C197F /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
+		35C05784274DABFD002628B3 /* DataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtension.swift; sourceTree = "<group>"; };
+		35C05786274DDEF0002628B3 /* MentoAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentoAuthView.swift; sourceTree = "<group>"; };
+		35C05788274DE152002628B3 /* MentoAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentoAPIService.swift; sourceTree = "<group>"; };
+		35C0578A274DE211002628B3 /* MentoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentoRouter.swift; sourceTree = "<group>"; };
+		35C0578C274E014E002628B3 /* MentoAuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentoAuthViewModel.swift; sourceTree = "<group>"; };
+		35C0578E274E2054002628B3 /* CLLocationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocationExtension.swift; sourceTree = "<group>"; };
 		35C9304A27488E880012D14A /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		35C9304E27488F9B0012D14A /* TextManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextManager.swift; sourceTree = "<group>"; };
+		35C9304E27488F9B0012D14A /* FontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontManager.swift; sourceTree = "<group>"; };
 		35C930502748D7A70012D14A /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		35C930522748EA9C0012D14A /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
 		35C9305527490AA80012D14A /* JobList.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JobList.txt; sourceTree = "<group>"; };
@@ -295,7 +307,7 @@
 			children = (
 				35EBC12B274A05860062EC92 /* HangulDecomposer.swift */,
 				35B8086E274C622B001AD9FC /* ImagePicker.swift */,
-				35C9304E27488F9B0012D14A /* TextManager.swift */,
+				35C9304E27488F9B0012D14A /* FontManager.swift */,
 				35BA0CAF27477986009C197F /* Time */,
 				351B03202743510B00EAEB6E /* GenderModel */,
 				351B03222743510B00EAEB6E /* CustomModels */,
@@ -416,6 +428,7 @@
 			isa = PBXGroup;
 			children = (
 				351B033B2743510B00EAEB6E /* AuthService.swift */,
+				35C05788274DE152002628B3 /* MentoAPIService.swift */,
 				35B80872274C6943001AD9FC /* ImageAPIService.swift */,
 			);
 			path = Service;
@@ -433,6 +446,7 @@
 			isa = PBXGroup;
 			children = (
 				351B033F2743510B00EAEB6E /* AuthRouter.swift */,
+				35C0578A274DE211002628B3 /* MentoRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -441,6 +455,7 @@
 			isa = PBXGroup;
 			children = (
 				351B03662743ADF800EAEB6E /* LoginView.swift */,
+				35C05786274DDEF0002628B3 /* MentoAuthView.swift */,
 				35B80876274C8C8E001AD9FC /* Register */,
 			);
 			path = Auth;
@@ -461,6 +476,8 @@
 			isa = PBXGroup;
 			children = (
 				354C409527410BD4004C5AD7 /* ViewExtension.swift */,
+				35C05784274DABFD002628B3 /* DataExtension.swift */,
+				35C0578E274E2054002628B3 /* CLLocationExtension.swift */,
 				354C409A27411476004C5AD7 /* ColorExtension.swift */,
 				35C930502748D7A70012D14A /* StringExtension.swift */,
 			);
@@ -540,6 +557,7 @@
 			isa = PBXGroup;
 			children = (
 				35C9304A27488E880012D14A /* LoginViewModel.swift */,
+				35C0578C274E014E002628B3 /* MentoAuthViewModel.swift */,
 				35B8087B274C8CFF001AD9FC /* Register */,
 			);
 			path = Auth;
@@ -878,18 +896,21 @@
 				35BA0CB127477995009C197F /* DateManager.swift in Sources */,
 				351B03492743510B00EAEB6E /* LocationResponse.swift in Sources */,
 				354C40A927414087004C5AD7 /* MoreRectangleBar.swift in Sources */,
+				35C0578D274E014E002628B3 /* MentoAuthViewModel.swift in Sources */,
 				35C9304B27488E880012D14A /* LoginViewModel.swift in Sources */,
 				351B03772744951E00EAEB6E /* CustomTabPreferenceKey.swift in Sources */,
 				35EBC12E274A1A7F0062EC92 /* AdvancedTextFieldView.swift in Sources */,
 				35E5CE4C2740D57F0075E019 /* MyPageView.swift in Sources */,
+				35C0578F274E2054002628B3 /* CLLocationExtension.swift in Sources */,
 				35B2F5482741EFB600AA5F04 /* MentorRecommendView.swift in Sources */,
-				35C9304F27488F9B0012D14A /* TextManager.swift in Sources */,
+				35C9304F27488F9B0012D14A /* FontManager.swift in Sources */,
 				351B035D2743576B00EAEB6E /* BoardResponse.swift in Sources */,
 				35E5CE482740D5490075E019 /* SearchView.swift in Sources */,
 				351B03592743566E00EAEB6E /* ImageResponse.swift in Sources */,
 				351B034F2743510B00EAEB6E /* AuthRouter.swift in Sources */,
 				351B035F274357DC00EAEB6E /* CommentResponse.swift in Sources */,
 				35E5CE462740D52D0075E019 /* ChatView.swift in Sources */,
+				35C05789274DE152002628B3 /* MentoAPIService.swift in Sources */,
 				354C40A527414068004C5AD7 /* MentoCard.swift in Sources */,
 				35E5CE4A2740D5600075E019 /* CommunityView.swift in Sources */,
 				350E13DF2740BF9900645685 /* HomeView.swift in Sources */,
@@ -902,11 +923,13 @@
 				35B8087A274C8CC1001AD9FC /* AdditionalInfoView.swift in Sources */,
 				351B03432743510B00EAEB6E /* DummyDataModel.swift in Sources */,
 				351B031B274343C800EAEB6E /* HomeTopView.swift in Sources */,
+				35C05787274DDEF0002628B3 /* MentoAuthView.swift in Sources */,
 				35E5CE442740D4FE0075E019 /* MyTabView.swift in Sources */,
 				351B03412743510B00EAEB6E /* RoundedCorner.swift in Sources */,
 				35B2F54A2741EFE100AA5F04 /* HotCommunityView.swift in Sources */,
 				35332C36274B9853004D8028 /* MeetingCardViewModel.swift in Sources */,
 				351B0357274352FE00EAEB6E /* ReviewsResponse.swift in Sources */,
+				35C05785274DABFD002628B3 /* DataExtension.swift in Sources */,
 				351B0371274494D700EAEB6E /* CustomTabViewItem.swift in Sources */,
 				351B03442743510B00EAEB6E /* UserDefualtsManager.swift in Sources */,
 				351B03422743510B00EAEB6E /* hackathon.xcdatamodeld in Sources */,
@@ -923,6 +946,7 @@
 				35C930512748D7A70012D14A /* StringExtension.swift in Sources */,
 				351B034B2743510B00EAEB6E /* APIClient.swift in Sources */,
 				354C409627410BD4004C5AD7 /* ViewExtension.swift in Sources */,
+				35C0578B274DE211002628B3 /* MentoRouter.swift in Sources */,
 				35B2F54C2741F00800AA5F04 /* CommunityCard.swift in Sources */,
 				350E13DD2740BF9900645685 /* hackathonApp.swift in Sources */,
 				351B034E2743510B00EAEB6E /* BaseInterceptor.swift in Sources */,

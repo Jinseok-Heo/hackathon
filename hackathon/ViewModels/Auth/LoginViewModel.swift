@@ -41,15 +41,18 @@ class LoginViewModel: ObservableObject {
     
     private func loginCompletionHandler(response: AFDataResponse<Any>) {
         weak var _self = self
-        NSLog(response.description)
         _self?.isLoading = false
         guard let self = _self else {
             NSLog("ViewModels/Auth/LoginViewModel/tryLogin : self is nil")
             return
         }
-        if response.error != nil {
-            NSLog(response.error!.localizedDescription)
-            self.generateAlert(message: "네트워크 연결을 확인해주세요")
+        if let err = response.error {
+            if response.response?.statusCode == 401 {
+                print(err.localizedDescription)
+                generateAlert(message: "등록된 사용자가 없습니다.\n이메일 및 비밀번호를 확인해주세요.")
+            } else {
+                generateAlert(message: "네트워크 연결을 확인해주세요")
+            }
             return
         }
         if let headerFields = response.response?.allHeaderFields {

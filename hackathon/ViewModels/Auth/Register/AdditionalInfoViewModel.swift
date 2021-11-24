@@ -18,6 +18,12 @@ class AdditionalInfoViewModel: ObservableObject {
     var school: String
     @Published
     var major: String
+    @Published
+    var company: String
+    @Published
+    var year: String
+    @Published
+    var job: String
     
     @Published
     var schoolList: [String]
@@ -43,6 +49,24 @@ class AdditionalInfoViewModel: ObservableObject {
     let gender: Int
     let birth: String
     
+    var yearInt: Int? {
+        if year == "" {
+            return nil
+        }
+        return Int(year)
+    }
+    
+    var genderStr: String {
+        switch gender {
+        case 1:
+            return "male"
+        case 2:
+            return "female"
+        default:
+            return ""
+        }
+    }
+    
     public init(userName: String, nickName: String, password: String, gender: Int, birth: String) {
         self.userName = userName
         self.nickName = nickName
@@ -52,6 +76,9 @@ class AdditionalInfoViewModel: ObservableObject {
         
         self.school = ""
         self.major = ""
+        self.company = ""
+        self.year = ""
+        self.job = ""
         self.schoolList = []
         self.majorList = []
         self.isSchoolListPresented = false
@@ -66,33 +93,31 @@ class AdditionalInfoViewModel: ObservableObject {
     }
     
     public func register() {
-        var genderEng: String = ""
-//        var yearInt: Int? = 0
-        
-        guard school != "" else {
-            generateAlert(message: "학교를 입력해주세요")
+        if !checkForm() {
             return
-        }
-        guard major != "" else {
-            generateAlert(message: "전공을 입력해주세요")
-            return
-        }
-        
-//        if year != "" {
-//            yearInt = Int(year)
-//        }
-        if gender == 1 {
-            genderEng = "male"
-        } else {
-            genderEng = "female"
         }
         let encodedPassword = password.toBase64()
         isLoading = true
-        AuthAPIService.register(email: userName, password: encodedPassword, userName: userName, nickName: nickName, gender: genderEng, birth: birth, company: nil, job: nil, year: 0, school: school, major: major, completion: registerCompletionHandler)
+        AuthAPIService.register(email: userName,
+                                password: encodedPassword,
+                                userName: userName,
+                                nickName: nickName,
+                                gender: genderStr,
+                                birth: birth,
+                                company: company == "" ? nil : company,
+                                job: job == "" ? nil : job,
+                                year: yearInt ?? 0,
+                                school: school,
+                                major: major,
+                                completion: registerCompletionHandler)
     }
     
     public func isSchoolValidate() -> Bool {
-        return schoolList.contains(school)
+        return DummyData.schoolList.contains(school) && school != ""
+    }
+    
+    public func isMajorValidate() -> Bool {
+        return DummyData.majorList.contains(major) && school != ""
     }
     
 }
@@ -120,6 +145,33 @@ extension AdditionalInfoViewModel {
                 self.majorList = DummyData.majorList.filter { $0.decomposeHangul().contains(query.decomposeHangul()) }
             }
             .store(in: &cancellabels)
+    }
+    
+    private func checkForm() -> Bool {
+        guard school != "" else {
+            generateAlert(message: "학교를 입력해주세요")
+            return false
+        }
+        guard major != "" else {
+            generateAlert(message: "전공을 입력해주세요")
+            return false
+        }
+        guard checkOptionalField() else {
+            generateAlert(message: "선택정보를 올바르게 입력해주세요")
+            return false
+        }
+        return true
+    }
+    
+    // Check form of company, job, year
+    private func checkOptionalField() -> Bool {
+        if company != "" && yearInt != nil && job != "" {
+            return true
+        }
+        if company == "" && yearInt == nil && job == "" {
+            return true
+        }
+        return false
     }
     
     private func loginCompletionHandler(response: AFDataResponse<Any>) {
@@ -161,14 +213,15 @@ extension AdditionalInfoViewModel {
     }
     
     private func registerCompletionHandler(response: AFDataResponse<Any>) {
-        NSLog(response.description)
-        if response.error != nil {
+        switch response.result {
+        case .success:
+            let encodedPassword = self.password.toBase64()
+            AuthAPIService.login(userName: userName, password: encodedPassword, completion: loginCompletionHandler)
+        case .failure(let error):
             generateAlert(message: "네트워크 연결을 확인해주세요")
             isLoading = false
-            return
+            NSLog(error.localizedDescription)
         }
-        let encodedPassword = self.password.toBase64()
-        AuthAPIService.login(userName: userName, password: encodedPassword, completion: loginCompletionHandler)
     }
     
 }

@@ -22,7 +22,9 @@ case register(email: String,
               school: String,
               major: String)
 case login(userName: String, password: String)
-
+case refreshToken
+case logout
+    
     
     static let base: String = "http://localhost:8888"
     
@@ -32,6 +34,11 @@ case login(userName: String, password: String)
             return "/user/register"
         case let .login(username, password):
             return "/user/login?username=\(username)&password=\(password)"
+        case .refreshToken:
+            return "/user/refresh"
+        case .logout:
+            let tokens = UserDefaultsManager.shared.getTokens()
+            return "/user/logout/?token=\(tokens.verifiedToken)&refreshToken=\(tokens.refreshToken!)"
         }
     }
     
@@ -41,6 +48,10 @@ case login(userName: String, password: String)
             return .get
         case .register:
             return .post
+        case .refreshToken:
+            return .post
+        case .logout:
+            return .get
         }
     }
     
@@ -64,6 +75,10 @@ case login(userName: String, password: String)
             params["school"] = school
             params["major"] = major
             return params
+        case .refreshToken:
+            var params = Parameters()
+            params["token"] = UserDefaultsManager.shared.getTokens().verifiedToken
+            return params
         default:
             return Parameters()
         }
@@ -72,7 +87,6 @@ case login(userName: String, password: String)
     func asURLRequest() throws -> URLRequest {
         let urlString = AuthRouter.base + endPoint
         let url = URL(string: urlString)!
-        NSLog("URLRequest with url: \(url)")
         var request = URLRequest(url: url)
         request.method = method
         switch method {

@@ -33,7 +33,15 @@ class ProfileViewModel: ObservableObject {
     }
     
     public func upload() {
-        let encodedData = self.image.jpegData(compressionQuality: 0.5)!
+        let encodedData = self.image.jpegData(compressionQuality: 0.3)!
+        ImageAPIService.upload(image: encodedData,
+                               userId: UserDefaultsManager.shared.getUserId(),
+                               to: URL(string: "http://localhost:8888/user/profileImg")!,
+                               completion: imageUploadCompletionHandler)
+    }
+    
+    public func uploadDefault() {
+        let encodedData = UIImage(named: "userPlaceholder")!.jpegData(compressionQuality: 0.3)!
         ImageAPIService.upload(image: encodedData,
                                userId: UserDefaultsManager.shared.getUserId(),
                                to: URL(string: "http://localhost:8888/user/profileImg")!,
@@ -47,13 +55,6 @@ class ProfileViewModel: ObservableObject {
         } else {
             NSLog("Can't get response description")
         }
-        // Log for header
-        if let headInfo = response.request?.headers {
-            NSLog(headInfo.description)
-        } else {
-            NSLog("Can't get header description")
-        }
-
         // Log for result
         switch response.result {
         case .success:

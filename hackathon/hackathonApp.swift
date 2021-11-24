@@ -18,7 +18,7 @@ struct hackathonApp: App {
 //                MyTabView()
 //            }
 //            NavigationView {
-//                BasicInfoView()
+//                MentoAuthView()
 //            }
             NavigationView {
                 if verifiedToken == "" {
