@@ -12,13 +12,11 @@ enum ImageAPIService {
     
     static func upload(image: Data,
                        userId: String,
-                       to url: URLConvertible,
                        completion: @escaping (AFDataResponse<Any>) -> () ) {
         
-        let header: HTTPHeaders = [
-            HTTPHeader(name: "Content-Type", value: "multipart/form-data"),
-            HTTPHeader(name: "Authorization", value: UserDefaultsManager.shared.getUserId())
-        ]
+        var header = SecurityManager.shared.getAuthorizationHeader()
+        header!.add(name: "Content-Type", value: "multipart/form-data")        
+        let url = URL(string: NetworkManager.base + "/app/user/profileImg")!
         
         AF.upload(multipartFormData: { data in
                 data.append(userId.data(using: .utf8)!, withName: "userId")

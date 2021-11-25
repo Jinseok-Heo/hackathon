@@ -7,17 +7,16 @@
 
 import SwiftUI
 
+struct LocationsModel: Codable {
+    let result: [LocalModel]
+}
+
+struct LocalModel: Codable {
+    let province: String
+    let cities: [String]
+}
+
 final class DummyData {
-    
-    static let users: [UserResponse] = [
-        UserResponse(id: 0, name: "daram12", mailAddress: "daram12@khu.ac.kr", password: "1234", isVerified: false),
-        UserResponse(id: 1, name: "ybk441", mailAddress: "ybk1234@khu.ac.kr", password: "1234", isVerified: true),
-        UserResponse(id: 2, name: "daisy", mailAddress: "daisy1234@khu.ac.kr", password: "1234", isVerified: true),
-        UserResponse(id: 3, name: "mike123", mailAddress: "mike123@khu.ac.kr", password: "1234", isVerified: true),
-        UserResponse(id: 4, name: "rachel11", mailAddress: "rachel11@khu.ac.kr", password: "1234", isVerified: true)
-    ]
-    
-    static let user: UserResponse = users.first!
     
     static let profiles: [ProfileResponse] = [
         ProfileResponse(id: 0, userId: 0, nickName: "다람이", imageId: 0, gender: "male", birth: Date(), company: "네이버", job: "iOS 개발", school: "경희대학교", major: "기계공학과"),
@@ -61,7 +60,7 @@ final class DummyData {
             }
         }
         return []
-    }()
+    }() // Used
     
     static let schoolList: [String] = {
         if let path = Bundle.main.path(forResource: "SchoolList", ofType: "txt") {
@@ -74,7 +73,7 @@ final class DummyData {
             }
         }
         return []
-    }()
+    }() // Used
     
     static let majorList: [String] = {
         if let path = Bundle.main.path(forResource: "MajorList", ofType: "txt") {
@@ -87,7 +86,29 @@ final class DummyData {
             }
         }
         return []
-    }()
+    }() // Used
+    
+    static let localList: [LocalModel] = {
+        guard let fileLocation = Bundle.main.url(forResource: "LocalInfo", withExtension: "json") else {
+            NSLog("Can't get local")
+            return []
+        }
+        do {
+            let data = try Data(contentsOf: fileLocation)
+            let locationList = try! JSONDecoder().decode(LocationsModel.self, from: data)
+            return locationList.result
+        } catch {
+            return []
+        }
+    }() // Used
+    
+    static let provinceList: [String] = {
+        var prov: [String] = []
+        for l in DummyData.localList {
+            prov.append(l.province)
+        }
+        return prov
+    }() // Used
     
     static let promotion: [PromotionResponse] = [
         PromotionResponse(id: 0, mentoId: 1, title: "금융사 마케터 신입 지원 노하우 A to Z 코칭 원데이 클래스", description: "", price: 100, imageId: 0),
@@ -129,5 +150,35 @@ final class DummyData {
         DateComponents(year: 2021, month: 11, day: 22, hour: 5, minute: 39),
         DateComponents(year: 2021, month: 11, day: 18, hour: 4, minute: 20),
     ]
+    
+    static func toDataBase(idx: Int) {
+        
+        if idx == 20 {
+            return
+        }
+        
+        let email = "ex\(idx)@gmail.com"
+        let password = "hh44061312!"
+        let userName = "ex\(idx)"
+        let nickName = "name\(idx)"
+        let gender = idx % 2 == 0 ? "male" : "female"
+        let birth = idx % 2 == 0 ? "971110" : "951210"
+        let company = idx % 2 == 0 ? nil : "카카오"
+        let job = idx % 2 == 0 ? nil : "개발자"
+        let year = idx % 2 == 0 ? 0 : 3
+        let school = idx % 2 == 0 ? "고려대학교" : "서울대학교"
+        let major = idx % 2 == 0 ? "기계공학과" : "경영학과"
+        
+        AuthAPIService.register(email: email, password: password, userName: userName, nickName: nickName, gender: gender, birth: birth, company: company, job: job, year: year, school: school, major: major) { response in
+            switch response.result {
+            case .success:
+                print(idx)
+                toDataBase(idx: idx + 1)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        
+    }
     
 }

@@ -33,23 +33,23 @@ class ProfileViewModel: ObservableObject {
     }
     
     public func upload() {
+        isLoading = true
         let encodedData = self.image.jpegData(compressionQuality: 0.3)!
         ImageAPIService.upload(image: encodedData,
-                               userId: UserDefaultsManager.shared.getUserId(),
-                               to: URL(string: "http://localhost:8888/user/profileImg")!,
+                               userId: SecurityManager.shared.load(account: .userID)!,
                                completion: imageUploadCompletionHandler)
     }
     
     public func uploadDefault() {
+        isLoading = true
         let encodedData = UIImage(named: "userPlaceholder")!.jpegData(compressionQuality: 0.3)!
         ImageAPIService.upload(image: encodedData,
-                               userId: UserDefaultsManager.shared.getUserId(),
-                               to: URL(string: "http://localhost:8888/user/profileImg")!,
+                               userId: SecurityManager.shared.load(account: .userID)!,
                                completion: imageUploadCompletionHandler)
     }
     
     private func imageUploadCompletionHandler(response: AFDataResponse<Any>) {
-        NSLog(response.description)
+        isLoading = false
         if let desc = response.response?.description {
             NSLog(desc)
         } else {
@@ -62,10 +62,10 @@ class ProfileViewModel: ObservableObject {
                 NSLog("ViewModels/Auth/ProfileViewModel/imageUpload Error: Can't get response(nil)")
                 return
             }
-            NSLog("User profile image has successfully updated!")
             self.didSuccess = true
         case .failure(let err):
             NSLog(err.localizedDescription)
+            generateAlert(message: "네트워크 연결을 확인해주세요")
         }
     }
     

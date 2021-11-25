@@ -17,7 +17,7 @@ final class APILogger: EventMonitor {
     }
     
     func request<Value>(_ request: DataRequest, didParseResponse response: DataResponse<Value, AFError>) {
-        debugPrint("Finished: \(response)")
+//        debugPrint("Finished: \(response)")
     }
     
     func requestDidFinish(_ request: Request) {

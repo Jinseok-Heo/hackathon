@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct hackathonApp: App {
     
-    let verifiedToken: String = UserDefaultsManager.shared.getTokens().verifiedToken
+    let verifiedToken: String? = SecurityManager.shared.load(account: .accessToken)
     
     var body: some Scene {
         WindowGroup {
@@ -20,20 +20,16 @@ struct hackathonApp: App {
 //            NavigationView {
 //                MentoAuthView()
 //            }
+//            TestView()
             NavigationView {
-                if verifiedToken == "" {
+                if verifiedToken == nil {
                     LoginView()
                 } else {
                     MyTabView()
                 }
             }
-//            ProfileView()
 //            NavigationView {
-//                if verifiedToken != "" {
-//                    MyTabView()
-//                } else {
-//                    LoginView()
-//                }
+//                MentinkerView()
 //            }
         }
     }

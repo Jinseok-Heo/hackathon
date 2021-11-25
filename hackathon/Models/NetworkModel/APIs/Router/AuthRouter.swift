@@ -22,11 +22,9 @@ case register(email: String,
               school: String,
               major: String)
 case login(userName: String, password: String)
+case getProfile(userId: String)
 case refreshToken
 case logout
-    
-    
-    static let base: String = "http://localhost:8888"
     
     var endPoint: String {
         switch self {
@@ -36,22 +34,21 @@ case logout
             return "/user/login?username=\(username)&password=\(password)"
         case .refreshToken:
             return "/user/refresh"
+        case .getProfile(let userId):
+            return "/app/user/profile/short/\(userId)"
         case .logout:
-            let tokens = UserDefaultsManager.shared.getTokens()
-            return "/user/logout/?token=\(tokens.verifiedToken)&refreshToken=\(tokens.refreshToken!)"
+            let access = SecurityManager.shared.load(account: .accessToken)!
+            let refresh = SecurityManager.shared.load(account: .refreshToken)!
+            return "/user/logout/?token=\(access)&refreshToken=\(refresh)"
         }
     }
     
     var method: HTTPMethod {
         switch self {
-        case .login:
+        case .login, .logout:
             return .get
-        case .register:
+        case .register, .getProfile, .refreshToken:
             return .post
-        case .refreshToken:
-            return .post
-        case .logout:
-            return .get
         }
     }
     
@@ -77,7 +74,8 @@ case logout
             return params
         case .refreshToken:
             var params = Parameters()
-            params["token"] = UserDefaultsManager.shared.getTokens().verifiedToken
+            params["userId"] = SecurityManager.shared.load(account: .userID)!
+            params["refreshToken"] = SecurityManager.shared.load(account: .refreshToken)!
             return params
         default:
             return Parameters()
@@ -85,7 +83,7 @@ case logout
     }
     
     func asURLRequest() throws -> URLRequest {
-        let urlString = AuthRouter.base + endPoint
+        let urlString = NetworkManager.base + endPoint
         let url = URL(string: urlString)!
         var request = URLRequest(url: url)
         request.method = method

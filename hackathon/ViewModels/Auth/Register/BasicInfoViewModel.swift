@@ -131,7 +131,6 @@ extension BasicInfoViewModel {
         if date == nil {
             return false
         }
-        print(date!)
         return true
     }
     

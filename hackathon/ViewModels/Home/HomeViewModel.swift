@@ -6,13 +6,15 @@
 //
 
 import SwiftUI
+import Combine
 
 class HomeViewModel: ObservableObject {
 
     @Published
-    var user: UserResponse?
+    var cancellables = Set<AnyCancellable>()
+    
     @Published
-    var profile: ProfileResponse?
+    var user: UserModel?
     @Published
     var meetings: [MatchingResponse]
     @Published
@@ -24,41 +26,43 @@ class HomeViewModel: ObservableObject {
     
     public init() {
         self.user = nil
-        self.profile = nil
         self.meetings = []
         self.recommendedMentor = []
         self.hotCommunities = []
         self.hotPickMentroings = []
         
+        getUserProfile()
         getInfo()
     }
     
     public func getInfo() {
-        getUser()
         getUserProfile()
         getMeetings()
         getRecommendedMentoes()
     }
     
-    private func getUser() {
-        let tokens = UserDefaultsManager.shared.getTokens()
-        let verifiedToken = tokens.verifiedToken
-        print(verifiedToken)
-        self.user = DummyData.user
-    }
-    
-    private func getUserProfile() {
-        if let user = user {
-            self.profile = DummyData.profiles.filter({ $0.userId == user.id }).first!
-        }
+    public func getUserProfile() {
+        AuthAPIService.getProfile(userId: SecurityManager.shared.load(account: .userID)!)
+            .sink { result in
+                switch result {
+                case .finished:
+                    NSLog("Successfully got user")
+                case .failure(let error):
+                    NSLog(error.localizedDescription)
+                }
+            } receiveValue: { user in
+                self.user = user
+                UserModel.saveUser(user: user)
+            }
+            .store(in: &cancellables)
     }
     
     private func getMeetings() {
-        if let user = user {
-            self.meetings = DummyData.matching
-                .filter({ $0.menteeId == user.id })
-                .filter { $0.time > Date() }
-        }
+        let userId = SecurityManager.shared.load(account: .userID)!
+        
+        self.meetings = DummyData.matching
+            .filter({ $0.menteeId == Int(userId)! })
+            .filter { $0.time > Date() }
     }
     
     private func getRecommendedMentoes() {

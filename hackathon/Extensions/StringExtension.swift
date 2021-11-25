@@ -5,11 +5,22 @@
 //  Created by Jinseok Heo on 2021/11/20.
 //
 
-import Foundation
+import SwiftUI
 
 extension CharacterSet{
+    
     static var modernHangul: CharacterSet{
         return CharacterSet(charactersIn: ("가".unicodeScalars.first!)...("힣".unicodeScalars.first!))
+    }
+    
+}
+
+extension String {
+    func toImage() -> UIImage? {
+        if let data = Data(base64Encoded: self, options: .ignoreUnknownCharacters) {
+            return UIImage(data: data)
+        }
+        return nil
     }
 }
 

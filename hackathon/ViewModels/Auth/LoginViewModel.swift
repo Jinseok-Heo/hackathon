@@ -8,6 +8,7 @@
 import Foundation
 import Alamofire
 import SwiftUI
+import Combine
 
 class LoginViewModel: ObservableObject {
     
@@ -71,9 +72,9 @@ class LoginViewModel: ObservableObject {
                 self.generateAlert(message: "유저 ID를 가져올 수 없습니다. 고객센터에 문의하세요")
                 return
             }
-            UserDefaultsManager.shared.setTokens(verifiedToken: verifiedToken,
-                                                 refreshToken: refreshToken)
-            UserDefaultsManager.shared.setUserId(userId: userId)
+            SecurityManager.shared.save(account: .accessToken, value: verifiedToken)
+            SecurityManager.shared.save(account: .refreshToken, value: refreshToken)
+            SecurityManager.shared.save(account: .userID, value: userId)
             self.action = 2
         } else {
             NSLog("There is no header in data")

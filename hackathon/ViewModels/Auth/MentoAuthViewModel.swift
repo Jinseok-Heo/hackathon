@@ -8,8 +8,12 @@
 import SwiftUI
 import Alamofire
 import CoreLocation
+import Combine
 
 class MentoAuthViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
+    
+    @Published
+    var cancellabels = Set<AnyCancellable>()
     
     @Published
     var email: String
@@ -23,6 +27,12 @@ class MentoAuthViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
     var authCode: String
     @Published
     var didAuthSuccess: Bool
+    @Published
+    var selectProvince: String
+    @Published
+    var selectCity: String
+    @Published
+    var cities: [String]
     
     @Published
     var showEmailAuth: Bool
@@ -42,6 +52,9 @@ class MentoAuthViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
     public override init() {
         self.email = ""
         self.content = ""
+        self.selectCity = ""
+        self.cities = DummyData.localList.first!.cities
+        self.selectProvince = DummyData.provinceList.first!
         self.preferredLocation = nil
         self.untact = 0
         
@@ -57,31 +70,72 @@ class MentoAuthViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
         super.init()
         
         checkLocationServiceEnabled()
+        addLocalSubscriber()
+    }
+    
+    private func addLocalSubscriber() {
+        $selectProvince
+            .debounce(for: .seconds(0.2), scheduler: DispatchQueue.main)
+            .sink { province in
+                self.cities = DummyData.localList.filter { $0.province == province }.first?.cities ?? []
+                self.selectCity = self.cities.first!
+            }
+            .store(in: &cancellabels)
     }
     
     public func register() {
         if checkForm() {
-            MentoAPIService.register(email: email,
-                                     content: content,
-                                     preferredLocation: preferredLocation!,
+            isLoading = true
+            MentoAPIService.register(content: content,
+                                     preferredLocation: "\(selectProvince)/\(selectCity)",
                                      untact: untact == 2,
-                                     userId: UserDefaultsManager.shared.getUserId(),
+                                     userId: SecurityManager.shared.load(account: .userID)!,
                                      completion: registerCompletionHandler)
         }
     }
     
     public func emailAuthenticate() {
         guard email != "" && checkEmail() else {
-            generageAlert(message: "이메일을 올바르게 입력해주세요")
+            generageAlert(message: "이메일을 올바르게 입력해주세요.")
             return
         }
-        // TODO: Email authenticate with network
-        showEmailAuth = true
+        isLoading = true
+        MentoAPIService.sendEmail(email: email) { [weak self] response in
+            guard let self = self else { return }
+            self.isLoading = false
+            switch response.result {
+            case .success:
+                self.showEmailAuth = true
+                self.generageAlert(message: "인증코드가 발송되었습니다.")
+            case .failure(let error):
+                NSLog(error.localizedDescription)
+                self.generageAlert(message: "이메일 발송 실패")
+            }
+        }
     }
     
     public func submitPasscode() {
-        showEmailAuth = false
-        didAuthSuccess = true
+        isLoading = true
+        MentoAPIService.authenticate(passcode: authCode) { [weak self] response in
+            guard let self = self else { return }
+            self.isLoading = false
+            switch response.result {
+            case .success:
+                self.showEmailAuth = false
+                self.didAuthSuccess = true
+            case .failure(let error):
+                if let statusCode = response.response?.statusCode {
+                    if statusCode >= 400 && statusCode < 500 {
+                        self.generageAlert(message: "인증코드를 확인해주세요")
+                    } else {
+                        self.generageAlert(message: "네트워크 연결을 확인해주세요")
+                    }
+                } else {
+                    self.generageAlert(message: "네트워크 연결을 확인해주세요")
+                }
+                NSLog(error.localizedDescription)
+            }
+        }
     }
     
     private func checkEmail() -> Bool {
@@ -111,13 +165,13 @@ class MentoAuthViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
     }
     
     private func registerCompletionHandler(response: AFDataResponse<Any>) {
+        isLoading = false
         switch response.result {
         case .success:
-            print("Mento register success")
+            didSuccess = true
         case .failure(let error):
             print(error.localizedDescription)
         }
-        didSuccess = true
     }
     
     private func generageAlert(message: String) {
@@ -128,6 +182,7 @@ class MentoAuthViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
 }
 
 extension MentoAuthViewModel {
+    
     private func checkLocationServiceEnabled() {
         if CLLocationManager.locationServicesEnabled() {
             locationManager = CLLocationManager()
@@ -158,4 +213,5 @@ extension MentoAuthViewModel {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         checkLocationAuthorization()
     }
+    
 }

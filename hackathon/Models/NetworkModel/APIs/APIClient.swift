@@ -11,7 +11,7 @@ import Alamofire
 final class APIClient {
     
     static let shared = APIClient()
-    
+        
     let interceptors = Interceptor(interceptors: [
         BaseInterceptor()
     ])

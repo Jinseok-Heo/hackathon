@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// API: g2hxnzktayrf
 struct ChatView: View {
     var body: some View {
         Text("This is chat view")

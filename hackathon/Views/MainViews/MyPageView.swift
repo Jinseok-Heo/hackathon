@@ -6,28 +6,94 @@
 //
 
 import SwiftUI
+import Alamofire
+
+class MyPageViewModel: ObservableObject {
+    
+    @Published
+    var didLogout: Bool
+    @Published
+    var isVerified: Bool
+    
+    @Published
+    var isLoading: Bool
+    @Published
+    var alertTitle: String
+    @Published
+    var alertMsg: String
+    @Published
+    var showAlert: Bool
+    
+    @Published
+    var selectedItem: Int
+    
+    public init() {
+        self.isLoading = false
+        self.alertTitle = ""
+        self.alertMsg = ""
+        self.showAlert = false
+        self.selectedItem = 0
+        self.isVerified = UserModel.getUser()?.verified ?? false
+        self.didLogout = false
+    }
+    
+}
+
 
 struct MyPageView: View {
     
+    @StateObject
+    var myPageVM: MyPageViewModel = MyPageViewModel()
+    
     @State
-    var didLogout: Bool = false
+    var mentoAuth: Bool = false
     
     var body: some View {
-        VStack {
-            NavigationLink(destination: LoginView(), isActive: $didLogout) { EmptyView() }
-            Button {
-                AuthAPIService.logout { response in
-                    UserDefaultsManager.shared.clearAll()
-                    didLogout = true
-    //                switch response.result {
-    //                case .success:
-    //                    presentationMode.wrappedValue.dismiss()
-    //                case .failure(let error):
-    //                    NSLog(error.localizedDescription)
-    //                }
+        ZStack {
+            VStack {
+                NavigationLink(destination: LoginView(), isActive: $myPageVM.didLogout) { EmptyView() }
+                NavigationLink(destination: MentoAuthView(), isActive: $mentoAuth) { EmptyView() }
+                NavigationLink(destination: EmailAuthView(), isActive: $mentoAuth) { EmptyView() }
+                
+                logoutButton
+                mentoRegisterButton
+                refreshTokenButton
+            }
+            .padding([.leading, .trailing], 22)
+        }
+        
+    }
+}
+
+extension MyPageView {
+    
+    private var logoutButton: some View {
+        Button {
+            AuthAPIService.logout { response in
+                SecurityManager.shared.deleteAll()
+                switch response.result {
+                case .success:
+                    self.myPageVM.didLogout = true
+                case .failure(let error):
+                    NSLog(error.localizedDescription)
                 }
+            }
+        } label: {
+            Text("로그아웃")
+                .font(FontManager.font(size: 30, weight: .extrabold))
+                .foregroundColor(.white)
+                .padding([.top, .bottom], 10)
+                .frame(maxWidth: .infinity)
+                .background(RoundedRectangle(cornerRadius: 5).foregroundColor(Color("secondColor")))
+        }
+    }
+    
+    @ViewBuilder private var mentoRegisterButton: some View {
+        if myPageVM.isVerified {
+            Button {
+                mentoAuth = true
             } label: {
-                Text("로그아웃")
+                Text("이메일 인증하기")
                     .font(FontManager.font(size: 30, weight: .extrabold))
                     .foregroundColor(.white)
                     .padding([.top, .bottom], 10)
@@ -35,9 +101,30 @@ struct MyPageView: View {
                     .background(RoundedRectangle(cornerRadius: 5).foregroundColor(Color("secondColor")))
             }
             Button {
-                
+                mentoAuth = true
             } label: {
-                Text("멘토 등록")
+                Text("멘토링 등록하기")
+                    .font(FontManager.font(size: 30, weight: .extrabold))
+                    .foregroundColor(.white)
+                    .padding([.top, .bottom], 10)
+                    .frame(maxWidth: .infinity)
+                    .background(RoundedRectangle(cornerRadius: 5).foregroundColor(Color("secondColor")))
+            }
+        } else {
+            Button {
+                mentoAuth = true
+            } label: {
+                Text("이메일 재인증")
+                    .font(FontManager.font(size: 30, weight: .extrabold))
+                    .foregroundColor(.white)
+                    .padding([.top, .bottom], 10)
+                    .frame(maxWidth: .infinity)
+                    .background(RoundedRectangle(cornerRadius: 5).foregroundColor(Color("secondColor")))
+            }
+            Button {
+                mentoAuth = true
+            } label: {
+                Text("멘토링 등록")
                     .font(FontManager.font(size: 30, weight: .extrabold))
                     .foregroundColor(.white)
                     .padding([.top, .bottom], 10)
@@ -45,13 +132,23 @@ struct MyPageView: View {
                     .background(RoundedRectangle(cornerRadius: 5).foregroundColor(Color("secondColor")))
             }
         }
-        .padding([.leading, .trailing], 22)
-        
     }
-}
-
-struct MyPageView_Previews: PreviewProvider {
-    static var previews: some View {
-        MyPageView()
+    
+    private var refreshTokenButton: some View {
+        Button {
+            NetworkManager.session
+                .request(AuthRouter.refreshToken)
+                .validate(statusCode: 200..<300)
+                .responseJSON { response in
+                    print(response)
+                }
+        } label: {
+            Text("토큰 재발급")
+                .font(FontManager.font(size: 30, weight: .extrabold))
+                .foregroundColor(.white)
+                .padding([.top, .bottom], 10)
+                .frame(maxWidth: .infinity)
+                .background(RoundedRectangle(cornerRadius: 5).foregroundColor(Color("secondColor")))
+        }
     }
 }

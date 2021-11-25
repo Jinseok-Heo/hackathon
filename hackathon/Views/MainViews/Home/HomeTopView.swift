@@ -70,7 +70,7 @@ extension HomeTopView {
     // Top comments
     private var comments: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("\(homeVM.profile!.nickName)님,")
+            Text("\(UserModel.user?.nickName ?? "Untitled")님,")
             HStack(spacing: 1) {
                 Text("멘토와의 약속이")
                 ZStack {

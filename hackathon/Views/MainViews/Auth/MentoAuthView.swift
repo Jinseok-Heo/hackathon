@@ -37,6 +37,7 @@ struct MentoAuthView: View {
                             .font(FontManager.font(size: 20, weight: .bold))
                             .foregroundColor(Color(hex: "#191919"))
                         untactSelection
+                        localSelection
                         contentField
                     }
                 }
@@ -157,6 +158,8 @@ extension MentoAuthView {
     
     private var untactSelection: some View {
         HStack {
+            Text("대면 여부")
+                .font(FontManager.font(size: 17, weight: .medium))
             HStack(spacing: 6) {
                 Image(systemName: "checkmark.circle.fill")
                     .resizable()
@@ -171,7 +174,6 @@ extension MentoAuthView {
                     mentoAuthVM.untact = 1
                 }
             }
-            Spacer()
             HStack(spacing: 6) {
                 Image(systemName: "checkmark.circle.fill")
                     .resizable()
@@ -186,6 +188,49 @@ extension MentoAuthView {
                     mentoAuthVM.untact = 2
                 }
             }
+            Spacer()
+        }
+    }
+    
+    private var localSelection: some View {
+        HStack {
+            Text("활동 지역 선택")
+                .font(FontManager.font(size: 17, weight: .medium))
+                .padding(.trailing)
+            Picker(selection: $mentoAuthVM.selectProvince) {
+                ForEach(DummyData.provinceList, id: \.self) { province in
+                    Text(province)
+                        .foregroundColor(Color(hex: "#191919"))
+                        .tag(province)
+                }
+            } label: {
+                Text("\(mentoAuthVM.selectProvince)")
+                    .foregroundColor(Color(hex: "#191919"))
+            }
+            .foregroundColor(Color(hex: "#191919"))
+            .font(FontManager.font(size: 17, weight: .bold))
+            .padding([.leading, .trailing], 8)
+            .padding([.top, .bottom], 4)
+            .background(
+                RoundedRectangle(cornerRadius: 4)
+                    .foregroundColor(Color("secondColor"))
+            )
+            Picker(selection: $mentoAuthVM.selectCity) {
+                ForEach(mentoAuthVM.cities, id: \.self) { city in
+                    Text(city)
+                        .tag(city)
+                }
+            } label: {
+                Text("\(mentoAuthVM.selectCity)")
+            }
+            .foregroundColor(Color(hex: "#191919"))
+            .font(FontManager.font(size: 17, weight: .bold))
+            .padding([.leading, .trailing], 8)
+            .padding([.top, .bottom], 4)
+            .background(
+                RoundedRectangle(cornerRadius: 4)
+                    .foregroundColor(Color("secondColor"))
+            )
         }
     }
     

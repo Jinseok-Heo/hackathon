@@ -11,27 +11,29 @@ import CoreLocation
 
 enum MentoRouter: URLRequestConvertible {
     
-    case register(email: String,
-                  content: String,
-                  preferredLocation: CLLocationCoordinate2D,
+    case register(content: String,
+                  preferredLocation: String,
                   untact: Bool,
                   userId: String)
-    case authenticate(email: String)
-    
-    static let base: String = "http://localhost:8888"
-    
+    case sendEmail(email: String)
+    case authenticate(passcode: String)
+        
     var endPoint: String {
         switch self {
-        case .register:
-            return "/user/mento/register"
+        case let .register(content, preferredLocation, untact, userId):
+            return "/app/user/mento/register?userId=\(userId)&preferredLocation=\(preferredLocation)&untact=\(untact.description)&content=\(content)"
+        case .sendEmail:
+            return "/verify/email"
         case .authenticate:
-            return "/user/mento/email"
+            return "/verify/verifycode"
         }
     }
     
     var method: HTTPMethod {
         switch self {
         case .register:
+            return .get
+        case .sendEmail:
             return .post
         case .authenticate:
             return .post
@@ -40,24 +42,28 @@ enum MentoRouter: URLRequestConvertible {
     
     var parameters: Parameters {
         switch self {
-        case let .register(email, content, preferredLoc, untact, userId):
+        case let .register(content, preferredLocation, untact, userId):
             var params = Parameters()
             params["userId"] = userId
-            params["email"] = email
             params["content"] = content
-            params["preferredLoc"] = preferredLoc.toDictionary()
+            params["preferredLocation"] = preferredLocation
             params["untact"] = untact
             return params
-        case let .authenticate(email):
+        case let .sendEmail(email):
             var params = Parameters()
             params["email"] = email
+            return params
+        case let .authenticate(passcode):
+            var params = Parameters()
+            params["code"] = passcode
             return params
         }
     }
     
     func asURLRequest() throws -> URLRequest {
-        let urlString = AuthRouter.base + endPoint
-        let url = URL(string: urlString)!
+        let urlString = NetworkManager.base + endPoint
+        let encodedUrl = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let url = URL(string: encodedUrl)!
         var request = URLRequest(url: url)
         request.method = method
         switch method {
