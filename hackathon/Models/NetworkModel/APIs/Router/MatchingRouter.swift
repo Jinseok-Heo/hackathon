@@ -42,7 +42,7 @@ enum MatchingRouter: URLRequestConvertible {
             params["menteeId"] = menteeId
             params["mentoId"] = mentoId
             params["location"] = location
-            params["appointmentTime"] = appointmentTime
+            params["appointmentTime"] = appointmentTime.toString()
             return params
         case let .postReview(rating, matchingId, mentoId, content):
             var params = Parameters()

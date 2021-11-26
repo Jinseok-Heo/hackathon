@@ -68,6 +68,9 @@
 		354C40A927414087004C5AD7 /* MoreRectangleBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C40A827414087004C5AD7 /* MoreRectangleBar.swift */; };
 		354C40AA27414087004C5AD7 /* MoreRectangleBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C40A827414087004C5AD7 /* MoreRectangleBar.swift */; };
 		354C40AB27414087004C5AD7 /* MoreRectangleBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C40A827414087004C5AD7 /* MoreRectangleBar.swift */; };
+		35AF93FA27505BFD0096E7B3 /* MakeAppointmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AF93F927505BFD0096E7B3 /* MakeAppointmentView.swift */; };
+		35AF93FC275066390096E7B3 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AF93FB275066390096E7B3 /* DateExtension.swift */; };
+		35AF93FE2750782C0096E7B3 /* ReviewPostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AF93FD2750782C0096E7B3 /* ReviewPostingView.swift */; };
 		35B2F5482741EFB600AA5F04 /* MentorRecommendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B2F5472741EFB600AA5F04 /* MentorRecommendView.swift */; };
 		35B2F54A2741EFE100AA5F04 /* HotCommunityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B2F5492741EFE100AA5F04 /* HotCommunityView.swift */; };
 		35B2F54C2741F00800AA5F04 /* CommunityCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B2F54B2741F00800AA5F04 /* CommunityCard.swift */; };
@@ -180,6 +183,9 @@
 		354C409E27412700004C5AD7 /* MeetingCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingCard.swift; sourceTree = "<group>"; };
 		354C40A427414068004C5AD7 /* MentoCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentoCard.swift; sourceTree = "<group>"; };
 		354C40A827414087004C5AD7 /* MoreRectangleBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreRectangleBar.swift; sourceTree = "<group>"; };
+		35AF93F927505BFD0096E7B3 /* MakeAppointmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeAppointmentView.swift; sourceTree = "<group>"; };
+		35AF93FB275066390096E7B3 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		35AF93FD2750782C0096E7B3 /* ReviewPostingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPostingView.swift; sourceTree = "<group>"; };
 		35B2F5472741EFB600AA5F04 /* MentorRecommendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorRecommendView.swift; sourceTree = "<group>"; };
 		35B2F5492741EFE100AA5F04 /* HotCommunityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotCommunityView.swift; sourceTree = "<group>"; };
 		35B2F54B2741F00800AA5F04 /* CommunityCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCard.swift; sourceTree = "<group>"; };
@@ -494,6 +500,7 @@
 			children = (
 				35E5CE492740D5600075E019 /* MentinkerView.swift */,
 				3535A5E4274FF90500A6637E /* ReviewDetailView.swift */,
+				35AF93FD2750782C0096E7B3 /* ReviewPostingView.swift */,
 			);
 			path = Mentinker;
 			sourceTree = "<group>";
@@ -511,6 +518,7 @@
 			children = (
 				354C409527410BD4004C5AD7 /* ViewExtension.swift */,
 				35C05784274DABFD002628B3 /* DataExtension.swift */,
+				35AF93FB275066390096E7B3 /* DateExtension.swift */,
 				35C0578E274E2054002628B3 /* CLLocationExtension.swift */,
 				354C409A27411476004C5AD7 /* ColorExtension.swift */,
 				35C930502748D7A70012D14A /* StringExtension.swift */,
@@ -584,6 +592,7 @@
 			children = (
 				35E5CE452740D52D0075E019 /* ChatView.swift */,
 				3535A5E2274FDB2200A6637E /* RoomView.swift */,
+				35AF93F927505BFD0096E7B3 /* MakeAppointmentView.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -935,6 +944,7 @@
 				35C0578F274E2054002628B3 /* CLLocationExtension.swift in Sources */,
 				35B2F5482741EFB600AA5F04 /* MentorRecommendView.swift in Sources */,
 				35C9304F27488F9B0012D14A /* FontManager.swift in Sources */,
+				35AF93FE2750782C0096E7B3 /* ReviewPostingView.swift in Sources */,
 				351B035D2743576B00EAEB6E /* BoardResponse.swift in Sources */,
 				35E5CE482740D5490075E019 /* CommunityView.swift in Sources */,
 				351B03592743566E00EAEB6E /* ImageResponse.swift in Sources */,
@@ -968,8 +978,10 @@
 				3535A5E1274FCACD00A6637E /* MentinkerViewModel.swift in Sources */,
 				35BA0CAE2747782D009C197F /* HomeViewModel.swift in Sources */,
 				35B8087F274C8D1C001AD9FC /* AdditionalInfoViewModel.swift in Sources */,
+				35AF93FC275066390096E7B3 /* DateExtension.swift in Sources */,
 				351B03672743ADF800EAEB6E /* LoginView.swift in Sources */,
 				351B0373274494EA00EAEB6E /* CustomTabView.swift in Sources */,
+				35AF93FA27505BFD0096E7B3 /* MakeAppointmentView.swift in Sources */,
 				35B8086D274C609B001AD9FC /* ProfileView.swift in Sources */,
 				354C409F27412700004C5AD7 /* MeetingCard.swift in Sources */,
 				35B8087D274C8D11001AD9FC /* BasicInfoViewModel.swift in Sources */,

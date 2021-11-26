@@ -197,14 +197,14 @@ extension MentoAuthView {
             Text("활동 지역 선택")
                 .font(FontManager.font(size: 17, weight: .medium))
                 .padding(.trailing)
-            Picker(selection: $mentoAuthVM.selectProvince) {
+            Picker(selection: $mentoAuthVM.selectedProvince) {
                 ForEach(DummyData.provinceList, id: \.self) { province in
                     Text(province)
                         .foregroundColor(Color(hex: "#191919"))
                         .tag(province)
                 }
             } label: {
-                Text("\(mentoAuthVM.selectProvince)")
+                Text("\(mentoAuthVM.selectedProvince)")
                     .foregroundColor(Color(hex: "#191919"))
             }
             .foregroundColor(Color(hex: "#191919"))
@@ -215,13 +215,13 @@ extension MentoAuthView {
                 RoundedRectangle(cornerRadius: 4)
                     .foregroundColor(Color("secondColor"))
             )
-            Picker(selection: $mentoAuthVM.selectCity) {
+            Picker(selection: $mentoAuthVM.selectedCity) {
                 ForEach(mentoAuthVM.cities, id: \.self) { city in
                     Text(city)
                         .tag(city)
                 }
             } label: {
-                Text("\(mentoAuthVM.selectCity)")
+                Text("\(mentoAuthVM.selectedCity)")
             }
             .foregroundColor(Color(hex: "#191919"))
             .font(FontManager.font(size: 17, weight: .bold))

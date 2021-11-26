@@ -29,6 +29,12 @@ struct hackathonApp: App {
                 }
             }
 //            NavigationView {
+//                ReviewPostingView()
+//            }
+//            NavigationView {
+//                RoomView(mento: Mento(id: "3", menteeId: "2", nickName: "멘토1234", profileImage: UIImage(named: "userPlaceholder")!.jpegData(compressionQuality: 0.5)!.base64EncodedString(), content: "여기는 콘텐츠", preferredLocation: "서울/강남", untact: "true"))
+//            }
+//            NavigationView {
 //                MentinkerView()
 //            }
         }

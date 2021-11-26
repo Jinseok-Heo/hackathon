@@ -21,7 +21,7 @@ struct MentinkerView: View {
     
     var body: some View {
         ZStack {
-            NavigationLink(destination: RoomView(), tag: 1, selection: $mentinkerVM.action) { EmptyView() }
+            NavigationLink(destination: RoomView(mento: mentinkerVM.selectedItem), tag: 1, selection: $mentinkerVM.action) { EmptyView() }
             NavigationLink(destination: ReviewDetailView(mento: mentinkerVM.selectedItem), tag: 2, selection: $mentinkerVM.action) { EmptyView() }
             VStack(spacing: 0) {
                 titleView
@@ -37,7 +37,7 @@ struct MentinkerView: View {
             .opacity(mentinkerVM.selectedItem == nil ? 1 : 0.4)
             if let selectedItem = mentinkerVM.selectedItem {
                 MentinkDetailView(vm: mentinkerVM)
-                    .matchedGeometryEffect(id: selectedItem.id, in: namespace)
+                    .matchedGeometryEffect(id: Int(selectedItem.id)!, in: namespace)
             }
             if mentinkerVM.isLoading {
                 ProgressView("Loading...")
@@ -229,7 +229,7 @@ extension MentinkerView {
         List {
             ForEach(mentinkerVM.mentos) { mento in
                 MentinkCardView(mento: mento, vm: mentinkerVM)
-                    .matchedGeometryEffect(id: mento.id, in: namespace)
+                    .matchedGeometryEffect(id: Int(mento.id)!, in: namespace)
                     .foregroundColor(Color("mainColor"))
                     .frame(height: 140)
                     .onTapGesture {

@@ -28,9 +28,9 @@ class MentoAuthViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
     @Published
     var didAuthSuccess: Bool
     @Published
-    var selectProvince: String
+    var selectedProvince: String
     @Published
-    var selectCity: String
+    var selectedCity: String
     @Published
     var cities: [String]
     
@@ -52,9 +52,9 @@ class MentoAuthViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
     public override init() {
         self.email = ""
         self.content = ""
-        self.selectCity = ""
+        self.selectedCity = ""
         self.cities = DummyData.localList.first!.cities
-        self.selectProvince = DummyData.provinceList.first!
+        self.selectedProvince = DummyData.provinceList.first!
         self.preferredLocation = nil
         self.untact = 0
         
@@ -74,11 +74,11 @@ class MentoAuthViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
     }
     
     private func addLocalSubscriber() {
-        $selectProvince
+        $selectedProvince
             .debounce(for: .seconds(0.2), scheduler: DispatchQueue.main)
             .sink { province in
                 self.cities = DummyData.localList.filter { $0.province == province }.first?.cities ?? []
-                self.selectCity = self.cities.first!
+                self.selectedCity = self.cities.first!
             }
             .store(in: &cancellabels)
     }
@@ -87,7 +87,7 @@ class MentoAuthViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
         if checkForm() {
             isLoading = true
             MentoAPIService.register(content: content,
-                                     preferredLocation: "\(selectProvince)/\(selectCity)",
+                                     preferredLocation: "\(selectedProvince)/\(selectedCity)",
                                      untact: untact == 2,
                                      userId: SecurityManager.shared.load(account: .userID)!,
                                      completion: registerCompletionHandler)
