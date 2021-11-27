@@ -8,6 +8,12 @@
 import SwiftUI
 import Combine
 
+class ReviewFilter {
+    
+    static var postedReview: Schedules = []
+    
+}
+
 class HomeViewModel: ObservableObject {
 
     @Published
@@ -26,6 +32,8 @@ class HomeViewModel: ObservableObject {
     
     @Published
     var action: Int?
+    @Published
+    var didChanged: Bool
     
     public init() {
         self.user = nil
@@ -34,8 +42,20 @@ class HomeViewModel: ObservableObject {
         self.hotCommunities = []
         self.hotPickMentroings = []
         self.action = 0
+        self.didChanged = false
         
         getInfo()
+        addSubscriber()
+    }
+    
+    private func addSubscriber() {
+        $didChanged
+            .sink { res in
+                if res {
+                    self.getMeetings()
+                }
+            }
+            .store(in: &cancellables)
     }
     
     public func getInfo() {
@@ -70,8 +90,8 @@ class HomeViewModel: ObservableObject {
                     print(err.localizedDescription)
                 }
             } receiveValue: { schedule in
-                self.meetings = schedule
-                print(self.meetings.count)
+                self.meetings = schedule.filter({!ReviewFilter.postedReview.contains($0)}).sorted(by: {$0.appointmentTime < $1.appointmentTime})
+                self.didChanged = false
             }
             .store(in: &cancellables)
     }
@@ -87,7 +107,6 @@ class HomeViewModel: ObservableObject {
                 }
             } receiveValue: { recommend in
                 self.recommendedMentor = recommend
-                print(recommend.count)
             }
             .store(in: &cancellables)
     }

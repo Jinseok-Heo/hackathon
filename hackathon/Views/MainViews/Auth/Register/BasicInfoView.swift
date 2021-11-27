@@ -115,7 +115,7 @@ extension BasicInfoView {
     }
     
     private var nameField: some View {
-        TextFieldView(text: $basicInfoVM.nickName, title: "이름", placeholder: "이름", type: .text)
+        TextFieldView(text: $basicInfoVM.nickName, title: "닉네임", placeholder: "닉네임", type: .text)
             .frame(width: 156)
     }
     

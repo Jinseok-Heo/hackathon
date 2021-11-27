@@ -109,7 +109,7 @@ extension HomeTopView {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 0) {
                     ForEach(homeVM.meetings, id: \.self) { meeting in
-                        MeetingCard(meeting: meeting)
+                        MeetingCard(meeting: meeting, homeVM: homeVM)
                             .cornerRadius(4, corners: [.topRight, .bottomLeft, .bottomRight])
                             .padding(6)
                             .shadow(color: Color(meeting.untact == "true" ? "mainShadowColor" : "secondShadowColor"), radius: 3, x: 0, y: 0)

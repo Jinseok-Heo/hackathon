@@ -26,12 +26,22 @@ final class DateManager {
     }
     
     func dateDayInterval(before: Date, after: Date) -> String {
-        let dayInterval = Calendar.current.dateComponents([.day], from: before, to: after).day ?? 0
-        if dayInterval == 0 {
-            return "D-Day"
+        if before < after {
+            let dayInterval = Calendar.current.dateComponents([.day], from: before, to: after).day ?? 0
+            if dayInterval == 0 {
+                return "D-Day"
+            } else {
+                return String(format: "D-%d", dayInterval)
+            }
         } else {
-            return String(format: "D-%d", dayInterval)
+            let dayInterval = Calendar.current.dateComponents([.day], from: after, to: before).day ?? 0
+            if dayInterval == 0 {
+                return "D-Day"
+            } else {
+                return String(format: "D+%d", dayInterval)
+            }
         }
+        
     }
     
     func dateInterval(before: Date, after: Date) -> String {

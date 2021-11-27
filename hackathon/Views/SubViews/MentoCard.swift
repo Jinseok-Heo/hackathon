@@ -27,14 +27,14 @@ struct MentoCard: View {
                     .resizable()
                     .frame(width: 10, height: 10)
                     .foregroundColor(Color("mainColor"))
-                Text(String(format: "%.1f", recommendedMento.rating))
+                Text(recommendedMento.rating)
                     .foregroundColor(.black)
                     .font(FontManager.font(size: 11, weight: .semibold))
             }
             .padding(.top, 3)
             Text(recommendedMento.year)
                 .padding(.top, 5)
-            Text(String(format: "%d년차", recommendedMento.year))
+            Text("\(recommendedMento.year)년차")
             Spacer()
         }
         .frame(width: 110, height: 164)

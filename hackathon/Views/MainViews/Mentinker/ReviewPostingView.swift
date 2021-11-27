@@ -17,20 +17,26 @@ class ReviewPostingViewModel: ObservableObject {
     @Published
     var content: String
     
+    @Published
+    var didSuccess: Bool
+    
     public init(meeting: Schedule) {
-
         self.rating = 0
         self.content = ""
         self.meeting = meeting
+        self.didSuccess = false
     }
     
     public func post() {
-        MatchingAPIService.postReview(rating: rating, matchingId: "2", mentoId: "1", content: content) { response in
+        MatchingAPIService.postReview(rating: rating, matchingId: meeting.matchingId, mentoId: meeting.mentoId, content: content) { response in
             switch response.result {
             case .success:
                 print("review post success")
+                ReviewFilter.postedReview.append(self.meeting)
+                self.didSuccess = true
             case .failure(let error):
                 print("review post failed")
+                NSLog(error.localizedDescription)
             }
         }
     }
@@ -47,9 +53,13 @@ struct ReviewPostingView: View {
     
     let meeting: Schedule
     
-    init(meeting: Schedule) {
+    @Binding
+    var didSuccess: Bool
+    
+    init(meeting: Schedule, didSuccess: Binding<Bool>) {
         self.meeting = meeting
         self._reviewPostingVM = StateObject(wrappedValue: ReviewPostingViewModel(meeting: meeting))
+        self._didSuccess = didSuccess
     }
     
     var body: some View {
@@ -70,6 +80,12 @@ struct ReviewPostingView: View {
         }
         .padding([.leading, .trailing], 22)
         .navigationBarHidden(true)
+        .alert(isPresented: $reviewPostingVM.didSuccess) {
+            Alert(title: Text("후기가 작성되었습니다"), dismissButton: .default(Text("확인")) {
+                self.didSuccess = true
+                self.presentationMode.wrappedValue.dismiss()
+            })
+        }
     }
 }
 
@@ -140,7 +156,7 @@ extension ReviewPostingView {
     
     private var saveButton: some View {
         Button {
-            // save
+            reviewPostingVM.post()
         } label: {
             Text("저장")
                 .font(FontManager.font(size: 16, weight: .bold))

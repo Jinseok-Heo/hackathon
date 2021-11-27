@@ -42,11 +42,13 @@ enum MatchingAPIService {
             .responseJSON(completionHandler: completion)
     }
     
-    static func reviewDetail(mentoId: String, completion: @escaping (AFDataResponse<Any>) -> () ) {
+    static func reviewDetail(mentoId: String) -> AnyPublisher<Reviews, AFError> {
         NetworkManager.session
             .request(MatchingRouter.getMentoReview(mentoId: mentoId))
             .validate(statusCode: 200..<300)
-            .responseJSON(completionHandler: completion)
+            .publishDecodable(type: Reviews.self)
+            .value()
+            .eraseToAnyPublisher()
     }
     
 }

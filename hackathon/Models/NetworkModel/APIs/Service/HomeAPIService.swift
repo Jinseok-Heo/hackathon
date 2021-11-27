@@ -34,12 +34,6 @@ enum HomeAPIService {
             .eraseToAnyPublisher()
     }
     
-//    static func getSchedule(completion: @escaping (AFDataResponse<Any>) -> () ) {
-//        NetworkManager.session
-//            .request(HomeRouter.getSchedule(userId: SecurityManager.shared.load(account: .userID) ?? ""))
-//            .validate(statusCode: 200..<300)
-//            .responseJSON(completionHandler: completion)
-//    }
         
 }
 

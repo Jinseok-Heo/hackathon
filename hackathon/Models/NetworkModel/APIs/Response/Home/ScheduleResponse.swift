@@ -10,7 +10,7 @@ import Foundation
 typealias Schedules = [Schedule]
 
 struct Schedule: Codable, Hashable {
-    let appointmentTime, nickName, company, year: String
+    let matchingId, mentoId, appointmentTime, nickName, company, year: String
     let location: String
     let profileImage, job, untact: String
 }

@@ -50,6 +50,7 @@ enum MatchingRouter: URLRequestConvertible {
             params["matchingId"] = matchingId
             params["mentoId"] = mentoId
             params["content"] = content
+            params["menteeId"] = SecurityManager.shared.load(account: .userID)!
             return params
         }
     }

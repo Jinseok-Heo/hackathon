@@ -75,6 +75,7 @@
 		35A839722751ED1E00E06E6C /* MentoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A839712751ED1E00E06E6C /* MentoResponse.swift */; };
 		35A839752751ED6A00E06E6C /* RecommendReponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A839742751ED6A00E06E6C /* RecommendReponse.swift */; };
 		35A839772751ED7F00E06E6C /* ScheduleResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A839762751ED7F00E06E6C /* ScheduleResponse.swift */; };
+		35A8397B27526DEC00E06E6C /* ReviewResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A8397A27526DEC00E06E6C /* ReviewResponse.swift */; };
 		35AF93FA27505BFD0096E7B3 /* MakeAppointmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AF93F927505BFD0096E7B3 /* MakeAppointmentView.swift */; };
 		35AF93FC275066390096E7B3 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AF93FB275066390096E7B3 /* DateExtension.swift */; };
 		35AF93FE2750782C0096E7B3 /* ReviewPostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AF93FD2750782C0096E7B3 /* ReviewPostingView.swift */; };
@@ -199,6 +200,7 @@
 		35A839712751ED1E00E06E6C /* MentoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentoResponse.swift; sourceTree = "<group>"; };
 		35A839742751ED6A00E06E6C /* RecommendReponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendReponse.swift; sourceTree = "<group>"; };
 		35A839762751ED7F00E06E6C /* ScheduleResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleResponse.swift; sourceTree = "<group>"; };
+		35A8397A27526DEC00E06E6C /* ReviewResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewResponse.swift; sourceTree = "<group>"; };
 		35AF93F927505BFD0096E7B3 /* MakeAppointmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeAppointmentView.swift; sourceTree = "<group>"; };
 		35AF93FB275066390096E7B3 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		35AF93FD2750782C0096E7B3 /* ReviewPostingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPostingView.swift; sourceTree = "<group>"; };
@@ -584,6 +586,7 @@
 			children = (
 				35A839742751ED6A00E06E6C /* RecommendReponse.swift */,
 				35A839762751ED7F00E06E6C /* ScheduleResponse.swift */,
+				35A8397A27526DEC00E06E6C /* ReviewResponse.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -986,6 +989,7 @@
 				35A839752751ED6A00E06E6C /* RecommendReponse.swift in Sources */,
 				35E5CE482740D5490075E019 /* CommunityView.swift in Sources */,
 				351B03592743566E00EAEB6E /* ImageResponse.swift in Sources */,
+				35A8397B27526DEC00E06E6C /* ReviewResponse.swift in Sources */,
 				351B034F2743510B00EAEB6E /* AuthRouter.swift in Sources */,
 				35A8396A2751BC9300E06E6C /* MentinkerCardView.swift in Sources */,
 				351B035F274357DC00EAEB6E /* CommentResponse.swift in Sources */,

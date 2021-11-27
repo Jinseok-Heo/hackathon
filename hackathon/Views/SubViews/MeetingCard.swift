@@ -20,6 +20,9 @@ struct MeetingCard: View {
     @State
     var toReview: Bool
     
+    @ObservedObject
+    var homeVM: HomeViewModel
+    
     var year: String {
         if meeting.year == "0" {
             return "신입"
@@ -32,17 +35,18 @@ struct MeetingCard: View {
         return "\(meeting.company) \(meeting.job) \(year)"
     }
     
-    public init(meeting: Schedule) {
+    public init(meeting: Schedule, homeVM: HomeViewModel) {
         self.meeting = meeting
         self.time = DateManager.shared.dateDayInterval(before: Date(), after: meeting.appointmentTime.toDate())
         self.name = meeting.nickName
         self.untact = meeting.untact == "true" ? true : false
         self.toReview = false
+        self.homeVM = homeVM
     }
     
     var body: some View {
         ZStack {
-            NavigationLink(destination: ReviewPostingView(meeting: meeting), isActive: $toReview) { EmptyView() }
+            NavigationLink(destination: ReviewPostingView(meeting: meeting, didSuccess: $homeVM.didChanged), isActive: $toReview) { EmptyView() }
             VStack(alignment: .leading, spacing: 16) {
                 topView
                 mentorInfo
@@ -109,7 +113,7 @@ struct MeetingCard: View {
     private var dateInfo: some View {
         VStack(alignment: .leading, spacing: 2) {
             Text(DateManager.shared.dateAsString(date: meeting.appointmentTime.toDate()))
-            Text(untact ? "온라인" : meeting.location)
+            Text(meeting.location == "null" ? "장소 정보 없음" : meeting.location)
         }
         .font(FontManager.font(size: 13, weight: .semibold))
         .padding(.leading, 18)

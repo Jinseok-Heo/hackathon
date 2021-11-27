@@ -84,7 +84,7 @@ extension BasicInfoViewModel {
     
     private func checkForm() -> Bool {
         guard nickName != "" else {
-            generateAlert(message: "이름을 입력해주세요")
+            generateAlert(message: "닉네임을 입력해주세요")
             return false
         }
         guard password == verifiedPassword else {
