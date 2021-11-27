@@ -11,7 +11,11 @@ struct ImagePicker: UIViewControllerRepresentable {
     // MARK: - VARIABLES
     // Binding
     @Binding
-    var selectedImage: UIImage
+    var selectedImage: UIImage?
+    
+    public init(selectedImage: Binding<UIImage?>) {
+        self._selectedImage = selectedImage
+    }
     
     // Environment
     @Environment(\.presentationMode)

@@ -45,15 +45,20 @@ struct MyPageView: View {
     @StateObject
     var myPageVM: MyPageViewModel = MyPageViewModel()
     
+    @EnvironmentObject
+    var homeVM: HomeViewModel
+    
     @State
     var mentoAuth: Bool = false
+    @State
+    var emailAuth: Bool = false
     
     var body: some View {
         ZStack {
             VStack {
                 NavigationLink(destination: LoginView(), isActive: $myPageVM.didLogout) { EmptyView() }
                 NavigationLink(destination: MentoAuthView(), isActive: $mentoAuth) { EmptyView() }
-                NavigationLink(destination: EmailAuthView(), isActive: $mentoAuth) { EmptyView() }
+                NavigationLink(destination: EmailAuthView(homeVM: homeVM), isActive: $emailAuth) { EmptyView() }
                 
                 logoutButton
                 mentoRegisterButton
@@ -91,9 +96,9 @@ extension MyPageView {
     @ViewBuilder private var mentoRegisterButton: some View {
         if myPageVM.isVerified {
             Button {
-                mentoAuth = true
+                emailAuth = true
             } label: {
-                Text("이메일 인증하기")
+                Text("이메일 재인증하기")
                     .font(FontManager.font(size: 30, weight: .extrabold))
                     .foregroundColor(.white)
                     .padding([.top, .bottom], 10)
@@ -103,7 +108,7 @@ extension MyPageView {
             Button {
                 mentoAuth = true
             } label: {
-                Text("멘토링 등록하기")
+                Text("멘토 등록")
                     .font(FontManager.font(size: 30, weight: .extrabold))
                     .foregroundColor(.white)
                     .padding([.top, .bottom], 10)
@@ -112,9 +117,9 @@ extension MyPageView {
             }
         } else {
             Button {
-                mentoAuth = true
+                emailAuth = true
             } label: {
-                Text("이메일 재인증")
+                Text("이메일 인증")
                     .font(FontManager.font(size: 30, weight: .extrabold))
                     .foregroundColor(.white)
                     .padding([.top, .bottom], 10)
@@ -124,7 +129,7 @@ extension MyPageView {
             Button {
                 mentoAuth = true
             } label: {
-                Text("멘토링 등록")
+                Text("멘토 등록")
                     .font(FontManager.font(size: 30, weight: .extrabold))
                     .foregroundColor(.white)
                     .padding([.top, .bottom], 10)

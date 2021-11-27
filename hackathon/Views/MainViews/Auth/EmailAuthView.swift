@@ -7,123 +7,72 @@
 
 import SwiftUI
 
-class EmailAuthViewModel: ObservableObject {
-    
-    @Published
-    var email: String
-    @Published
-    var authCode: String
-    @Published
-    var didAuthSuccess: Bool
-    @Published
-    var showEmailAuth: Bool
-    
-    @Published
-    var isLoading: Bool
-    @Published
-    var showAlert: Bool
-    @Published
-    var alertTitle: String
-    @Published
-    var alertMsg: String
-    
-    public init() {
-        self.email = ""
-        self.authCode = ""
-        self.didAuthSuccess = false
-        self.showEmailAuth = false
-        self.isLoading = false
-        self.showAlert = false
-        self.alertMsg = ""
-        self.alertTitle = ""
-    }
-    
-    public func emailAuthenticate() {
-        guard email != "" && checkEmail() else {
-            generageAlert(message: "이메일을 올바르게 입력해주세요.")
-            return
-        }
-        isLoading = true
-        MentoAPIService.sendEmail(email: email) { [weak self] response in
-            guard let self = self else { return }
-            self.isLoading = false
-            switch response.result {
-            case .success:
-                self.showEmailAuth = true
-                self.generageAlert(message: "인증코드가 발송되었습니다.")
-            case .failure(let error):
-                NSLog(error.localizedDescription)
-                self.generageAlert(message: "이메일 발송 실패")
-            }
-        }
-    }
-    
-    public func submitPasscode() {
-        isLoading = true
-        MentoAPIService.authenticate(passcode: authCode) { [weak self] response in
-            guard let self = self else { return }
-            self.isLoading = false
-            switch response.result {
-            case .success:
-                self.showEmailAuth = false
-                self.didAuthSuccess = true
-            case .failure(let error):
-                if let statusCode = response.response?.statusCode {
-                    if statusCode >= 400 && statusCode < 500 {
-                        self.generageAlert(message: "인증코드를 확인해주세요")
-                    } else {
-                        self.generageAlert(message: "네트워크 연결을 확인해주세요")
-                    }
-                } else {
-                    self.generageAlert(message: "네트워크 연결을 확인해주세요")
-                }
-                NSLog(error.localizedDescription)
-            }
-        }
-    }
-    
-    private func checkEmail() -> Bool {
-        let regex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", regex)
-        return emailPredicate.evaluate(with: email)
-    }
-    
-    private func generageAlert(message: String) {
-        if didAuthSuccess {
-            alertTitle = "이메일 발송"
-        } else {
-            alertTitle = "이메일 발송 오류"
-        }
-        alertMsg = message
-        showAlert = true
-    }
-    
-}
-
 struct EmailAuthView: View {
+    
+    @Environment(\.presentationMode)
+    var presentationMode
     
     @StateObject
     var emailAuthVM: EmailAuthViewModel = EmailAuthViewModel()
     
+    @ObservedObject
+    var homeVM: HomeViewModel
+    
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            titleView
-                .padding(.top, 50)
-                .padding(.bottom, 26)
-            VStack(alignment: .leading, spacing: 20) {
-                emailField
-                emailAuthField
-                if emailAuthVM.didAuthSuccess {
-                    authHelperText
-                }
+        ZStack {
+            VStack(alignment: .leading, spacing: 0) {
+                headerView
+                titleView
+                    .padding(.top, 50)
+                    .padding(.bottom, 26)
                 Spacer()
+                VStack(alignment: .leading, spacing: 20) {
+                    emailField
+                    emailAuthField
+                    Spacer()
+                }
             }
+            if emailAuthVM.isLoading {
+                ProgressView("Loading...")
+                    .progressViewStyle(.circular)
+            }
+        }
+        .navigationBarHidden(true)
+        .padding([.leading, .trailing], 22)
+        .alert(isPresented: $emailAuthVM.showAlert) {
+            Alert(title: Text(emailAuthVM.alertTitle),
+                  message: Text(emailAuthVM.alertMsg),
+                  dismissButton: .default(Text("확인")))
+        }
+        .alert(isPresented: $emailAuthVM.didAuthSuccess) {
+            Alert(title: Text(emailAuthVM.alertTitle),
+                  message: Text(emailAuthVM.alertMsg),
+                  dismissButton: .default(Text("확인")) {
+                self.homeVM.getUserProfile()
+                self.presentationMode.wrappedValue.dismiss()
+            })
         }
     }
     
 }
 
 extension EmailAuthView {
+    
+    private var headerView: some View {
+        Button {
+            presentationMode.wrappedValue.dismiss()
+        } label: {
+            HStack {
+                Image(systemName: "chevron.backward")
+                    .resizable()
+                    .frame(width: 10, height: 17)
+                Text("돌아가기")
+                    .font(FontManager.font(size: 15, weight: .medium))
+                    .offset(y: 2)
+            }
+            .foregroundColor(Color(hex: "#191919"))
+        }
+    }
     
     private var titleView: some View {
         Text("이메일 인증하기")
@@ -154,7 +103,7 @@ extension EmailAuthView {
                     .keyboardType(.numberPad)
                     .font(FontManager.font(size: 15, weight: .medium))
                     .foregroundColor(Color(hex: "#191919"))
-                    .padding(8)
+                    .padding(14)
                     .background(RoundedRectangle(cornerRadius: 4).foregroundColor(Color(hex: "#CECECE").opacity(0.3)))
                 Button {
                     emailAuthVM.submitPasscode()
@@ -168,12 +117,6 @@ extension EmailAuthView {
                 }
             }
         }
-    }
-    
-    private var authHelperText: some View {
-        Text("이메일 인증 완료 ✅")
-            .font(FontManager.font(size: 13, weight: .semibold))
-            .foregroundColor(Color(hex: "#191919"))
     }
     
 }

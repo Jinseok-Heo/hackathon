@@ -22,6 +22,9 @@ class MakeAppointmentViewModel: ObservableObject {
     @Published
     var cities: [String]
     
+    @Published
+    var didSuccess: Bool
+    
     let mento: Mento
     
     public init(mento: Mento) {
@@ -30,7 +33,7 @@ class MakeAppointmentViewModel: ObservableObject {
         self.selectedProvince = DummyData.provinceList.first!
         self.cities = DummyData.localList.first!.cities
         self.mento = mento
-        
+        self.didSuccess = false
         addLocalSubscriber()
     }
     
@@ -50,10 +53,12 @@ class MakeAppointmentViewModel: ObservableObject {
         MatchingAPIService.matching(menteeId: menteeId,
                                     mentoId: mento.id,
                                     location: location, appointmentTime: selectedDate) { response in
-            if let data = response.data {
-                print(String(data: data, encoding: .utf8))
-            } else {
-                print("failed")
+            switch response.result {
+            case .success:
+                self.didSuccess = true
+                print(response.response?.allHeaderFields)
+            case .failure(let err):
+                NSLog(err.localizedDescription)
             }
         }
     }
@@ -77,6 +82,7 @@ struct MakeAppointmentView: View {
     
     var body: some View {
         VStack {
+            NavigationLink(destination: CheckView(mento: mento), isActive: $makeAppointmentVM.didSuccess) { EmptyView() }
             titleView
                 .padding(.bottom, 28)
             VStack(alignment: .leading) {

@@ -55,6 +55,7 @@ enum MentoRouter: URLRequestConvertible {
             return params
         case let .authenticate(passcode):
             var params = Parameters()
+            params["userId"] = SecurityManager.shared.load(account: .userID)
             params["code"] = passcode
             return params
         }

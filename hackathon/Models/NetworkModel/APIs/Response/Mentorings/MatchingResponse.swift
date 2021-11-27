@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct MatchingResponse: Identifiable, Codable {
     
@@ -22,24 +23,3 @@ struct MatchingResponse: Identifiable, Codable {
     }
 }
 
-struct Mento: Codable, Identifiable {
-    let id: String
-    let menteeId: String
-    let nickName: String
-    let profileImage: String
-    let content, preferredLocation: String
-    let untact: String
-    
-    enum CodingKeys: String, CodingKey {
-        case menteeId = "mentee_id"
-        case id, nickName, profileImage, content, preferredLocation, untact
-    }
-}
-
-struct Mentee: Codable {
-    let createdDateTime: Date?
-    let id: Int
-    let userName, email, password: String?
-}
-
-typealias Mentos = [Mento]

@@ -16,13 +16,16 @@ class HomeViewModel: ObservableObject {
     @Published
     var user: UserModel?
     @Published
-    var meetings: [MatchingResponse]
+    var meetings: Schedules
     @Published
-    var recommendedMentor: [MentoResponse]
+    var recommendedMentor: Recommends
     @Published
     var hotCommunities: [BoardResponse]
     @Published
     var hotPickMentroings: [PromotionResponse]
+    
+    @Published
+    var action: Int?
     
     public init() {
         self.user = nil
@@ -30,8 +33,8 @@ class HomeViewModel: ObservableObject {
         self.recommendedMentor = []
         self.hotCommunities = []
         self.hotPickMentroings = []
+        self.action = 0
         
-        getUserProfile()
         getInfo()
     }
     
@@ -58,23 +61,43 @@ class HomeViewModel: ObservableObject {
     }
     
     private func getMeetings() {
-        let userId = SecurityManager.shared.load(account: .userID)!
-        
-        self.meetings = DummyData.matching
-            .filter({ $0.menteeId == Int(userId)! })
-            .filter { $0.time > Date() }
+        HomeAPIService.getSchedule()
+            .sink { result in
+                switch result {
+                case .finished:
+                    print("scheule finished")
+                case .failure(let err):
+                    print(err.localizedDescription)
+                }
+            } receiveValue: { schedule in
+                self.meetings = schedule
+                print(self.meetings.count)
+            }
+            .store(in: &cancellables)
     }
     
     private func getRecommendedMentoes() {
-        self.recommendedMentor = DummyData.mentoes
+        HomeAPIService.getList()
+            .sink { result in
+                switch result {
+                case .finished:
+                    print("recommend finished")
+                case .failure(let err):
+                    print(err.localizedDescription)
+                }
+            } receiveValue: { recommend in
+                self.recommendedMentor = recommend
+                print(recommend.count)
+            }
+            .store(in: &cancellables)
     }
     
     private func getHotCommunities() {
         self.hotCommunities = DummyData.hotCommunities
     }
     
-    private func getHotPickMentorings() {
-        self.hotPickMentroings = DummyData.promotion
-    }
+//    private func getHotPickMentorings() {
+//        self.hotPickMentroings = DummyData.promotion
+//    }
     
 }

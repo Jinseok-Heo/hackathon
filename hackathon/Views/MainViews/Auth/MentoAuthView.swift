@@ -45,7 +45,6 @@ struct MentoAuthView: View {
                 Spacer()
                 registerButton
                     .padding(.bottom)
-                skipButton
             }
             if mentoAuthVM.isLoading {
                 ProgressView("Loading...")
@@ -90,19 +89,6 @@ extension MentoAuthView {
             mentoAuthVM.register()
         } label: {
             Text("등록하기")
-                .font(FontManager.font(size: 16, weight: .bold))
-                .foregroundColor(.white)
-                .frame(maxWidth: .infinity)
-                .padding([.top, .bottom], 13)
-                .background(RoundedRectangle(cornerRadius: 4).foregroundColor(Color("secondColor")))
-        }
-    }
-    
-    private var skipButton: some View {
-        Button {
-            mentoAuthVM.didSuccess = true
-        } label: {
-            Text("건너뛰기")
                 .font(FontManager.font(size: 16, weight: .bold))
                 .foregroundColor(.white)
                 .frame(maxWidth: .infinity)

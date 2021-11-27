@@ -33,6 +33,8 @@ class AdditionalInfoViewModel: ObservableObject {
     var isSchoolListPresented: Bool
     @Published
     var isMajorListPresented: Bool
+    @Published
+    var isStudent: Bool
     
     @Published
     var showAlert: Bool
@@ -73,6 +75,7 @@ class AdditionalInfoViewModel: ObservableObject {
         self.password = password
         self.gender = gender
         self.birth = birth
+        self.isStudent = true
         
         self.school = ""
         self.major = ""
@@ -188,6 +191,7 @@ extension AdditionalInfoViewModel {
             return
         }
         if let headerFields = response.response?.allHeaderFields {
+            print(headerFields)
             guard let accessToken = headerFields["verify-token"] as? String else {
                 NSLog("ViewModels/Auth/LoginViewModel/tryLogin Convert Error: Can't convert accessToken to string")
                 self.generateAlert(message: "토큰을 가져올 수 없습니다. 고객센터에 문의하세요")

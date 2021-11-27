@@ -13,13 +13,10 @@ class RoomViewModel: ObservableObject {
     var chatMsg: String
     @Published
     var toAppointment: Bool
-    @Published
-    var toReview: Bool
     
     init(mento: Mento?) {
         self.chatMsg = ""
         self.toAppointment = false
-        self.toReview = false
     }
     
 }
@@ -43,7 +40,6 @@ struct RoomView: View {
         VStack {
             if let mento = mento {
                 NavigationLink(destination: MakeAppointmentView(mento: mento), isActive: $roomVM.toAppointment) { EmptyView() }
-                NavigationLink(destination: ReviewPostingView(), isActive: $roomVM.toReview) { EmptyView() }
             }
             titleView
             Spacer()
@@ -83,14 +79,6 @@ extension RoomView {
                             roomVM.toAppointment = true
                         } label: {
                             Text("약속 정하기")
-                                .foregroundColor(Color(hex: "191919"))
-                                .font(FontManager.font(size: 17, weight: .semibold))
-                        }
-                        .frame(width: 80)
-                        Button {
-                            roomVM.toReview = true
-                        } label: {
-                            Text("리뷰 작성하기")
                                 .foregroundColor(Color(hex: "191919"))
                                 .font(FontManager.font(size: 17, weight: .semibold))
                         }

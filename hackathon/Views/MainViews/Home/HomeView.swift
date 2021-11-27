@@ -9,13 +9,14 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @StateObject
-    var homeVM: HomeViewModel = HomeViewModel()
+    @EnvironmentObject
+    var homeVM: HomeViewModel
     
     private var radius: CGFloat = 83
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
+            NavigationLink(destination: EmailAuthView(homeVM: homeVM), tag: 1, selection: $homeVM.action) { EmptyView() }
             ZStack(alignment: .top) {
                 background
                 VStack(alignment: .leading, spacing: 0) {
@@ -23,7 +24,7 @@ struct HomeView: View {
                         .padding(.leading, 22)
                         .padding(.bottom, 29)
                     divider
-                    MentorRecommendView()
+                    MentoRecommendView()
                         .padding(.leading, 22)
                         .padding([.top, .bottom], 32)
                     divider
@@ -38,7 +39,6 @@ struct HomeView: View {
                 }
             }
         }
-        .environmentObject(homeVM)
         .navigationBarHidden(true)
         .edgesIgnoringSafeArea(.top)
     }

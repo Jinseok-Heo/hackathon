@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct MyTabView: View {
+    
+    @StateObject
+    var homeVM: HomeViewModel = HomeViewModel()
+    
     @State
     var selection: TabBarItem = .home
     
@@ -24,7 +28,9 @@ struct MyTabView: View {
             MyPageView()
                 .tabBarItem(tab: .myPage, selection: $selection)
         }
+        .environmentObject(homeVM)
     }
+    
 }
 
 struct MyTabView_Previews: PreviewProvider {

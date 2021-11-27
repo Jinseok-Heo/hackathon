@@ -16,12 +16,14 @@ extension CharacterSet{
 }
 
 extension String {
+    
     func toImage() -> UIImage? {
         if let data = Data(base64Encoded: self, options: .ignoreUnknownCharacters) {
             return UIImage(data: data)
         }
         return nil
     }
+    
 }
 
 extension String {
@@ -41,6 +43,16 @@ extension String {
         let start = self.index(startIndex, offsetBy: from)
         let end = self.index(startIndex, offsetBy: to + 1)
         return String(self[start..<end])
+    }
+    
+}
+
+extension String {
+    
+    func toDate() -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.S"
+        return dateFormatter.date(from: self)!
     }
     
 }

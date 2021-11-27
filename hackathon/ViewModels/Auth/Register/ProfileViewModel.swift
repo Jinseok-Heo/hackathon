@@ -11,7 +11,7 @@ import Alamofire
 class ProfileViewModel: ObservableObject {
     
     @Published
-    var image: UIImage
+    var image: UIImage?
     @Published
     var isLoading: Bool
     @Published
@@ -24,7 +24,7 @@ class ProfileViewModel: ObservableObject {
     var alertMsg: String
     
     public init() {
-        self.image = UIImage(named: "userPlaceholder")!
+        self.image = nil
         self.isLoading = false
         self.isFailed = false
         self.didSuccess = false
@@ -33,8 +33,11 @@ class ProfileViewModel: ObservableObject {
     }
     
     public func upload() {
+        var encodedData = UIImage(systemName: "person.fill")!.jpegData(compressionQuality: 0.3)!
         isLoading = true
-        let encodedData = self.image.jpegData(compressionQuality: 0.3)!
+        if let image = image {
+            encodedData = image.jpegData(compressionQuality: 0.3)!
+        }
         ImageAPIService.upload(image: encodedData,
                                userId: SecurityManager.shared.load(account: .userID)!,
                                completion: imageUploadCompletionHandler)

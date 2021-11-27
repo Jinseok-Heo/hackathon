@@ -18,13 +18,12 @@ struct ProfileView: View {
     
     var body: some View {
         ZStack {
-            NavigationLink(destination: MentoAuthView(), isActive: $profileVM.didSuccess) { EmptyView() }
+            NavigationLink(destination: MyTabView(), isActive: $profileVM.didSuccess) { EmptyView() }
             VStack {
                 titleView
                     .padding(.top, 62)
                     .padding(.bottom, 30)
                 profileImage
-                
                 Spacer()
                 saveButton
                 skipButton
@@ -51,22 +50,30 @@ extension ProfileView {
     
     private var titleView: some View {
         Text("프로필 이미지를 선택해주세요")
-            .font(FontManager.font(size: 26, weight: .bold))
-            .foregroundColor(Color(hex: "#CECECE"))
+            .font(FontManager.font(size: 24, weight: .bold))
+            .foregroundColor(Color(hex: "#191919"))
     }
     
     private var profileImage: some View {
         VStack(spacing: 20) {
-            Image(uiImage: profileVM.image)
-                .resizable()
-                .frame(width: 240, height: 240)
-                .clipShape(Circle())
-                .foregroundColor(Color(hex: "#555555"))
-                .shadow(color: Color(hex: "#555555").opacity(0.3), radius: 5, x: 5, y: 5)
-                .shadow(color: Color(hex: "#555555").opacity(0.3), radius: 5, x: -5, y: -5)
+            
+            if let image = profileVM.image {
+                Image(uiImage: image)
+                    .resizable()
+                    .frame(width: 200, height: 200)
+                    .clipShape(Circle())
+                    .foregroundColor(Color(hex: "#555555"))
+                    .shadow(color: Color(hex: "#555555").opacity(0.3), radius: 5, x: 5, y: 5)
+                    .shadow(color: Color(hex: "#555555").opacity(0.3), radius: 5, x: -5, y: -5)
+            } else {
+                Image(systemName: "person.circle")
+                    .resizable()
+                    .frame(width: 200, height: 200)
+                    .foregroundColor(Color(hex: "#555555"))
+            }
             Text("탭해서 사진 바꾸기")
                 .font(FontManager.font(size: 20, weight: .semibold))
-                .foregroundColor(Color(hex: "#CECECE"))
+                .foregroundColor(Color(hex: "#191919"))
         }
         .onTapGesture {
             pickerPresented = true

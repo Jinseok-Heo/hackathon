@@ -12,6 +12,8 @@ struct hackathonApp: App {
     
     let verifiedToken: String? = SecurityManager.shared.load(account: .accessToken)
     
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
     var body: some Scene {
         WindowGroup {
 //            NavigationView {
@@ -29,6 +31,9 @@ struct hackathonApp: App {
                 }
             }
 //            NavigationView {
+//                ProfileView()
+//            }
+//            NavigationView {
 //                ReviewPostingView()
 //            }
 //            NavigationView {
@@ -38,6 +43,15 @@ struct hackathonApp: App {
 //                MentinkerView()
 //            }
         }
+    }
+    
+}
+
+class AppDelegate: UIResponder, UIApplicationDelegate {
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        Thread.sleep(forTimeInterval: 1.0) // 런치스크린 표시 시간 1초 강제 지연
+        return true
     }
     
 }

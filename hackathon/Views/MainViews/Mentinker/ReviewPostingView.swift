@@ -10,17 +10,29 @@ import SwiftUI
 class ReviewPostingViewModel: ObservableObject {
     
     @Published
-    var matchingId: String
+    var meeting: Schedule
     
     @Published
     var rating: Int
     @Published
     var content: String
     
-    public init() {
-        self.matchingId = "1"
+    public init(meeting: Schedule) {
+
         self.rating = 0
         self.content = ""
+        self.meeting = meeting
+    }
+    
+    public func post() {
+        MatchingAPIService.postReview(rating: rating, matchingId: "2", mentoId: "1", content: content) { response in
+            switch response.result {
+            case .success:
+                print("review post success")
+            case .failure(let error):
+                print("review post failed")
+            }
+        }
     }
     
 }
@@ -31,7 +43,14 @@ struct ReviewPostingView: View {
     var presentationMode
     
     @StateObject
-    var reviewPostingVM: ReviewPostingViewModel = ReviewPostingViewModel()
+    var reviewPostingVM: ReviewPostingViewModel
+    
+    let meeting: Schedule
+    
+    init(meeting: Schedule) {
+        self.meeting = meeting
+        self._reviewPostingVM = StateObject(wrappedValue: ReviewPostingViewModel(meeting: meeting))
+    }
     
     var body: some View {
         VStack {
@@ -79,9 +98,10 @@ extension ReviewPostingView {
     }
     
     private var profileView: some View {
-        Circle()
-            .foregroundColor(.gray)
+        Image(uiImage: meeting.profileImage.toImage()!)
+            .resizable()
             .frame(width: 130, height: 130)
+            .clipShape(Circle())
     }
     
     private var ratingSelectionField: some View {

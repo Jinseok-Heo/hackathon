@@ -9,25 +9,16 @@ import SwiftUI
 
 struct MentoCard: View {
     
-    var name: String
-    var rating: Double
-    var job: String
-    var years: Int
-    
-    public init(name: String, rating: Double, job: String, years: Int) {
-        self.name = name
-        self.rating = rating
-        self.job = job
-        self.years = years
-    }
-    
+    let recommendedMento: Recommend
+
     var body: some View {
         VStack(spacing: 0) {
-            Circle()
-                .foregroundColor(.gray)
+            Image(uiImage: recommendedMento.profileImage.toImage() ?? UIImage(named: "userPlaceholder")!)
+                .resizable()
                 .frame(width: 70, height: 70)
+                .clipShape(Circle())
                 .padding(.top, 10)
-            Text(name)
+            Text(recommendedMento.nickName)
                 .font(FontManager.font(size: 14, weight: .bold))
                 .foregroundColor(Color(hex: "#111111"))
                 .padding(.top, 6)
@@ -36,14 +27,14 @@ struct MentoCard: View {
                     .resizable()
                     .frame(width: 10, height: 10)
                     .foregroundColor(Color("mainColor"))
-                Text(String(format: "%.1f", rating))
+                Text(String(format: "%.1f", recommendedMento.rating))
                     .foregroundColor(.black)
                     .font(FontManager.font(size: 11, weight: .semibold))
             }
             .padding(.top, 3)
-            Text(job)
+            Text(recommendedMento.year)
                 .padding(.top, 5)
-            Text(String(format: "%d년차", years))
+            Text(String(format: "%d년차", recommendedMento.year))
             Spacer()
         }
         .frame(width: 110, height: 164)

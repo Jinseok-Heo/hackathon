@@ -11,27 +11,48 @@ struct MeetingCard: View {
     
     private var roundedCorners: UIRectCorner = [.bottomLeft, .bottomRight, .topRight]
     
+    private let meeting: Schedule
+    
     private var name: String
-    private var comment: String
     private var untact: Bool
     private var time: String
     
-    public init(meeting: MatchingResponse) {
-        self.time = DateManager.shared.dateDayInterval(before: Date(), after: meeting.time)
-        self.name = DummyData.profiles.filter({ $0.userId == meeting.mentorId }).first!.nickName
-        self.comment = DummyData.promotion.filter({ $0.mentoId == meeting.mentorId }).first!.description
-        self.untact = meeting.untact
+    @State
+    var toReview: Bool
+    
+    var year: String {
+        if meeting.year == "0" {
+            return "신입"
+        } else {
+            return "\(meeting.year)년차"
+        }
+    }
+    
+    var jobInfo: String {
+        return "\(meeting.company) \(meeting.job) \(year)"
+    }
+    
+    public init(meeting: Schedule) {
+        self.meeting = meeting
+        self.time = DateManager.shared.dateDayInterval(before: Date(), after: meeting.appointmentTime.toDate())
+        self.name = meeting.nickName
+        self.untact = meeting.untact == "true" ? true : false
+        self.toReview = false
     }
     
     var body: some View {
         ZStack {
+            NavigationLink(destination: ReviewPostingView(meeting: meeting), isActive: $toReview) { EmptyView() }
             VStack(alignment: .leading, spacing: 16) {
                 topView
                 mentorInfo
-                mentorComments
-                    .padding(.top, 4)
                 divider
-                dateInfo
+                if meeting.appointmentTime.toDate() > Date() {
+                    dateInfo
+                } else {
+                    reviewField
+                }
+                divider
                 Spacer()
             }
         }
@@ -44,10 +65,10 @@ struct MeetingCard: View {
         HStack {
             Rectangle()
                 .cornerRadius(16, corners: roundedCorners)
-                .foregroundColor(Color(untact ? "secondColor" : "mainColor"))
+                .foregroundColor(Color(untact ? "mainColor" : "secondColor"))
                 .frame(width: 114, height: 30)
                 .overlay(
-                    Text((untact ? "오프라인 ・ " : "온라인 ・ ") + time)
+                    Text((untact ? "온라인 ・ " : "오프라인 ・ ") + time)
                         .font(FontManager.font(size: 14, weight: .bold))
                         .foregroundColor(untact ? Color(hex: "#1D1D1D") : .white)
                 )
@@ -57,9 +78,10 @@ struct MeetingCard: View {
     
     private var mentorInfo: some View {
         HStack(spacing: 6) {
-            Circle()
+            Image(uiImage: meeting.profileImage.toImage()!)
+                .resizable()
                 .frame(width: 40, height: 40)
-                .foregroundColor(.gray)
+                .clipShape(Circle())
                 .padding(.leading, 18)
             VStack(alignment: .leading) {
                 HStack(spacing: 2) {
@@ -69,22 +91,12 @@ struct MeetingCard: View {
                         .font(FontManager.font(size: 13, weight: .bold))
                         .foregroundColor(Color(hex: "#555555"))
                 }
-                Text("금융사 마케터 2년차")
+                Text(jobInfo)
                     .font(Font.custom("AppleSDGothicNeo-Medium", size: 11))
                     .foregroundColor(Color(hex: "#555555"))
             }
             Spacer()
         }
-    }
-    
-    private var mentorComments: some View {
-        HStack {
-            Text(comment)
-                .foregroundColor(Color(hex: "#191919"))
-                .font(FontManager.font(size: 15, weight: .bold))
-        }
-        .frame(maxWidth: 160, alignment: .leading)
-        .padding(.leading, 18)
     }
     
     private var divider: some View {
@@ -96,12 +108,27 @@ struct MeetingCard: View {
     
     private var dateInfo: some View {
         VStack(alignment: .leading, spacing: 2) {
-            Text("2021.10.21 수요일")
-            Text("오후 4시 20분(3시간)")
-            Text(untact ? "추후 알림" : "자바커피 교대점")
+            Text(DateManager.shared.dateAsString(date: meeting.appointmentTime.toDate()))
+            Text(untact ? "온라인" : meeting.location)
         }
         .font(FontManager.font(size: 13, weight: .semibold))
         .padding(.leading, 18)
-        .foregroundColor(Color(hex: "#555555"))
+        .foregroundColor(Color(hex: "#191919"))
     }
+    
+    private var reviewField: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("멘토링은 어떠셨나요?")
+                .font(FontManager.font(size: 16, weight: .semibold))
+            Button {
+                toReview = true
+            } label: {
+                Text("후기작성 바로가기 >")
+            }
+        }
+        .font(FontManager.font(size: 14, weight: .semibold))
+        .padding(.leading, 18)
+        .foregroundColor(Color(hex: "#191919"))
+    }
+    
 }

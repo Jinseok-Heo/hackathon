@@ -18,6 +18,8 @@ class MentinkerViewModel: ObservableObject {
     
     @Published
     var selectedItem: Mento?
+    @Published
+    var showDetail: Bool
     
     @Published
     var action: Int?
@@ -37,6 +39,7 @@ class MentinkerViewModel: ObservableObject {
         self.alertMsg = ""
         self.showAlert = false
         self.selectedItem = nil
+        self.showDetail = false
         self.action = 0
         
         getMentoList()

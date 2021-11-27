@@ -44,7 +44,6 @@
 		351B035B274356F900EAEB6E /* PromotionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351B035A274356F900EAEB6E /* PromotionResponse.swift */; };
 		351B035D2743576B00EAEB6E /* BoardResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351B035C2743576B00EAEB6E /* BoardResponse.swift */; };
 		351B035F274357DC00EAEB6E /* CommentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351B035E274357DC00EAEB6E /* CommentResponse.swift */; };
-		351B03632743795100EAEB6E /* MentoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351B03622743795100EAEB6E /* MentoResponse.swift */; };
 		351B03672743ADF800EAEB6E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351B03662743ADF800EAEB6E /* LoginView.swift */; };
 		351B0371274494D700EAEB6E /* CustomTabViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351B0370274494D700EAEB6E /* CustomTabViewItem.swift */; };
 		351B0373274494EA00EAEB6E /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351B0372274494EA00EAEB6E /* CustomTabView.swift */; };
@@ -68,10 +67,20 @@
 		354C40A927414087004C5AD7 /* MoreRectangleBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C40A827414087004C5AD7 /* MoreRectangleBar.swift */; };
 		354C40AA27414087004C5AD7 /* MoreRectangleBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C40A827414087004C5AD7 /* MoreRectangleBar.swift */; };
 		354C40AB27414087004C5AD7 /* MoreRectangleBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C40A827414087004C5AD7 /* MoreRectangleBar.swift */; };
+		3558FB9D2751170F0056BACF /* EmailAuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3558FB9C2751170F0056BACF /* EmailAuthViewModel.swift */; };
+		35A8396A2751BC9300E06E6C /* MentinkerCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A839692751BC9300E06E6C /* MentinkerCardView.swift */; };
+		35A8396C2751BCAD00E06E6C /* MentinkerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A8396B2751BCAD00E06E6C /* MentinkerDetailView.swift */; };
+		35A8396E2751E0BF00E06E6C /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A8396D2751E0BF00E06E6C /* HomeRouter.swift */; };
+		35A839702751E19E00E06E6C /* HomeAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A8396F2751E19E00E06E6C /* HomeAPIService.swift */; };
+		35A839722751ED1E00E06E6C /* MentoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A839712751ED1E00E06E6C /* MentoResponse.swift */; };
+		35A839752751ED6A00E06E6C /* RecommendReponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A839742751ED6A00E06E6C /* RecommendReponse.swift */; };
+		35A839772751ED7F00E06E6C /* ScheduleResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A839762751ED7F00E06E6C /* ScheduleResponse.swift */; };
 		35AF93FA27505BFD0096E7B3 /* MakeAppointmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AF93F927505BFD0096E7B3 /* MakeAppointmentView.swift */; };
 		35AF93FC275066390096E7B3 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AF93FB275066390096E7B3 /* DateExtension.swift */; };
 		35AF93FE2750782C0096E7B3 /* ReviewPostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AF93FD2750782C0096E7B3 /* ReviewPostingView.swift */; };
-		35B2F5482741EFB600AA5F04 /* MentorRecommendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B2F5472741EFB600AA5F04 /* MentorRecommendView.swift */; };
+		35AF940027509E560096E7B3 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35AF93FF27509E560096E7B3 /* Launch Screen.storyboard */; };
+		35AF94022750C84E0096E7B3 /* CheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AF94012750C84E0096E7B3 /* CheckView.swift */; };
+		35B2F5482741EFB600AA5F04 /* MentoRecommendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B2F5472741EFB600AA5F04 /* MentoRecommendView.swift */; };
 		35B2F54A2741EFE100AA5F04 /* HotCommunityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B2F5492741EFE100AA5F04 /* HotCommunityView.swift */; };
 		35B2F54C2741F00800AA5F04 /* CommunityCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B2F54B2741F00800AA5F04 /* CommunityCard.swift */; };
 		35B8086D274C609B001AD9FC /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B8086C274C609B001AD9FC /* ProfileView.swift */; };
@@ -162,7 +171,6 @@
 		351B035A274356F900EAEB6E /* PromotionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionResponse.swift; sourceTree = "<group>"; };
 		351B035C2743576B00EAEB6E /* BoardResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardResponse.swift; sourceTree = "<group>"; };
 		351B035E274357DC00EAEB6E /* CommentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentResponse.swift; sourceTree = "<group>"; };
-		351B03622743795100EAEB6E /* MentoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentoResponse.swift; sourceTree = "<group>"; };
 		351B03662743ADF800EAEB6E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		351B0370274494D700EAEB6E /* CustomTabViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabViewItem.swift; sourceTree = "<group>"; };
 		351B0372274494EA00EAEB6E /* CustomTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabView.swift; sourceTree = "<group>"; };
@@ -183,10 +191,20 @@
 		354C409E27412700004C5AD7 /* MeetingCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingCard.swift; sourceTree = "<group>"; };
 		354C40A427414068004C5AD7 /* MentoCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentoCard.swift; sourceTree = "<group>"; };
 		354C40A827414087004C5AD7 /* MoreRectangleBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreRectangleBar.swift; sourceTree = "<group>"; };
+		3558FB9C2751170F0056BACF /* EmailAuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAuthViewModel.swift; sourceTree = "<group>"; };
+		35A839692751BC9300E06E6C /* MentinkerCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentinkerCardView.swift; sourceTree = "<group>"; };
+		35A8396B2751BCAD00E06E6C /* MentinkerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentinkerDetailView.swift; sourceTree = "<group>"; };
+		35A8396D2751E0BF00E06E6C /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
+		35A8396F2751E19E00E06E6C /* HomeAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAPIService.swift; sourceTree = "<group>"; };
+		35A839712751ED1E00E06E6C /* MentoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentoResponse.swift; sourceTree = "<group>"; };
+		35A839742751ED6A00E06E6C /* RecommendReponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendReponse.swift; sourceTree = "<group>"; };
+		35A839762751ED7F00E06E6C /* ScheduleResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleResponse.swift; sourceTree = "<group>"; };
 		35AF93F927505BFD0096E7B3 /* MakeAppointmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeAppointmentView.swift; sourceTree = "<group>"; };
 		35AF93FB275066390096E7B3 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		35AF93FD2750782C0096E7B3 /* ReviewPostingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPostingView.swift; sourceTree = "<group>"; };
-		35B2F5472741EFB600AA5F04 /* MentorRecommendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorRecommendView.swift; sourceTree = "<group>"; };
+		35AF93FF27509E560096E7B3 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		35AF94012750C84E0096E7B3 /* CheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckView.swift; sourceTree = "<group>"; };
+		35B2F5472741EFB600AA5F04 /* MentoRecommendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentoRecommendView.swift; sourceTree = "<group>"; };
 		35B2F5492741EFE100AA5F04 /* HotCommunityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotCommunityView.swift; sourceTree = "<group>"; };
 		35B2F54B2741F00800AA5F04 /* CommunityCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCard.swift; sourceTree = "<group>"; };
 		35B8086C274C609B001AD9FC /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -285,6 +303,7 @@
 			isa = PBXGroup;
 			children = (
 				350E13DC2740BF9900645685 /* hackathonApp.swift */,
+				35AF93FF27509E560096E7B3 /* Launch Screen.storyboard */,
 				35E5CE512740DB4A0075E019 /* Info.plist */,
 				35C9305427490AA80012D14A /* Data */,
 				35E5CE6E27410AE00075E019 /* Assets */,
@@ -387,6 +406,7 @@
 		351B032C2743510B00EAEB6E /* Response */ = {
 			isa = PBXGroup;
 			children = (
+				35A839732751ED6100E06E6C /* Home */,
 				351B032D2743510B00EAEB6E /* Mentorings */,
 				351B032E2743510B00EAEB6E /* Auth */,
 				351B03332743510B00EAEB6E /* Utils */,
@@ -399,6 +419,7 @@
 			isa = PBXGroup;
 			children = (
 				351B03542743528E00EAEB6E /* MatchingResponse.swift */,
+				35A839712751ED1E00E06E6C /* MentoResponse.swift */,
 				351B0356274352FE00EAEB6E /* ReviewsResponse.swift */,
 				351B035A274356F900EAEB6E /* PromotionResponse.swift */,
 			);
@@ -411,7 +432,6 @@
 				351B03302743510B00EAEB6E /* UserModel.swift */,
 				351B03312743510B00EAEB6E /* AuthResponse.swift */,
 				351B03322743510B00EAEB6E /* ProfileResponse.swift */,
-				351B03622743795100EAEB6E /* MentoResponse.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -443,6 +463,7 @@
 				35C05788274DE152002628B3 /* MentoAPIService.swift */,
 				3535A5DB274FB62B00A6637E /* MatchingAPIService.swift */,
 				35B80872274C6943001AD9FC /* ImageAPIService.swift */,
+				35A8396F2751E19E00E06E6C /* HomeAPIService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -461,6 +482,7 @@
 				351B033F2743510B00EAEB6E /* AuthRouter.swift */,
 				35C0578A274DE211002628B3 /* MentoRouter.swift */,
 				3535A5D9274FB3A700A6637E /* MatchingRouter.swift */,
+				35A8396D2751E0BF00E06E6C /* HomeRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -499,6 +521,8 @@
 			isa = PBXGroup;
 			children = (
 				35E5CE492740D5600075E019 /* MentinkerView.swift */,
+				35A8396B2751BCAD00E06E6C /* MentinkerDetailView.swift */,
+				35A839692751BC9300E06E6C /* MentinkerCardView.swift */,
 				3535A5E4274FF90500A6637E /* ReviewDetailView.swift */,
 				35AF93FD2750782C0096E7B3 /* ReviewPostingView.swift */,
 			);
@@ -555,13 +579,22 @@
 			path = SubViews;
 			sourceTree = "<group>";
 		};
+		35A839732751ED6100E06E6C /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				35A839742751ED6A00E06E6C /* RecommendReponse.swift */,
+				35A839762751ED7F00E06E6C /* ScheduleResponse.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		35B2F5462741EF9700AA5F04 /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				350E13DE2740BF9900645685 /* HomeView.swift */,
 				351B031A274343C800EAEB6E /* HomeTopView.swift */,
 				35B2F5492741EFE100AA5F04 /* HotCommunityView.swift */,
-				35B2F5472741EFB600AA5F04 /* MentorRecommendView.swift */,
+				35B2F5472741EFB600AA5F04 /* MentoRecommendView.swift */,
 				351B03182743433B00EAEB6E /* HotPickMentoringView.swift */,
 			);
 			path = Home;
@@ -593,6 +626,7 @@
 				35E5CE452740D52D0075E019 /* ChatView.swift */,
 				3535A5E2274FDB2200A6637E /* RoomView.swift */,
 				35AF93F927505BFD0096E7B3 /* MakeAppointmentView.swift */,
+				35AF94012750C84E0096E7B3 /* CheckView.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -602,6 +636,7 @@
 			children = (
 				35C9304A27488E880012D14A /* LoginViewModel.swift */,
 				35C0578C274E014E002628B3 /* MentoAuthViewModel.swift */,
+				3558FB9C2751170F0056BACF /* EmailAuthViewModel.swift */,
 				35B8087B274C8CFF001AD9FC /* Register */,
 			);
 			path = Auth;
@@ -791,6 +826,7 @@
 				350E13E42740BF9B00645685 /* Preview Assets.xcassets in Resources */,
 				351B03072743314400EAEB6E /* Manrope-ExtraBold.ttf in Resources */,
 				35C9305927490AA80012D14A /* SchoolList.txt in Resources */,
+				35AF940027509E560096E7B3 /* Launch Screen.storyboard in Resources */,
 				35C9305A27490AA80012D14A /* MajorList.txt in Resources */,
 				350E13E12740BF9B00645685 /* Assets.xcassets in Resources */,
 				3535A5D6274F583B00A6637E /* LocalInfo.json in Resources */,
@@ -928,8 +964,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				351B03752744950900EAEB6E /* CustomTabContainerView.swift in Sources */,
-				351B03632743795100EAEB6E /* MentoResponse.swift in Sources */,
+				35A839722751ED1E00E06E6C /* MentoResponse.swift in Sources */,
 				351B03472743510B00EAEB6E /* AuthResponse.swift in Sources */,
+				35A839702751E19E00E06E6C /* HomeAPIService.swift in Sources */,
 				35B80878274C8CBA001AD9FC /* BasicInfoView.swift in Sources */,
 				35B8086F274C622B001AD9FC /* ImagePicker.swift in Sources */,
 				35BA0CB127477995009C197F /* DateManager.swift in Sources */,
@@ -942,18 +979,22 @@
 				35EBC12E274A1A7F0062EC92 /* AdvancedTextFieldView.swift in Sources */,
 				35E5CE4C2740D57F0075E019 /* MyPageView.swift in Sources */,
 				35C0578F274E2054002628B3 /* CLLocationExtension.swift in Sources */,
-				35B2F5482741EFB600AA5F04 /* MentorRecommendView.swift in Sources */,
+				35B2F5482741EFB600AA5F04 /* MentoRecommendView.swift in Sources */,
 				35C9304F27488F9B0012D14A /* FontManager.swift in Sources */,
 				35AF93FE2750782C0096E7B3 /* ReviewPostingView.swift in Sources */,
 				351B035D2743576B00EAEB6E /* BoardResponse.swift in Sources */,
+				35A839752751ED6A00E06E6C /* RecommendReponse.swift in Sources */,
 				35E5CE482740D5490075E019 /* CommunityView.swift in Sources */,
 				351B03592743566E00EAEB6E /* ImageResponse.swift in Sources */,
 				351B034F2743510B00EAEB6E /* AuthRouter.swift in Sources */,
+				35A8396A2751BC9300E06E6C /* MentinkerCardView.swift in Sources */,
 				351B035F274357DC00EAEB6E /* CommentResponse.swift in Sources */,
 				35E5CE462740D52D0075E019 /* ChatView.swift in Sources */,
 				35C05789274DE152002628B3 /* MentoAPIService.swift in Sources */,
 				354C40A527414068004C5AD7 /* MentoCard.swift in Sources */,
+				35AF94022750C84E0096E7B3 /* CheckView.swift in Sources */,
 				35E5CE4A2740D5600075E019 /* MentinkerView.swift in Sources */,
+				35A8396E2751E0BF00E06E6C /* HomeRouter.swift in Sources */,
 				350E13DF2740BF9900645685 /* HomeView.swift in Sources */,
 				351B03192743433B00EAEB6E /* HotPickMentoringView.swift in Sources */,
 				351B0353274351D200EAEB6E /* PreferredCompanyResponse.swift in Sources */,
@@ -967,6 +1008,7 @@
 				3535A5DE274FB97A00A6637E /* EmailAuthView.swift in Sources */,
 				35C05787274DDEF0002628B3 /* MentoAuthView.swift in Sources */,
 				35E5CE442740D4FE0075E019 /* MyTabView.swift in Sources */,
+				3558FB9D2751170F0056BACF /* EmailAuthViewModel.swift in Sources */,
 				351B03412743510B00EAEB6E /* RoundedCorner.swift in Sources */,
 				35B2F54A2741EFE100AA5F04 /* HotCommunityView.swift in Sources */,
 				35332C36274B9853004D8028 /* MeetingCardViewModel.swift in Sources */,
@@ -983,6 +1025,8 @@
 				351B0373274494EA00EAEB6E /* CustomTabView.swift in Sources */,
 				35AF93FA27505BFD0096E7B3 /* MakeAppointmentView.swift in Sources */,
 				35B8086D274C609B001AD9FC /* ProfileView.swift in Sources */,
+				35A8396C2751BCAD00E06E6C /* MentinkerDetailView.swift in Sources */,
+				35A839772751ED7F00E06E6C /* ScheduleResponse.swift in Sources */,
 				354C409F27412700004C5AD7 /* MeetingCard.swift in Sources */,
 				35B8087D274C8D11001AD9FC /* BasicInfoViewModel.swift in Sources */,
 				3535A5D2274F04D200A6637E /* NetworkManager.swift in Sources */,
@@ -1167,6 +1211,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"hackathon/Preview Content\"";
@@ -1175,9 +1220,15 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = hackathon/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 사용 권한";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "위치정보 권한이 필요합니다";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "사진첩 사용 권한";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
+				INFOPLIST_KEY_UIMainStoryboardFile = "Launch Screen";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1186,7 +1237,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jinseok.hackathon;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = hackathon;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1199,6 +1250,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"hackathon/Preview Content\"";
@@ -1207,9 +1259,15 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = hackathon/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 사용 권한";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "위치정보 권한이 필요합니다";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "사진첩 사용 권한";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
+				INFOPLIST_KEY_UIMainStoryboardFile = "Launch Screen";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1218,7 +1276,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jinseok.hackathon;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = hackathon;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

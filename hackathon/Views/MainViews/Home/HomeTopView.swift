@@ -18,7 +18,6 @@ struct HomeTopView: View {
                 .padding(.top, 56)
             comments
                 .padding(.top, 23)
-            Spacer().frame(minHeight: 20)
             contents
         }
     }
@@ -70,40 +69,58 @@ extension HomeTopView {
     // Top comments
     private var comments: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("\(UserModel.user?.nickName ?? "Untitled")님,")
-            HStack(spacing: 1) {
-                Text("멘토와의 약속이")
-                ZStack {
-                    Circle()
-                        .frame(width: 34, height: 34)
-                        .foregroundColor(Color("secondColor"))
-                    HStack(alignment: .bottom, spacing: 0) {
-                        Text(String(format: "%d", homeVM.meetings.count))
-                            .font(FontManager.font(size: 17, weight: .bold))
-                            .foregroundColor(Color("mainColor"))
-                        Text("건")
-                            .font(FontManager.font(size: 11, weight: .bold))
-                            .padding(.bottom, 3)
+            Text("반가워요 \(UserModel.user?.nickName ?? "Untitled") 님,")
+            if UserModel.user?.verified == true {
+                HStack(spacing: 1) {
+                    Text("멘토와의 약속이")
+                    ZStack {
+                        Circle()
+                            .frame(width: 34, height: 34)
+                            .foregroundColor(Color("secondColor"))
+                        HStack(alignment: .bottom, spacing: 0) {
+                            Text(String(format: "%d", homeVM.meetings.count))
+                                .font(FontManager.font(size: 17, weight: .bold))
+                                .foregroundColor(Color("mainColor"))
+                            Text("건")
+                                .font(FontManager.font(size: 11, weight: .bold))
+                                .padding(.bottom, 3)
+                        }
+                    }
+                    Text("있어요.")
+                }
+            } else {
+                VStack(alignment: .leading, spacing: 20) {
+                    Text("인증 후에 더 많은 기능을 이용할 수 있어요")
+                        .font(FontManager.font(size: 17, weight: .bold))
+                    Button {
+                        self.homeVM.action = 1
+                    } label: {
+                        Text("이메일 인증 바로가기 >")
+                            .font(FontManager.font(size: 15, weight: .semibold))
                     }
                 }
-                Text("있어요.")
             }
         }
         .font(FontManager.font(size: 20, weight: .bold))        
     }
     
-    private var contents: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 0) {
-                ForEach(homeVM.meetings) { meeting in
-                    MeetingCard(meeting: meeting)
-                        .cornerRadius(4, corners: [.topRight, .bottomLeft, .bottomRight])
-                        .padding(6)
-                        .shadow(color: Color(meeting.untact ? "mainShadowColor" : "secondShadowColor"), radius: 3, x: 0, y: 0)
+    @ViewBuilder private var contents: some View {
+        if UserModel.user?.verified == true {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 0) {
+                    ForEach(homeVM.meetings, id: \.self) { meeting in
+                        MeetingCard(meeting: meeting)
+                            .cornerRadius(4, corners: [.topRight, .bottomLeft, .bottomRight])
+                            .padding(6)
+                            .shadow(color: Color(meeting.untact == "true" ? "mainShadowColor" : "secondShadowColor"), radius: 3, x: 0, y: 0)
+                    }
                 }
             }
+            .padding(.top, 20)
+            .offset(x: -3)
+        } else {
+            EmptyView()
         }
-        .offset(x: -3)
     }
     
 }

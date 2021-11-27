@@ -14,7 +14,7 @@ final class DateManager {
     func dateAsString(date: Date=Date()) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ko_KR")
-        dateFormatter.dateFormat = "yyyy.MM.DD EEEE"
+        dateFormatter.dateFormat = "yyyy.MM.dd EEEE"
         let d = dateFormatter.string(from: date)
         dateFormatter.dateFormat = "a hh시 mm분"
         let t = dateFormatter.string(from: date)

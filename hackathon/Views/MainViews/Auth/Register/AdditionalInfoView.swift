@@ -42,9 +42,26 @@ struct AdditionalInfoView: View {
                         VStack(alignment: .leading, spacing: 54) {
                             schoolField
                             majorField
-                            companyField
-                            jobField
-                            yearField
+                            if !additionalInfoVM.isStudent {
+                                VStack(alignment: .leading, spacing: 54) {
+                                    companyField
+                                    jobField
+                                    yearField
+                                }
+                            }
+                            HStack(spacing: 14) {
+                                Text(additionalInfoVM.isStudent ? "직장인이신가요?" : "학생이신가요?")
+                                Button {
+                                    withAnimation {
+                                        self.additionalInfoVM.isStudent.toggle()
+                                    }
+                                } label: {
+                                    Image(systemName: additionalInfoVM.isStudent ? "checkmark.circle" : "checkmark.circle.fill")
+                                        .resizable()
+                                        .frame(width: 20, height: 20)
+                                }
+                            }
+                            .foregroundColor(Color(hex: "#555555"))
                         }
                     }
                 }
