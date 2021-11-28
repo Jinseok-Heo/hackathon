@@ -17,6 +17,7 @@ extension CharacterSet{
 
 extension String {
     
+    /// Transform base64 encoded string to UIImage
     func toImage() -> UIImage? {
         if let data = Data(base64Encoded: self, options: .ignoreUnknownCharacters) {
             return UIImage(data: data)
@@ -49,6 +50,7 @@ extension String {
 
 extension String {
     
+    /// Transform to date for request parameter
     func toDate() -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.S"

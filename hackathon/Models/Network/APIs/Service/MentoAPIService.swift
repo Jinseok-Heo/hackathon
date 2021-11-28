@@ -7,9 +7,18 @@
 
 import Foundation
 import Alamofire
-import CoreLocation
+import Combine
 
 enum MentoAPIService {
+    
+    static func getMentoList() -> AnyPublisher<Mentos, AFError> {
+        NetworkManager.session
+            .request(MentoRouter.getMentoList)
+            .validate(statusCode: 200..<300)
+            .publishDecodable(type: Mentos.self)
+            .value()
+            .eraseToAnyPublisher()
+    }
     
     static func register(content: String,
                          preferredLocation: String,

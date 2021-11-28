@@ -46,7 +46,7 @@ class MentinkerViewModel: ObservableObject {
     }
     
     public func getMentoList() {
-        MatchingAPIService.getList()
+        MentoAPIService.getMentoList()
             .sink { result in
                 switch result {
                 case .finished:

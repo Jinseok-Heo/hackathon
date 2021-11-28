@@ -112,7 +112,7 @@ struct MeetingCard: View {
     
     private var dateInfo: some View {
         VStack(alignment: .leading, spacing: 2) {
-            Text(DateManager.shared.dateAsString(date: meeting.appointmentTime.toDate()))
+            Text(meeting.appointmentTime.toDate().toFormattedString())
             Text(meeting.location == "null" ? "장소 정보 없음" : meeting.location)
         }
         .font(FontManager.font(size: 13, weight: .semibold))

@@ -184,7 +184,7 @@ extension MentoAuthView {
                 .font(FontManager.font(size: 17, weight: .medium))
                 .padding(.trailing)
             Picker(selection: $mentoAuthVM.selectedProvince) {
-                ForEach(DummyData.provinceList, id: \.self) { province in
+                ForEach(DataSet.provinceList, id: \.self) { province in
                     Text(province)
                         .foregroundColor(Color(hex: "#191919"))
                         .tag(province)

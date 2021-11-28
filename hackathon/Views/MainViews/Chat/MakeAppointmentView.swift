@@ -30,8 +30,8 @@ class MakeAppointmentViewModel: ObservableObject {
     public init(mento: Mento) {
         self.selectedDate = Date()
         self.selectedCity = ""
-        self.selectedProvince = DummyData.provinceList.first!
-        self.cities = DummyData.localList.first!.cities
+        self.selectedProvince = DataSet.provinceList.first!
+        self.cities = DataSet.locationList.first!.cities
         self.mento = mento
         self.didSuccess = false
         addLocalSubscriber()
@@ -41,7 +41,7 @@ class MakeAppointmentViewModel: ObservableObject {
         $selectedProvince
             .debounce(for: .seconds(0.2), scheduler: DispatchQueue.main)
             .sink { province in
-                self.cities = DummyData.localList.filter { $0.province == province }.first?.cities ?? []
+                self.cities = DataSet.locationList.filter { $0.province == province }.first?.cities ?? []
                 self.selectedCity = self.cities.first!
             }
             .store(in: &cancellabels)
@@ -129,7 +129,7 @@ extension MakeAppointmentView {
                 .foregroundColor(Color(hex: "#191919"))
             HStack {
                 Picker(selection: $makeAppointmentVM.selectedProvince) {
-                    ForEach(DummyData.provinceList, id: \.self) { province in
+                    ForEach(DataSet.provinceList, id: \.self) { province in
                         Text(province)
                             .foregroundColor(Color(hex: "#191919"))
                             .tag(province)

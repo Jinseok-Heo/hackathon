@@ -116,11 +116,11 @@ class AdditionalInfoViewModel: ObservableObject {
     }
     
     public func isSchoolValidate() -> Bool {
-        return DummyData.schoolList.contains(school) && school != ""
+        return DataSet.schoolList.contains(school) && school != ""
     }
     
     public func isMajorValidate() -> Bool {
-        return DummyData.majorList.contains(major) && school != ""
+        return DataSet.majorList.contains(major) && school != ""
     }
     
 }
@@ -136,7 +136,7 @@ extension AdditionalInfoViewModel {
         $school
             .sink { [weak self] query in
                 guard let self = self else { return }
-                self.schoolList = DummyData.schoolList.filter { $0.decomposeHangul().contains(query.decomposeHangul()) }
+                self.schoolList = DataSet.schoolList.filter { $0.decomposeHangul().contains(query.decomposeHangul()) }
             }
             .store(in: &cancellabels)
     }
@@ -145,7 +145,7 @@ extension AdditionalInfoViewModel {
         $major
             .sink { [weak self] query in
                 guard let self = self else { return }
-                self.majorList = DummyData.majorList.filter { $0.decomposeHangul().contains(query.decomposeHangul()) }
+                self.majorList = DataSet.majorList.filter { $0.decomposeHangul().contains(query.decomposeHangul()) }
             }
             .store(in: &cancellabels)
     }

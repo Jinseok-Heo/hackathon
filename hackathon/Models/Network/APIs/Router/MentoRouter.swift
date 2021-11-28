@@ -11,6 +11,7 @@ import CoreLocation
 
 enum MentoRouter: URLRequestConvertible {
     
+    case getMentoList
     case register(content: String,
                   preferredLocation: String,
                   untact: Bool,
@@ -20,6 +21,8 @@ enum MentoRouter: URLRequestConvertible {
         
     var endPoint: String {
         switch self {
+        case .getMentoList:
+            return "/app/mentolist"
         case let .register(content, preferredLocation, untact, userId):
             return "/app/user/mento/register?userId=\(userId)&preferredLocation=\(preferredLocation)&untact=\(untact.description)&content=\(content)"
         case .sendEmail:
@@ -33,9 +36,7 @@ enum MentoRouter: URLRequestConvertible {
         switch self {
         case .register:
             return .get
-        case .sendEmail:
-            return .post
-        case .authenticate:
+        case .sendEmail, .authenticate, .getMentoList:
             return .post
         }
     }
@@ -58,6 +59,8 @@ enum MentoRouter: URLRequestConvertible {
             params["userId"] = SecurityManager.shared.load(account: .userID)
             params["code"] = passcode
             return params
+        default:
+            return Parameters()
         }
     }
     

@@ -53,8 +53,8 @@ class MentoAuthViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
         self.email = ""
         self.content = ""
         self.selectedCity = ""
-        self.cities = DummyData.localList.first!.cities
-        self.selectedProvince = DummyData.provinceList.first!
+        self.cities = DataSet.locationList.first!.cities
+        self.selectedProvince = DataSet.provinceList.first!
         self.preferredLocation = nil
         self.untact = 0
         
@@ -77,7 +77,7 @@ class MentoAuthViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
         $selectedProvince
             .debounce(for: .seconds(0.2), scheduler: DispatchQueue.main)
             .sink { province in
-                self.cities = DummyData.localList.filter { $0.province == province }.first?.cities ?? []
+                self.cities = DataSet.locationList.filter { $0.province == province }.first?.cities ?? []
                 self.selectedCity = self.cities.first!
             }
             .store(in: &cancellabels)

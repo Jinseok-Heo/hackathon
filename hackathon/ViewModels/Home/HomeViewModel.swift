@@ -112,11 +112,8 @@ class HomeViewModel: ObservableObject {
     }
     
     private func getHotCommunities() {
-        self.hotCommunities = DummyData.hotCommunities
+        self.hotCommunities = DataSet.hotCommunities
     }
-    
-//    private func getHotPickMentorings() {
-//        self.hotPickMentroings = DummyData.promotion
-//    }
+
     
 }

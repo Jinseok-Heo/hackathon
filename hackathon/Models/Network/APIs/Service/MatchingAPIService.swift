@@ -11,15 +11,6 @@ import Combine
 
 enum MatchingAPIService {
     
-    static func getList() -> AnyPublisher<Mentos, AFError> {
-        NetworkManager.session
-            .request(MatchingRouter.getList)
-            .validate(statusCode: 200..<300)
-            .publishDecodable(type: Mentos.self)
-            .value()
-            .eraseToAnyPublisher()
-    }
-    
     static func matching(menteeId: String,
                          mentoId: String,
                          location: String?,

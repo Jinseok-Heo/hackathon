@@ -10,15 +10,12 @@ import Alamofire
 
 enum MatchingRouter: URLRequestConvertible {
     
-    case getList
     case matching(menteeId: String, mentoId: String, location: String?, appointmentTime: Date)
     case postReview(rating: Int, matchingId: String, mentoId: String, content: String)
     case getMentoReview(mentoId: String)
 
     var endPoint: String {
         switch self {
-        case .getList:
-            return "/app/mentolist"
         case .matching:
             return "/app/matching"
         case .postReview:
@@ -34,7 +31,7 @@ enum MatchingRouter: URLRequestConvertible {
 
     var parameters: Parameters {
         switch self {
-        case .getList, .getMentoReview:
+        case .getMentoReview:
             let params = Parameters()
             return params
         case let .matching(menteeId, mentoId, location, appointmentTime):
