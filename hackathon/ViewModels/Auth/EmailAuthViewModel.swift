@@ -66,8 +66,9 @@ class EmailAuthViewModel: ObservableObject {
             switch response.result {
             case .success:
                 self.showEmailAuth = false
+                self.alertTitle = "인증 성공"
+                self.alertMsg = "인증이 완료되었습니다."
                 self.didAuthSuccess = true
-                self.generageAlert(title: "인증 성공", message: "")
             case .failure(let error):
                 if let statusCode = response.response?.statusCode {
                     if statusCode >= 400 && statusCode < 500 {

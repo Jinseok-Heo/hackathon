@@ -22,7 +22,7 @@ final class APILogger: EventMonitor {
         )
         print("Authorization: " + (request.request?.headers["Authorization"] ?? ""))
         print("Body: " + (request.request?.httpBody?.toPrettyPrintedString ?? ""))
-        print("============== End Line ==============")
+        print("============== End Line ==============\n")
     }
     
 }

@@ -47,12 +47,13 @@ class MentinkerViewModel: ObservableObject {
     
     public func getMentoList() {
         MentoAPIService.getMentoList()
-            .sink { result in
+            .sink { [weak self] result in
                 switch result {
                 case .finished:
-                    print("finished")
+                    NSLog("ViewModels/MentinkerViewModel/getMentoList Success")
                 case .failure(let err):
-                    print(err.localizedDescription)
+                    self?.generateAlert(title: "오류 발생", message: "네트워크 연결을 확인해주세요")
+                    NSLog(err.localizedDescription)
                 }
             } receiveValue: { [weak self] mentos in
                 self?.mentos = mentos
@@ -60,30 +61,36 @@ class MentinkerViewModel: ObservableObject {
             .store(in: &cancellabels)
     }
     
-    public func getUserProfile(userId: Int) -> UserModel? {
+    public func getUserProfile() -> UserModel? {
+        isLoading = true
         var ret: UserModel? = nil
-        AuthAPIService.getProfile(userId: "\(userId)")
-            .sink { [weak self] response in
-                switch response {
-                case .finished:
-                    print("Get user completed")
-                case .failure(let error):
-                    print(error.localizedDescription)
-                    self?.generateAlert(title: "네트워크 오류 발생", message: "네트워크 연결을 확인해주세요")
+        if let userID = SecurityManager.shared.load(account: .userID) {
+            AuthAPIService.getProfile(userId: userID)
+                .sink { [weak self] response in
+                    self?.isLoading = false
+                    switch response {
+                    case .finished:
+                        NSLog("ViewModels/MentinkerViewModel/getUserProfile Success")
+                    case .failure(let error):
+                        self?.generateAlert(title: "오류 발생", message: "네트워크 연결을 확인해주세요")
+                        NSLog(error.localizedDescription)
+                    }
+                } receiveValue: { user in
+                    ret = user
                 }
-            } receiveValue: { user in
-                ret = user
-            }
-            .store(in: &cancellabels)
+                .store(in: &cancellabels)
+        }
         return ret
     }
     
 }
 
 extension MentinkerViewModel {
+    
     private func generateAlert(title: String, message: String) {
         alertTitle = title
         alertMsg = message
         showAlert = true
     }
+    
 }

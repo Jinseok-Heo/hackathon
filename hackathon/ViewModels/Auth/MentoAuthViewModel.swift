@@ -106,7 +106,7 @@ class MentoAuthViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
             switch response.result {
             case .success:
                 self.showEmailAuth = true
-                self.generageAlert(message: "인증코드가 발송되었습니다.")
+                self.generageAlert(title: "인증코드 발송",message: "이메일을 확인해주세요.")
             case .failure(let error):
                 NSLog(error.localizedDescription)
                 self.generageAlert(message: "이메일 발송 실패")
@@ -126,7 +126,7 @@ class MentoAuthViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
             case .failure(let error):
                 if let statusCode = response.response?.statusCode {
                     if statusCode >= 400 && statusCode < 500 {
-                        self.generageAlert(message: "인증코드를 확인해주세요")
+                        self.generageAlert(title: "인증 실패", message: "인증코드를 확인해주세요")
                     } else {
                         self.generageAlert(message: "네트워크 연결을 확인해주세요")
                     }
@@ -174,7 +174,11 @@ class MentoAuthViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
         }
     }
     
-    private func generageAlert(message: String) {
+}
+
+extension MentoAuthViewModel {
+    
+    private func generageAlert(title: String="오류 발생", message: String) {
         alertMsg = message
         showAlert = true
     }

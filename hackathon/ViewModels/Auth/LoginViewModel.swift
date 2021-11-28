@@ -34,19 +34,14 @@ class LoginViewModel: ObservableObject {
         self.isLoading = false
     }
     
-    func tryLogin() {
+    func login() {
         let encodedPassword = password.toBase64()
         isLoading = true
         AuthAPIService.login(userName: userName, password: encodedPassword, completion: loginCompletionHandler)
     }
     
     private func loginCompletionHandler(response: AFDataResponse<Any>) {
-        weak var _self = self
-        _self?.isLoading = false
-        guard let self = _self else {
-            NSLog("ViewModels/Auth/LoginViewModel/tryLogin : self is nil")
-            return
-        }
+        self.isLoading = false
         if let err = response.error {
             if response.response?.statusCode == 401 {
                 print(err.localizedDescription)
@@ -80,6 +75,10 @@ class LoginViewModel: ObservableObject {
             NSLog("There is no header in data")
         }
     }
+    
+}
+
+extension LoginViewModel {
     
     private func generateAlert(message: String) {
         self.alertMsg = message

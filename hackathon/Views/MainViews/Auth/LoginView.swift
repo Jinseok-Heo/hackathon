@@ -77,7 +77,7 @@ extension LoginView {
     
     private var loginButton: some View {
         Button {
-            loginVM.tryLogin()
+            loginVM.login()
         } label: {
             Text("로그인")
                 .font(FontManager.font(size: 16, weight: .bold))
